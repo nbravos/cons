@@ -1,0 +1,12 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Aprendiendo Laravel</title>
+  </head>
+  <body>
+      @yield('content')
+      <hr />
+      
+	2017 Paws  Construction. All Rights Reserved
+  </body>
+</html>
