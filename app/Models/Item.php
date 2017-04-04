@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
+
+use \Validator;
 
 class Item extends \Eloquent {
 
-{
+
     protected $fillable = ['cantidad', 'detalle', 'unidad', 'unitario'];
 
-    protectd $table ='item';
+    protected $table ='item';
 
     public $errors;
 
@@ -20,7 +22,7 @@ class Item extends \Eloquent {
 			
 			'cantidad' => 'required',
 			'detalle' =>'required|min:3',
-			'unidad' =>'required|numeric',
+			'unidad' =>'required',
 			'unitario' => 'required|numeric',
 	
 			);
@@ -48,7 +50,7 @@ class Item extends \Eloquent {
 
 	public function ordencompra(){
 
-                return $this->belongsToMany('App\Models\Ordencompra', 'orden_item' ,'id_orden', 'id_item'); //->using(\App\Models\)
+                return $this->belongsToMany('App\Models\Ordencompra', 'orden_item' ,'id_orden', 'id_item'); 
         }
 
    	public function documento(){

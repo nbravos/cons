@@ -79,7 +79,7 @@ class OrdenCompraController extends Controller {
 		          
 		   // return Redirect::route('oc.index'); 
 		Session::put('idorden', $id);
-		//echo Session::get('idorden');
+		
 			return View::make('site/item/form');
 
 		}

@@ -129,9 +129,8 @@ $(document).ready(function () {
       });
     });
     </script>
-
-  {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
-  
+	
+  {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}   
 {!! Form::close() !!}
 
 @stop

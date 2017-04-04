@@ -14,7 +14,7 @@
     </div>
   @endif
 @if(isset($item))
-    {!! Form::model($item, ['route' => ['item.update', $item->id], 'method' => 'patch']) !!}
+    {!! Form::model($item, ['route' => ['items.update', $item->id], 'method' => 'patch']) !!}
      @section ('breadcrumbs')
 
                 <ul class="breadcrumb a">
@@ -30,7 +30,7 @@
 
 	<h1>Editar Item</h1>
 @else
-    {!! Form::open(array('route' => 'item.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
+    {!! Form::open(array('route' => 'items.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
              @section ('breadcrumbs')
 
                 <ul class="breadcrumb a">
@@ -65,7 +65,14 @@
     </div>
 </div>
 
+{{ $order = Input::get('oc')  }}
 
-
+ {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
+  
+{!! Form::close() !!}
+<br>
+<p>
+  <a href="{!! route('items.create') !!}" class="btn btn-primary">Agregar nuevo </a>
+  </p>
 
 @stop

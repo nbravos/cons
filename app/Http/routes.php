@@ -50,6 +50,7 @@ Route::resource('proyectos', 'ProyectoController');
 Route::resource('reportes', 'ReporteController');
 Route::resource('sueldos', 'SueldoController');
 Route::resource('ofertas', 'ProyectoContratistaController');
+Route::get('items/doc', 'ItemController@fromdocumento');
 Route::resource('items', 'ItemController');
 
 Route::get('login', 'AuthController@showLogin'); // Mostrar login

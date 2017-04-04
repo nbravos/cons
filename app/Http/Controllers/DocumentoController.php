@@ -104,8 +104,9 @@ class DocumentoController extends Controller {
                 {
                         App::abort(404)->with('message', 'Documento no encontrado');
                 }
-
-		
+		$idoc_orden = $documento->id_orden;
+		//dd($documento->id_orden);
+                Session::put('idocumento', $idoc_orden);	
                 return View::make('site/documentos/show', array('documento' => $documento));
 		
 	}
