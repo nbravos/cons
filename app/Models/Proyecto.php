@@ -60,8 +60,15 @@ class Proyecto extends \Eloquent {
 
 	public function empresa(){
 
+//		return $this->belongsToMany('App\Models\Empresa', 'proyecto_contratista', 'id_empresa', 'id_proyecto');
 		return $this->belongsTo('App\Models\Empresa', 'id_empresa', 'id');
+
 	}
+
+	public function proyectocontratista(){
+
+                return $this->hasMany('App\Models\Proyectocontratista');
+        }
 
 	public function comuna(){
 
@@ -73,11 +80,6 @@ class Proyecto extends \Eloquent {
 		return $this->hasMany('App\Models\Partida');
 	}
 
-
-	 public function proyectocontratista(){
-
-                return $this->hasMany('App\Models\Proyectocontratista');
-        }
 
 
 	public static function boot()

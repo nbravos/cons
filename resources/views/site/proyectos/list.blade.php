@@ -68,8 +68,8 @@
           },
             columns: [
                 {data: 'id', name: 'proyecto.id'},
-                {data: 'proNombre', name: 'proNombre'},
-                {data: 'comu', name: 'comu'},
+                {data: 'proNombre', name: 'proyecto.nombre'},
+                {data: 'comu', name: 'comuna.nombre'},
                 {data: 'fecha_licitacion', name: 'proyecto.fecha_licitacion'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
     

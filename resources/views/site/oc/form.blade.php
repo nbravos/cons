@@ -121,7 +121,9 @@ $(document).ready(function () {
       $('#condicion_pago').change(function(){
         var opt = $(this).find("option:selected").attr('value');
         if(opt != 'Plazo'){
+          document.getElementById("tipo_plazo").value = "";
           $('#tipo_plazo').hide();
+	  
         }
         else{
           $('#tipo_plazo').show();

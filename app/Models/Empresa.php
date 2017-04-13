@@ -65,15 +65,6 @@ class Empresa extends \Eloquent {
         return false;
 	}
 
-/* public function rutValidation($value='')
-	{
-	# code...
-	}
-	public function validAndSafe($data)
-	{
-		
-	}*/
-
 	public function ordencompra(){
 
 		return $this->hasMany('App\Models\Ordencompra');
@@ -82,13 +73,13 @@ class Empresa extends \Eloquent {
 
 	public function proyecto(){
 
+//		return $this->belongsToMany('App\Models\Proyecto', 'proyecto_contratista', 'id_proyecto', 'id_empresa')->withPivot('monto_ofertado', 'bases');
 		return $this->hasMany('App\Models\Proyecto', 'id_empresa', 'id');
+
+	
 
 	}
 
-	/*public function proyectocontratista(){
-
-                return $this->hasOne('App\Models\Proyectocontratista');
-        }*/
+	
 
 }

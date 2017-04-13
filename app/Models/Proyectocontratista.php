@@ -24,8 +24,8 @@ class Proyectocontratista extends Model
 
                         'id_proyecto' => 'required|',
                         'id_empresa' => 'required|',
-                        'monto_ofertado' => 'required|numeric',
-			'bases' => 'required|min:5',
+                        'monto_ofertado' => 'required',
+			'bases' => 'required',
                         
                         );
         $mensajes = array (
@@ -50,3 +50,4 @@ class Proyectocontratista extends Model
         }
 
 }
+

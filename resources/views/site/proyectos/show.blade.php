@@ -19,8 +19,8 @@
 
         <h1> <strong> {!! $proyecto->nombre!!} </strong> </h1> 
 
-<a href="{!!route('ofertas.create', $proyecto->id)!!}" class="btn btn-primary">Agregar Oferta</a>
-
+<a href="{{ route('addof', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Agregar Oferta</a>
+<!-- <a href="/ofertas/create/'.$proyecto->id.'" class="btn btn-primary"> Oferta</a>-->
 <table class="table table-user-information">
                     <tbody>
                       <tr>
@@ -77,7 +77,7 @@
                   <p>
 <a href="{!!route('proyectos.index')!!}" class="btn btn-primary">Volver</a>
 <a href="{!!route('proyectos.edit', $proyecto->id)!!}" class="btn btn-primary">Editar</a>
-{!! Form::model($proyecto, array('route' => array('proyectos.destroy', $proyecto->id), 'method' => 'DELETE', 'onsumit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
+{!! Form::model($proyecto, array('route' => array('proyectos.destroy', $proyecto->id), 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
   {{ Form::submit('Eliminar Proyecto', array('class' => 'btn btn-danger')) }}
 {!! Form::close() !!}
 </p>
@@ -96,4 +96,5 @@
 </script>
 
 @stop
+
 

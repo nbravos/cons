@@ -49,6 +49,7 @@ Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
 Route::resource('reportes', 'ReporteController');
 Route::resource('sueldos', 'SueldoController');
+Route::get('ofertas/create/{id}',['uses' =>'ProyectoContratistaController@create'])->name('addof');
 Route::resource('ofertas', 'ProyectoContratistaController');
 Route::get('items/doc', 'ItemController@fromdocumento');
 Route::resource('items', 'ItemController');

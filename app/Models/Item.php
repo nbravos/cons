@@ -50,12 +50,12 @@ class Item extends \Eloquent {
 
 	public function ordencompra(){
 
-                return $this->belongsToMany('App\Models\Ordencompra', 'orden_item' ,'id_orden', 'id_item'); 
+                return $this->belongsToMany('App\Models\Ordencompra', 'orden_item' ,'id_item', 'id_orden'); 
         }
 
    	public function documento(){
 
-                return $this->belongsToMany('App\Models\Documento', 'documento_item', 'id_documento', 'id_item');
+                return $this->belongsToMany('App\Models\Documento', 'documento_item', 'id_item', 'id_documento');
     }
 
 

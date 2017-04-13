@@ -12,9 +12,51 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*$itemorden = DB::table('orden_item')->where(function ($query) use ($idoc_orden) {
+    $query->where('orden_item.id_orden', '=', $idoc_orden);
+    })->get();
+    ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
+                    ->join('orden_compra', 'orden_compra.id', '=', 'orden_item.id_orden')
+                    ->select(['item.id', 'item.detalle', 'item.unitario',  'orden_compra.numero']);
+       if (request()->ajax()){
+                        return Datatables::of($items)
+       
+             ->addColumn('action', function ($item) {
+                return '<a href="/item/'.$item->id.'" class="btn btn-info"> Ver</a>';                       
+            })
+            ->editColumn('id', '{{$id}}')
+            ->make(true);
+        }
+            return View::make('site/item/list');       
+*/
     public function index()
     {
-$items = DB::table('item')
+                $idoc_orden = Session::get('idindex');
+        $items = DB::table('item')
+            ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
+                    ->join('orden_compra', 'orden_compra.id', '=', 'orden_item.id_orden')
+                    ->select(['item.id', 'item.detalle', 'item.unitario',  'orden_compra.numero']);
+		
+               /* $items = DB::table('item')
+                ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
+                ->join('orden_compra', function($join) use($idoc_orden){
+                    $join->on( 'orden_item.id_orden', '=', $idoc_orden);
+                }) 7 abril -  malo */
+    
+       if (request()->ajax()){
+                        return Datatables::of($items)
+       
+             ->addColumn('action', function ($item) {
+                return '<a href="/item/'.$item->id.'" class="btn btn-info"> Ver</a>';                       
+            })
+            ->editColumn('id', '{{$id}}')
+            ->make(true);
+        }
+            return View::make('site/item/list');    
+        }    
+
+/*$items = DB::table('item')
 		    ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
                     ->join('orden_compra', 'orden_compra.id', '=', 'orden_item.id_orden')
                     ->select(['item.id', 'item.detalle', 'item.unitario',  'orden_compra.numero']);
@@ -28,7 +70,7 @@ $items = DB::table('item')
             ->make(true);
         }
             return View::make('site/item/list');        
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -37,6 +79,7 @@ $items = DB::table('item')
      */
     public function create()
     {
+	
         return View::make('site/item/form');
     }
 
@@ -50,16 +93,21 @@ $items = DB::table('item')
     {
         $item = new Item;
 	$data = Input::all();
-	
+//	dd($data);
 	if($item->isValid($data))
         {
 
             $item->fill($data);
             $item->save();
-     
+         
 		 $idoc = Session::get('idorden');
-	    
-		$item->ordencompra()->attach($idoc);	
+	     
+		$item->ordencompra()->attach($idoc);
+          
+         $id_index = $item->ordencompra();
+	$id_index = $item->ordencompra['0']->id;
+        Session::put('idindex', $id_index);
+        	
              return Redirect::route('items.index'); 
 
         }
@@ -90,10 +138,10 @@ return View::make('calendar')->with('weekdays',$secondResult);
    
 
     foreach ($itemorden as $value) {
-            $it = $value->id_item;
+        echo  $it=$value->id_item;
     }
-
-    $items = DB::select(DB::raw("SELECT * FROM item WHERE id = '$it'"));
+	
+    $items = DB::select(DB::raw("SELECT * FROM item WHERE id = $it"));
     
 
     /*$itemorden = DB::table('orden_item')->where(function ($query) use ($idoc_orden) {

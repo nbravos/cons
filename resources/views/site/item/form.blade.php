@@ -28,7 +28,7 @@
                 </ul>
  @stop
 
-	<h1>Editar Item</h1>
+  <h1>Editar Item</h1>
 @else
     {!! Form::open(array('route' => 'items.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
              @section ('breadcrumbs')
@@ -43,7 +43,7 @@
                   </li>
                 </ul>
  @stop
-	 <h1>Agregar Item</h1>
+   <h1>Agregar Item</h1>
 @endif
 
 <div class="row">

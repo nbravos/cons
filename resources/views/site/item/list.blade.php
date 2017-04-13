@@ -13,7 +13,7 @@
  @stop
 @section ('content')
 
-<!-- <p>
+<!--<p>
   <a href="{!! route('items.create') !!}" class="btn btn-primary">Agregar nuevo </a>
   </p> -->
 <!--<div class="container-fluid container-fixed-lg bg-white">-->
@@ -32,7 +32,7 @@
                 <th> Número</th>
                 <th>Detalle</th>
                  <th>Valor Unitario</th>
-                 <th>Orden Compra Asociada</th>
+		<th>O.C Asociada</th>
                  <th>Acciones</th>
                  </tr>
               </thead>
@@ -40,7 +40,7 @@
                     <tr>
                       <td class="non_searchable"></td>
                       <td></td>
-                      <td></td>
+		      <td></td> 	
                       <td></td>
                       <td  class="non_searchable"></td>
                     </tr>
@@ -63,9 +63,9 @@
           },
             columns: [
                 {data: 'id', name: 'item.id'},
-                {data: 'detalle', name: 'item.detalle'},
+		{data: 'detalle', name: 'item.detalle'},
                 {data: 'unitario', name: 'item.unitario'},
-                {data: 'numero', name: 'orden_compra.numero'},
+		{data: 'numero', name: 'orden_compra.numero'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
     
             ],
@@ -89,6 +89,6 @@
 
           </script>
 
-   
+   <!--  {data: 'numero', name: 'orden_compra.numero'}, -->
 @stop
  

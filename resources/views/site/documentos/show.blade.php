@@ -54,13 +54,14 @@
                         <br>
                         <a class="active"> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $documento->fecha)->format('d-m-Y') }}   </a>
 
-		<a href="http://aragonltda.cl/items/doc" class="btn btn-primary pull-right">Modificar Items</a>
+	
 
                       </div>
                  
                   <p>
 <a href="{!!route('documentos.index')!!}" class="btn btn-primary">Volver</a>
 <a href="{!!route('documentos.edit', $documento->id)!!}" class="btn btn-primary">Editar</a>
+<a href="http://aragonltda.cl/items/doc" class="btn btn-primary">Modificar Items</a>
 {!! Form::model($documento, array('route' => array('documentos.destroy', $documento->id), 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
 <!--  {!! Form::submit('Eliminar Documento', array('class' => 'btn btn-danger')) !!}-->
 {!! Form::close() !!}

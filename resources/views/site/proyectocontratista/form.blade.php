@@ -45,17 +45,18 @@
                 </ul>
  @stop
 
-	 <h1>Agregar Contartista</h1>
+	 <h1>Agregar Contratista</h1>
 @endif
   <div class="row">
-    <div class="form-group">
+<div class="form-group">
            {!! Form::label('id_proyecto', 'Proyecto Base') !!}
-           {!! Form::select('id_proyecto', $proyectoid, null, ['class' => 'form-control']) !!}
+           {!! Form::text('id_proyecto', $proyecto["0"]->id, array('readonly' => 'true', 'class' => 'form-control')) !!}
     </div>
-      <div class="form-group">
-           {!! Form::label('id_empresa', 'Empresa') !!}
+
+ <div class="form-group">
+           {!! Form::label('id_empresa', 'Contratista Asociado') !!}
            {!! Form::select('id_empresa', $empresas, null, ['class' => 'form-control']) !!}
-    </div>
+    </div>    
     <div class="form-group">
       {!! Form::label('monto_ofertado', 'Monto Ofertado') !!}
       {!! Form::text('monto_ofertado', null, array('placeholder' => 'Igresa el monto ofertado', 'class' => 'form-control')) !!}
