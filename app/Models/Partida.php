@@ -5,7 +5,7 @@ namespace App\Models;
 use \Validator;
 
 class Partida extends \Eloquent {
-	protected $fillable = ['id', 'nombre', 'proyecto_id', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real'];
+	protected $fillable = ['id', 'nombre', 'id_proyecto', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real'];
 	
 	protected $table = 'partida'; 
 
@@ -27,9 +27,9 @@ class Partida extends \Eloquent {
                         'unitario' => 'required|numeric|min:1',
                         'total' => 'numeric',
 			'inicio_teorico' => 'date_format:d/m/Y',
-			'inicio_real' => 'date_format:d/m/Y',
+			'inicio_real' => 'sometimes|date_format:d/m/Y',
                         'fin_teorico' => 'date_format:d/m/Y',
-                        'fin_real' => 'date_format:d/m/Y',
+                        'fin_real' => 'sometimes|date_format:d/m/Y',
                         );
 
 			
@@ -48,6 +48,7 @@ $mensajes = array(
         'inicio_real.date_format' => 'La fecha de inicio real es obligatoria',
         'fin_teorico.date_format' => 'La fecha de término teórica es obligatoria',
         'fin_real.date_format' => 'La fecha de término real es obligatoria',
+	'item.numeric' => 'Item debe ser un valor numérico',
 
 
         );
@@ -68,7 +69,7 @@ $mensajes = array(
 	public function proyecto() 
 	{
 
-		return $this->belongsTo('App\Models\Proyecto', 'proyecto_id', 'id');
+		return $this->belongsTo('App\Models\Proyecto', 'id_proyecto', 'id');
 	
 	}
 

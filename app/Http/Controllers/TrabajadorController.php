@@ -117,7 +117,7 @@ class TrabajadorController extends Controller {
 	$afp = Afp::pluck('nombre', 'id');
         $salud = Salud::pluck('nombre', 'id');
 
-        return View::make('site/trabajador/form')
+        return View::make('site/trabajador/edit')
 					->with('salud', $salud)
 					->with('afp', $afp)
 					->with('trabajador', $trabajador);
@@ -145,7 +145,7 @@ class TrabajadorController extends Controller {
 
 
         
-        if ($trabajador->isValid($data))
+        if ($trabajador->isValidUpdate($data))
         {
 
 	$data['fecha'] = date('Y-m-d', strtotime($data['fecha']));

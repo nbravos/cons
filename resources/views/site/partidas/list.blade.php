@@ -33,8 +33,9 @@
                 <tr>
                 <th>Numero </th>
                <th>Nombre</th>
+		<th>Proyecto</>
                <th>Detalle </th>
-               <th>Total</th>
+               <th>Item</th>
                <th>Inicio Real</th>
                <th>Acciones</th>
                  </tr>
@@ -45,6 +46,7 @@
                       <td  class="non_searchable"></td>
                       <td></td>
                       <td></td>
+		      <td></td>
                       <td></td>
                       <td></td>
                       <td  class="non_searchable"></td>
@@ -60,16 +62,18 @@
             processing: false,
             serverSide: true,
             ajax: '{!! route("partidas.index") !!}',
+		order: [[5, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
               url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'id'},
-                {data: 'nombre', name: 'nombre'},
+                {data: 'id', name: 'partida.id'},
+                {data: 'partNombre', name: 'partida.nombre'},
+		{data: 'ProNombre', name: 'proyecto.nombre'},
                 {data: 'detalle', name: 'detalle'},
-                {data: 'total', name: 'ftotal'},
+                {data: 'item', name: 'item'},
                 {data: 'inicio_real', name: 'inicio_real'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
     
@@ -80,42 +84,4 @@
 
           </script>
 
-
- <!--         <script type="text/javascript">
-              $(document).ready(function() {
-              $('#listaPart').DataTable({
-                "oLanguage": { 
-                  "sUrl": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json" }
-                });
-              });
-          </script>
-  
-<table class="table table-striped">
-    <tr>
-        <th>Nombre</th>
-        <th>Detalle </th>
-        <th>Total</th>
-        <th>Inicio</th>
-	<th>Acciones</th>
-    </tr>
-    @foreach ($partidas as $partida)
-    <tr>
-        <td>{!! $partida->nombre !!}</td>
-        <td>{!! $partida->detalle !!}</td>
-        <td>{!! $partida->total!!}</td>
-        <td>{!! date('d-m-Y', strtotime($partida->fecha_inicio)) !!}</td>
-
-      
-	<td>
-          <a href="{!! route('partidas.show', $partida->id) !!}" class="btn btn-info">
-              Ver
-          </a>
-          <a href="{!! route('partidas.edit', $partida->id) !!}" class="btn btn-primary">
-            Editar
-          </a>
-	</td>
-    </tr> 
-    @endforeach
-  </table>
--->
 @stop

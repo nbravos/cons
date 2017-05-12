@@ -4,6 +4,7 @@
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Models\Documento;
 
 class ItemController extends Controller
 {
@@ -33,16 +34,17 @@ class ItemController extends Controller
     public function index()
     {
                 $idoc_orden = Session::get('idindex');
+//	dd($idoc_orden);
         $items = DB::table('item')
             ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
                     ->join('orden_compra', 'orden_compra.id', '=', 'orden_item.id_orden')
                     ->select(['item.id', 'item.detalle', 'item.unitario',  'orden_compra.numero']);
 		
-               /* $items = DB::table('item')
+                /*$items = DB::table('item')
                 ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
                 ->join('orden_compra', function($join) use($idoc_orden){
                     $join->on( 'orden_item.id_orden', '=', $idoc_orden);
-                }) 7 abril -  malo */
+                }); //7 abril -  malo */
     
        if (request()->ajax()){
                         return Datatables::of($items)
@@ -119,6 +121,36 @@ class ItemController extends Controller
         }       
     }
 
+    public function storeandcreate(Request $request)
+    {
+    
+    $item = new Item;
+    $data = Input::all();
+    dd($data);
+    if($item->isValid($data))
+        {
+
+            $item->fill($data);
+            $item->save();
+         
+         $idoc = Session::get('idorden');
+         
+        $item->ordencompra()->attach($idoc);
+          
+        $item->ordencompra->id_orden;
+        Session::put('idindex', $id_index);
+            
+             return Redirect::route('items.create'); 
+
+        }
+        else
+        {
+            //Si no se valida redirige a create con los errores qeu se encontraron
+            return Redirect::route('items.create')->withInput()->withErrors($item->errors);
+ 
+        }       
+    }
+
     /*$week = DB::select('SELECT week FROM calendar WHERE year = 2015 and month = 01 and day = 30');
      foreach ($week as $weekvalue)
 {
@@ -129,21 +161,32 @@ $secondResult = DB::select("SELECT * FROM calendar WHERE year = 2015 and week = 
 return View::make('calendar')->with('weekdays',$secondResult);
 */
 
-	public function fromdocumento()
+	public function fromdocumento($id)
     {
 
 	$idoc_orden = Session::get('idocumento');
 
     $itemorden =DB::select(DB::raw("SELECT id_item FROM orden_item WHERE id_orden = '$idoc_orden'"));
-   
-
+    //dd($itemorden);
+    //dd(count($itemorden));
+	Session::put('id_doc_final', $id);
+	
     foreach ($itemorden as $value) {
-        echo  $it=$value->id_item;
+        echo  $it[] = $value->id_item;
     }
 	
-    $items = DB::select(DB::raw("SELECT * FROM item WHERE id = $it"));
     
+    $items = DB::table('item')->select('*')->whereIn('id', $it)->get();
 
+    //$items = DB::select(DB::raw("SELECT * FROM item WHERE id IN (".implode(',',$arrayName).")"));
+    //dd($items);
+    //$items = DB::table('item')->select('*')->whereIn('id', $it)->get();
+
+    /*$items = DB::select(DB::raw("SELECT * FROM item WHERE id = '$it'"));*/
+    
+/*  $sql = 'SELECT * 
+          FROM `table` 
+         WHERE `id` IN (' . implode(',', array_map('intval', $array)) . ')'; */
     /*$itemorden = DB::table('orden_item')->where(function ($query) use ($idoc_orden) {
     $query->where('orden_item.id_orden', '=', $idoc_orden);
     })->get();
@@ -166,9 +209,43 @@ return View::make('calendar')->with('weekdays',$secondResult);
 			})
                     ->get();*/
 	//dd($itemorden = $itemorden->keyBy('id_item'));
-                return View::make('site/item/act')->with('items', $items);
+                return View::make('site/item/act')->with('items', $items)->with('id', $id);
         
     }
+
+	  
+
+	  public function storefromdoc()
+    {
+        $data = Input::all();
+        //dd($data['cantidad'][0]);
+	//(count($data['cantidad']));
+	/*       for ($i=0; $i < count($data['cantidad']); $i++){
+             DB::table('item')->insert(array('cantidad' => '$data[$i]->cantidad', 
+							   'unidad' => '$data[$i]->unidad',
+						            'id_item_dos' => '$data[$i]->$id')
+            							);*/
+	$idoc_orden = Session::get('id_doc_final');
+	//dd($idoc_orden);
+	for ($i=0; $i < count($data['cantidad']); $i++){
+
+	$item = new Item;
+	$item->cantidad = $data['cantidad'][$i];
+	$item->detalle = $data['detalle'][$i];
+	$item->unidad = $data['unidad'][$i];
+	$item->unitario = $data['unitario'][$i];
+	$item->id_item_dos = $data['id_item_dos'][$i];
+	$item->save();
+
+	
+	 $item->documento()->attach($idoc_orden);
+
+    
+	}
+        return redirect('home');
+    }
+
+
 
     /**
      * Display the specified resource.

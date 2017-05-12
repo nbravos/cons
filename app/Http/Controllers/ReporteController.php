@@ -2,82 +2,80 @@
 
 
 use App\Models\Reporte;
+use Khill\Lavacharts\Lavacharts;
+use App\Models\Proyecto;
+use App\Models\Proyectocontratista;
+use App\Models\Empresa;
+
 
 class ReporteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+public function index()
     {
                 return view('site/reportes/list');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function graficos(/*$value*/)
     {
-        //
-    }
+    	//if ($value == '1')
+    		//grafico: todos contratistas por proyecto (y = proyecto, x = contratista + monto ofertado)
+/*$items = DB::table('item')
+                ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
+                ->join('orden_compra', function($join) use($idoc_orden){
+                    $join->on( $idoc_orden, '=', 'orden_item.id_orden');
+                })*/
+    	$lava = new Lavacharts;
+    	
+    	$contratistas = $lava->DataTable();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    	$data = DB::table('proyecto_contratista')
+    		->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
+    		->join('empresa', 'empresa.id', '=', 'proyecto_contratista.id_empresa')
+    		->select(['empresa.nombre', 'proyecto_contratista.monto_ofertado'])->get()->toArray();
+            //dd($data[0]->nombre);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    	$contratistas
+    		->addStringColumn('Contratistas')
+    		->addNumberColumn('Montos Ofertados');
+            
+            for ($i=0; $i < count($data); $i++) { 
+               $contratistas->addRow([$data[$i]->nombre, $data[$i]->monto_ofertado]);
+            }
+            
+    		
+    		
+    		
+    	$lava->ColumnChart('Contratistas', $contratistas, [
+    		'title' => 'Monto por Contratista en Proyectos', 
+    		'titleTextStyle' =>[
+    			'color' => '#eb6b2c',
+    			'fontSize' => 14,
+    		]
+    	]);	
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+		/*$lava= new Lavacharts; // 
+
+		$finances = $lava->DataTable();
+
+		$finances->addDateColumn('Year')
+ 		        ->addNumberColumn('Sales')
+        		 ->addNumberColumn('Expenses')
+         		->setDateTimeFormat('Y')
+         		->addRow(['2004', 1000, 400])
+         		->addRow(['2005', 1170, 460])
+         		->addRow(['2006', 660, 1120])
+         		->addRow(['2007', 1030, 54]);
+
+		$lava->ColumnChart('Finances', $finances, [
+    		'title' => 'Company Performance',
+    		'titleTextStyle' => [
+        	'color'    => '#eb6b2c',
+        	'fontSize' => 14
+   		 ]
+	]);*/
+            return view('site/reportes/test', compact('lava'));
     }
 }

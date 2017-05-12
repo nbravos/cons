@@ -12,11 +12,13 @@ class PartidaController extends \Controller {
 	 *
 	 * @return Response
 	 */
+
 	public function index()
 	{
 
 	    //$partidas = Partida::paginate();  
-		 $partidas = Partida::select(['id', 'nombre', 'detalle', 'total', 'inicio_real']);
+		 /*$partidas = Partida::select(['id','nombre', 'detalle', 'item', 'inicio_real']); original que funciona*/
+		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as ProNombre', 'detalle', 'item', 'inicio_real']);
 		if (request()->ajax()){
 		                return Datatables::of($partidas)
 

@@ -36,6 +36,7 @@ public function isValid($data)
 			'fecha.required' => 'Es necesaria la fecha',
 			'fecha.date_format' => 'El formato de fecha es dd/mm/YYYY',
 			'rutadoc.file' => 'El archivo debe ser menor a 20M',
+			'rutadoc.present' => 'Debe adjuntar el archivo correspondiente', 
 			 
 
 			);
@@ -51,6 +52,39 @@ public function isValid($data)
         
         return false;
 	}
+
+	public function isValidUpdate($data)
+    	{
+	$rules = array(
+			
+			'id_orden' => 'required',
+			'tipo' => 'required',
+			'no_contabilidad' => 'required',
+			'monto' =>'required|min:3|max:7',
+			'fecha' =>'required|date_format:d/m/Y',
+	
+			);
+	$mensajes = array(
+			'tipo.required' => 'Debe indicar un tipo de documento',
+			'no_contabilidad.required'=> 'Debe indicar si es un documento contable',
+			'monto.required'=> 'Debe indicar el monto del documento',
+			'fecha.required' => 'Es necesaria la fecha',
+			'fecha.date_format' => 'El formato de fecha es dd/mm/YYYY',
+			 
+			);
+	        
+        $validator = Validator::make($data, $rules, $mensajes);
+        
+        if ($validator->passes())
+        {
+            return true;
+        }
+        
+        $this->errors = $validator->errors();
+        
+        return false;
+	}
+
 
 	 public function ordencompra(){
 

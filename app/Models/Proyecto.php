@@ -3,7 +3,7 @@
 use \Validator;
 
 class Proyecto extends \Eloquent {
-	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'costos_generales', 'fecha_licitacion', 'estado'];
+	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'costos_generales', 'fecha_licitacion', 'estado', 'tipo_proyecto'];
 	protected $table = 'proyecto';
 	public $errors;
 	
@@ -17,6 +17,7 @@ class Proyecto extends \Eloquent {
                         'id_comuna' => 'required|',                       
                         'id_empresa' => 'required|',
 			'tipo_licitacion' => 'sometimes', 
+			'tipo_proyecto' =>'required',
                         'nombre' =>'required|max:60',
                         'financiamiento' => 'required',
                         'monto_disponible' =>'sometimes|numeric',
@@ -40,6 +41,7 @@ class Proyecto extends \Eloquent {
 		'presupuesto_oficial.numeric' => 'El valor del presupuesto debe ser numérico',
 		'costos_directos.numeric' => 'El valor de los costos directos debe ser numérico',
 		'costos_generales.numeric' => 'El valor de los costos generales debe ser numérico',
+                'tipo_proyecto.required' => 'Debe indicar el tipo de proyecto', 
 		'fecha_licitacion.required' => 'Debe indicar la fecha de licitación en formato dd/mm/yyyy',
 
 	);

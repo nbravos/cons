@@ -70,6 +70,20 @@
           'oficial' => 'Oficial'), null, ['id' =>'estado', 'class' => 'form-control']) !!}
 	</div>
 
+      <div class="form-group">
+      {!!Form::label('tipo_proyecto', 'Tipo de Proyecto')!!}
+      {!!Form::select('tipo_proyecto', array(
+          'Pavimento Participativo' => 'Pavimento Participativo', 
+          'Mejoramiento Vía' => 'Mejoramiento Vía', 
+          'Reconstrucción' => 'Reconstrucción',
+          'Espacios Públicos' => 'Espacios Públicos',
+          'Saneamiento'  => 'Saneamiento',
+          'Pavimentación Calzada' => 'Pavimentación Calzada',
+          'Hormigón' => 'Hormigón',
+          'Pavimentación Asfalto' => 'Asfalto',
+          'Aceras' => 'Aceras'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
+  </div>
+
   <div class="form-group">
       {!!Form::label('tipo_licitacion', 'Tipo de Licitación')!!}
       {!!Form::select('tipo_licitacion', array(

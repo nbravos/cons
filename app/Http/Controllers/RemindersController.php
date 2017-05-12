@@ -20,7 +20,7 @@ class RemindersController extends Controller {
 	public function postRemind()
 	{
 		$data = Input::all();
-		dd($data);
+		
 		switch ($response = Password::sendResetLink(Input::only('email')))
 		{
 			case Password::INVALID_USER:

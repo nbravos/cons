@@ -41,7 +41,7 @@ class DocumentoController extends Controller {
 	{
 		$ocs = Ordencompra::pluck('numero', 'id');
 		
-		return View::make('site/documentos/create', ['ocs' => $ocs]);
+		return View::make('site/documentos/form', ['ocs' => $ocs]);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class DocumentoController extends Controller {
 
 	   		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha']);
 			$data['fecha'] = $fecha1->format("Y-m-d h:i:s");     
-	        	$documento->fill($data);
+	        $documento->fill($data);
 		    $documento->save();
 		    $id = $documento->id;
 			$destino = 'documents';
@@ -71,8 +71,8 @@ class DocumentoController extends Controller {
 		  	$data['rutadoc'] = $fileName;
 		    Input::file('rutadoc')->move($destino, $fileName);
 		    $data['rutadoc'] = $fileName;
-	            $fecha2 = DateTime::createFromFormat('d/m/Y', $data['fecha']);
-//		    $data['fecha'] = $fecha2->format('Y-m-d h:i:s');
+            $fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha']);
+			$data['fecha'] = $fecha1->format("Y-m-d h:i:s");
 		    $documento->fill($data);	
 		    $documento->save();
 
@@ -148,7 +148,7 @@ class DocumentoController extends Controller {
 
 		$ocs = Ordencompra::pluck('numero', 'id');
 
-		return View::make('site/documentos/edit')->with('documento', $documento)
+		return View::make('site/documentos/form')->with('documento', $documento)
 												 ->with('ocs', $ocs);
 	}
 
@@ -173,7 +173,7 @@ class DocumentoController extends Controller {
 
 
         
-        if ($documento->isValidUpdate($data))
+        if ($documento->isValid($data))
         {
 
 		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha']);

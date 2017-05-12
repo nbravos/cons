@@ -4,7 +4,7 @@ use \App\Models\Empresa;
 use \App\Models\Partida;
 use \App\Models\Ordencompra;
 use \App\Models\Item;
-
+//use Session;
 
 class OrdenCompraController extends Controller {
 
@@ -64,7 +64,7 @@ class OrdenCompraController extends Controller {
 		//Se obtiene la data del usuario
 		$data = Input::all();
 		
-	//	dd($data);
+
 		//Comprueba que sea válido
 		if($oc->isValid($data))
 		{
@@ -79,8 +79,8 @@ class OrdenCompraController extends Controller {
 		          
 		   // return Redirect::route('oc.index'); 
 		Session::put('idorden', $id);
-		//echo Session::get('idorden');
-			return View::make('site/item/form')->withVal('id');
+		
+			return View::make('site/item/form');
 
 		}
 		else

@@ -4,7 +4,7 @@ use \App\Models\Empresa;
 use \App\Models\Partida;
 use \App\Models\Ordencompra;
 use \App\Models\Item;
-//use Session;
+
 
 class OrdenCompraController extends Controller {
 
@@ -19,6 +19,7 @@ class OrdenCompraController extends Controller {
 	   
   
         $ocs = DB::table('orden_compra')->join('partida', 'partida.id', '=' ,'orden_compra.id_partida')->select(['orden_compra.id', 'partida.item', 'orden_compra.numero', 'orden_compra.fecha_emision']);
+
        if (request()->ajax()){
 		                return Datatables::of($ocs)
        
@@ -64,7 +65,7 @@ class OrdenCompraController extends Controller {
 		//Se obtiene la data del usuario
 		$data = Input::all();
 		
-
+	//	dd($data);
 		//Comprueba que sea válido
 		if($oc->isValid($data))
 		{
@@ -79,8 +80,8 @@ class OrdenCompraController extends Controller {
 		          
 		   // return Redirect::route('oc.index'); 
 		Session::put('idorden', $id);
-		
-			return View::make('site/item/form');
+		//echo Session::get('idorden');
+			return View::make('site/item/form')->withVal('id');
 
 		}
 		else

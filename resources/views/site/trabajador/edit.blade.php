@@ -34,7 +34,6 @@ $(document).ready(function () {
       </ul>
     </div>
   @endif
-<!--@if(isset($trabajador))
     {!! Form::model($trabajador, ['route' => ['trabajador.update', $trabajador->id], 'method' => 'patch']) !!}
  @section ('breadcrumbs')
 
@@ -50,23 +49,6 @@ $(document).ready(function () {
                 </ul>
  @stop
 	<h1>Editar Trabajador</h1>
-@else -->
-    {!! Form::open(array('route' => 'trabajador.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
-         @section ('breadcrumbs')
-
-                <ul class="breadcrumb a">
-                  <li class="active">
-                    <p>Inicio</p>
-                  </li>
-                  <li><a href="" class="active">Trabajador</a>
-                  </li>
-                <li><a href="" class="active">Agregar</a>
-                  </li>
-
-                </ul>
- @stop
-	 <h1>Agregar Trabajador</h1>
-<!--@endif -->
   <div class="row">
     <div class="form-group">
       {!! Form::label('nombre', 'Nombre del Trabajador') !!}
@@ -91,13 +73,13 @@ $(document).ready(function () {
     </div>
     <div class="form-group">
     <label class="control-label" for="fecha_nac">Fecha Nacimiento</label>
-    <input class="form-control" id="datepicker1" name="fecha_nac" placeholder="DD/MM/AA" value="@if (isset($trabajador->fecha_nac))
-            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }} @endif " type="text">
+    <input class="form-control" id="datepicker1" name="fecha_nac" placeholder="DD/MM/AA" value=
+            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_nac)->format('d-m-Y') }}  type="text">
   </div>  
     <div class="form-group">
     <label class="control-label" for="fecha">Fecha Ingreso</label>
-    <input class="form-control" id="datepicker2" name="fecha" placeholder="DD/MM/AA" value="@if (isset($trabajador->fecha))
-            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }} @endif" type="text">
+    <input class="form-control" id="datepicker2" name="fecha" placeholder="DD/MM/AA" value= {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }}
+             type="text">
   </div>
         <div class="form-group">
            {!! Form::label('id_afp', 'Afp') !!}
@@ -107,10 +89,7 @@ $(document).ready(function () {
            {!! Form::label('id_salud', 'Salud') !!}
            {!! Form::select('id_salud', $salud, null, ['class' => 'form-control']) !!}
         </div>   
-  <div class="form-group">
-    {!! Form::label('foto','Adjuntar Imagen') !!}
-    {!! Form::file('foto', null) !!}
-</div>
+  
 
   </div> 
 

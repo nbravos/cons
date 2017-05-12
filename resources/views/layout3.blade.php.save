@@ -215,8 +215,7 @@
               </li>
             </ul>  
           </li>
-          
-           <li class="">
+          <li class="">
             <a href="javascript:;">
               <span class="title">Reportes</span>
               <span class=" arrow"></span>
@@ -224,32 +223,11 @@
             <span class="bg-success icon-thumbnail"><i class="pg-charts"></i></span>
              <ul class="sub-menu">
               <li class="">
-                <a href="javascript:;">Proyectos
-                <span class=" arrow"></span>
-                </a>
+                <a href="http://aragonltda.cl/reportes">Menú</a>
                 <span class="bg-success-lighter icon-thumbnail">M</span>
-                <ul class="sub-menu">
               </li>
-              <li>
-                    <a href="javascript:;">Monto Ofertado/Disponible</a>
-                    <span class="icon-thumbnail">M</span>
-                  </li>
-                   </ul>
-                  <li>
-                    <a href="ujavascript:;">Avances</a>
-                    <span class="icon-thumbnail">A</span>
-                  </li>
-                  <li>
-                    <a href="ujavascript:;">Asistencia</a>
-                    <span class="icon-thumbnail">A</span>
-                  </li>
-                  <li>
-                    <a href="ujavascript:;">Contratistas</a>
-                    <span class="icon-thumbnail">C</span>
-                  </li>
             </ul>  
-          </li>   
-
+          </li>
           <li class="">
             <a href="javascript:;">
               <span class="title">Usuarios</span>
@@ -325,9 +303,8 @@
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class=" inline m-t-5">
-               <img  class="img-circle" src="" alt="" data-src="" data-src-retina="" width="" height="">
-            </span>
+                <!--<span class=" inline m-t-5">
+<!--               <img  class="img-circle" src="http://aragonltda.cl/assets/img/small_avatar.png" alt="" data-src="http://aragonltda.cl/assets/img/small_ava
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
                 <li><a href="#"><i class="pg-settings_small"></i> Mi Cuenta </a>

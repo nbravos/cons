@@ -57,6 +57,7 @@
             processing: false,
             serverSide: true,
             ajax: '{!! route("equipos.index") !!}',
+	    order: [[0, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {

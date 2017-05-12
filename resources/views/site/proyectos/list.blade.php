@@ -61,6 +61,7 @@
             processing: false,
             serverSide: true,
             ajax: '{!! route("proyectos.index") !!}',
+	    order: [[3, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {

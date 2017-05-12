@@ -9,7 +9,7 @@ use \Validator;
 class Item extends \Eloquent {
 
 
-    protected $fillable = ['cantidad', 'detalle', 'unidad', 'unitario'];
+    protected $fillable = ['cantidad', 'detalle', 'unidad', 'unitario', 'id_item_dos'];
 
     protected $table ='item';
 

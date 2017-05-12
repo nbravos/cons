@@ -88,14 +88,14 @@ $(document).ready(function () {
 
 @if(isset($partida))
     <div class="form-group">
-           {!! Form::label('proyecto_id', 'Proyecto Base') !!}
-           {!! Form::select('proyecto_id', $proyectos, null,  ['class' => 'form-control', 'readonly' => 'true']) !!}
+           {!! Form::label('id_proyecto', 'Proyecto Base') !!}
+           {!! Form::select('id_proyecto', $proyectos, null,  ['class' => 'form-control', 'readonly' => 'true']) !!}
     </div>
 @else
 
     <div class="form-group">
-           {!! Form::label('proyecto_id', 'Proyecto Base') !!}
-           {!! Form::select('proyecto_id', $proyectos, null, ['class' => 'form-control']) !!}
+           {!! Form::label('id_proyecto', 'Proyecto Base') !!}
+           {!! Form::select('id_proyecto', $proyectos, null, ['class' => 'form-control']) !!}
     </div>
 @endif
 

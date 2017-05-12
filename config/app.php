@@ -166,7 +166,8 @@ return [
         Freshwork\ChileanBundle\Laravel\ChileanBundleServiceProvider::class,
 	Yajra\Datatables\DatatablesServiceProvider::class,
 	DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
-	
+	Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+
 
 
 
@@ -240,6 +241,8 @@ return [
 	'Input' => Illuminate\Support\Facades\Input::class,
 	'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 	'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+	'Khill\Lavacharts\Laravel\LavachartsFacade::class',
+
 
 
 

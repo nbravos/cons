@@ -72,7 +72,7 @@
 {!! Form::close() !!}
 <br>
 <p>
-  <a href="{!! route('items.create') !!}" class="btn btn-primary">Agregar nuevo </a>
+  <a href="{{ route('additem') }}" class="btn btn-primary">Guardar y Agregar nuevo </a>
   </p>
 
 @stop

@@ -71,11 +71,8 @@ class ProyectoController extends \BaseController {
 		$proyecto = new Proyecto;
                 
 		$data = Input::all();
-        	//dd($data);
-		
-
-
-
+        //	dd($data);
+	
 		if($proyecto->isValid($data))
 		{
 			$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha_licitacion']);

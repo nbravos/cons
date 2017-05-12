@@ -22,7 +22,7 @@
           'partida' => 'Partidas', 
           'trabajador' => 'Trabajador'), null, ['id' =>'coleccion', 'class' => 'form-control']) }}
     </div>
-    <div class="hidden form-group" name=>"grupo1">
+    <div class="form-group" name="grupo1">
      {{ Form::label('contrac_datos', 'Seleccionar Gráfico') }}
            {{Form::select('contrac_datos', array(
           '1' => 'Contratistas por Proyecto', 
@@ -30,14 +30,14 @@
           '3' => 'Otro gráfico'), null, ['id' =>'contrac_datos', 'class' => 'form-control']) }}
      </div>
 
-   <div class="hidden form-group" name=>"grupo2>
+   <div class="form-group" name="grupo2">
      {{ Form::label('partida_datos', 'Seleccionar Gráfico') }}
            {{Form::select('partida_datos', array(
           '1' => 'Avance por Partida', 
           '2' => 'Partidas por Mes ', 
           '3' => 'Otro gráfico'), null, ['id' =>'partida_datos', 'class' => 'form-control']) }}
      </div>
-       <div class="hidden form-group" name=>"grupo3">
+       <div class="form-group" name="grupo3">
      {{ Form::label('trabajador_datos', 'Seleccionar Gráfico') }}
            {{Form::select('trabajador_datos', array(
           '1' => 'Asistencia trabajador', 
@@ -49,12 +49,13 @@
     $(document).ready(function() {
       $('#coleccion').change(function(){
         var opt = $(this).find("option:selected").attr('value');
-        if(opt != 'Contratistas'){
-          $("div[name='grupo2']").hide();//esconder el resto
-          $("div[name='grupo3']").hide();
+        if(opt == 'contratista'){
+        $("div[name='grupo1']").show();
+
         }
         else{
-          $("div[name='grupo1']").show();
+          $("div[name='grupo2']").hide();
+          $("div[name='grupo3']").hide();
         }
       });
     });

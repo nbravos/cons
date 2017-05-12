@@ -35,9 +35,18 @@
                         <td><strong> Comuna</strong></td>
                         <td>{!!$proyecto->comuna->nombre!!}</td>
                       </tr>
+                       <tr>
+                        <td><strong>Tipo Proyecto</strong></td>
+                        <td>{!!$proyecto->tipo_proyecto!!}</td>
+                      </tr>
+                    
                         <tr>
-                        <td><strong>Estado Proyecto</strong></td>
+                        <td><strong>Tipo de Licitación</strong></td>
                         <td>{!!$proyecto->tipo_licitacion!!}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Estado de Proyecto</strong></td>
+                        <td>{!!$proyecto->estado!!}</td>
                       </tr>
                         <tr>
                         <td><strong>Financiamiento</strong></td>

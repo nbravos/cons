@@ -299,7 +299,7 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-              <span class="semi-bold">User Name</span> <!-- <span class="text-master">Nest</span> -->
+              <span class="semi-bold">   {{ Auth::user()->name }}  </span> <!-- <span class="text-master">Nest</span> -->
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -384,43 +384,7 @@
       </div>
       <!-- END PAGE CONTENT WRAPPER -->
     </div>
-    <!-- END PAGE CONTAINER -->
-
-    <!-- START OVERLAY -->
-    <div class="overlay hide" data-pages="search">
-      <!-- BEGIN Overlay Content !-->
-      <div class="overlay-content has-results m-t-20">
-        <!-- BEGIN Overlay Header !-->
-        <div class="container-fluid">
-          <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="http://aragonltda.cl/assets/img/logo.png" alt="logo" data-src="http://aragonltda.cl/assets/img/logo.png" data-src-retina="http://aragonltda.cl/assets/img/logo_2x.png" width="
-78" height="31">
-          <!-- END Overlay Logo !-->
-          <!-- BEGIN Overlay Close !-->
-          <a href="#" class="close-icon-light overlay-close text-black fs-16">
-            <i class="pg-close"></i>
-          </a>
-          <!-- END Overlay Close !-->
-        </div>
-        <!-- END Overlay Header !-->
-        <div class="container-fluid">
-          <!-- BEGIN Overlay Controls !-->
-          <!--<input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">-->
-          <br>
-          <div class="inline-block">
-            <div class="checkbox right">
-              <input id="checkboxn" type="checkbox" value="1" checked="checked">
-              <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
-            </div>
-          </div>
-          <div class="inline-block m-l-10">
-            <p class="fs-13">Press enter to search</p>
-          </div>
-          <!-- END Overlay Controls !-->
-        </div>
-       
-      <!-- END Overlay Content !-->
-    </div>
+    <!-- END PAGE CONTAINER -->  
     <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
     <script src="http://aragonltda.cl/assets/plugins/pace/pace.min.js" type="text/javascript"></script>

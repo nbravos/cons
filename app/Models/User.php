@@ -2,14 +2,16 @@
 namespace App\Models;
 
 use  \Validator;
-use Illuminate\Auth\Authenticatable;
+
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends \Eloquent implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Authenticatable {
 
-	use Authenticatable, CanResetPassword;
+	use  Notifiable;
 
 	/**
 	 * The database table used by the model.

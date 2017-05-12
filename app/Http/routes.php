@@ -47,11 +47,15 @@ Route::resource('oc', 'OrdenCompraController');
 Route::resource('partidas', 'PartidaController');
 Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
+Route::get('reportes/test', 'ReporteController@graficos');
 Route::resource('reportes', 'ReporteController');
 Route::resource('sueldos', 'SueldoController');
 Route::get('ofertas/create/{id}',['uses' =>'ProyectoContratistaController@create'])->name('addof');
 Route::resource('ofertas', 'ProyectoContratistaController');
-Route::get('items/doc', 'ItemController@fromdocumento');
+Route::get('items/doc/{id}',['uses' => 'ItemController@fromdocumento'])->name('moditem');
+Route::get('items/add', ['uses' =>'ItemController@storeandcreate'])->name('additem');
+Route::post('items/mod', ['uses' => 'ItemController@storefromdoc'])->name('additemdoc');
+/*Route::post('items/mod', 'ItemController@storefromdoc');*/
 Route::resource('items', 'ItemController');
 
 Route::get('login', 'AuthController@showLogin'); // Mostrar login
