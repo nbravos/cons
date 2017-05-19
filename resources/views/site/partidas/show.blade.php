@@ -61,11 +61,14 @@
                       </tr>
                       <tr>
                         <td><strong>Fecha Inicio Real</strong></td>
-                        <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_real)->format('d-m-Y') }} </td>     
+                        <td>@if (isset($partida->inicio_real))
+        {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_real)->format('d-m-Y') }}     
+        @endif </td>     
                       </tr>
                       <tr>
                         <td><strong> Fecha Término Real </strong></td>
-                        <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->fin_real)->format('d-m-Y') }} </td>     
+                        <td>@if (isset($oc->fecha_entrega)) {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $oc->fecha_entrega)->format('d-m-Y') }}  
+        @endif</td>     
                       </tr>
                      
                     </tbody>

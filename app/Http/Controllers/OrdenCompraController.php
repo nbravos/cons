@@ -69,9 +69,9 @@ class OrdenCompraController extends Controller {
 		if($oc->isValid($data))
 		{
 
-		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha_emision']);
+		$fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha_emision']);
 		$data['fecha_emision'] = $fecha1->format("Y-m-d h:i:s");
-		$fecha2 = DateTime::createFromFormat('d/m/Y', $data['fecha_entrega']);
+		$fecha2 = DateTime::createFromFormat('d-m-Y', $data['fecha_entrega']);
 		$data['fecha_entrega'] = $fecha1->format("Y-m-d h:i:s"); 
 		    $oc->fill($data);
 		    $oc->save();	  
@@ -124,7 +124,7 @@ class OrdenCompraController extends Controller {
          $partida = Partida::pluck('nombre', 'id');
 
 	$oc= Ordencompra::find($id);
-        return View::make('site/oc/form')->with('empresa', $empresa)
+        return View::make('site/oc/edit')->with('empresa', $empresa)
                                          ->with('partida', $partida)
 					 ->with('oc', $oc);
 	}
@@ -147,13 +147,13 @@ class OrdenCompraController extends Controller {
         
         $data = Input::all();
 
-
+	//dd($data);
         if ($oc->isValid($data))
         {
 	
-		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha_emision']);
+		$fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha_emision']);
 		$data['fecha_emision'] = $fecha1->format("Y-m-d h:i:s");
-		$fecha2 = DateTime::createFromFormat('d/m/Y', $data['fecha_entrega']);
+		$fecha2 = DateTime::createFromFormat('d-m-Y', $data['fecha_entrega']);
 		$data['fecha_entrega'] = $fecha1->format("Y-m-d h:i:s"); 
             $oc->fill($data);
            

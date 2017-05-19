@@ -117,7 +117,7 @@ class UsersController extends Controller {
 	}
 
 
-		public function update($id, Request $request)
+		public function update($id, Illuminate\Http\Request $request)
 		{
 		    $user = User::find($id);
 		    $newPassword = $request->get('password');

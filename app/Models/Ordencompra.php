@@ -18,8 +18,8 @@ class Ordencompra extends Model {
 			
 			'id_partida' => 'required',
 			'id_empresa' => 'required',
-			'fecha_emision' =>'required|date_format:d/m/Y',
-			'fecha_entrega' =>'required|date_format:d/m/Y',
+			'fecha_emision' =>'required|date_format:d-m-Y',
+			'fecha_entrega' =>'required|date_format:d-m-Y',
 			'uf' =>'required|numeric|min:1',
 			'condicion_pago' => 'required',
 			'tipo_plazo' => 'sometimes',

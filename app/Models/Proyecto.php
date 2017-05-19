@@ -26,7 +26,7 @@ class Proyecto extends \Eloquent {
 			'presupuesto_oficial' => 'sometimes|numeric',
 			'costos_directos' => 'numeric',
                         'costos_generales' => 'numeric',
-                        'fecha_licitacion' => 'required|date_format:d/m/Y',
+                        'fecha_licitacion' => 'required',
 			            'estado' => 'required', 
                         );
 	$mensajes = array (

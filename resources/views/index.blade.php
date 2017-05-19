@@ -304,7 +304,7 @@
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class=" inline m-t-5">
-                <img  class="img-circle" src="http://aragonltda.cl/assets/img/small_avatar.png" alt="" data-src="http://aragonltda.cl/assets/img/small_avatar.png" data-src-retina="http://aragonltda.cl/assets/img/small_avatar.png" width="42" height="30">
+                <img  class="img-circle" src="" alt="" data-src="" data-src-retina="" width="" height="">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">

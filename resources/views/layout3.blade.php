@@ -20,7 +20,8 @@
     <link href="http://aragonltda.cl/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
 	    <link href="http://aragonltda.cl/pages/css/pages.min.css" rel="stylesheet" type="text/css" />
 <!--    <link href="http://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
+    <link href="http://aragonltda.cl/pages/css/datatables.min.css" rel="stylesheet" type="text/css"/>
     <link href="http://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="http://aragonltda.cl/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <!-- font awesome link -->

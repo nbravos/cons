@@ -8,7 +8,7 @@
 $(document).ready(function () {
        
   $( "#datepicker" ).datepicker({
-	format: 'dd/mm/yyyy',
+	format: 'dd-mm-yyyy',
 	language: 'es'     
   });
  
@@ -62,7 +62,7 @@ $(document).ready(function () {
 	 
     <div class="form-group">
      <label class="control-label" for="fecha_">Fecha </label>
-    <input class="form-control" id="datepicker" name="fecha" placeholder="DD/MM/AA" value=
+    <input class="form-control" id="datepicker" name="fecha" placeholder="DD-MM-AA" value=
             {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $documento->fecha)->format('d-m-Y') }}  type="text">
   </div>
  <div class="form-group">

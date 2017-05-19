@@ -122,7 +122,7 @@ class ProyectoController extends \BaseController {
 	
 	$empresa = Empresa::pluck('nombre', 'id');
         $comuna = Comuna::pluck('nombre', 'id');
-        return View::make('site/proyectos/form')->with('proyecto', $proyecto)
+        return View::make('site/proyectos/edit')->with('proyecto', $proyecto)
 						->with('empresa', $empresa)
                                         	->with('comuna', $comuna);
 ;
@@ -146,14 +146,14 @@ class ProyectoController extends \BaseController {
         }
         
         $data = Input::all();
-
+	//dd($data);
 
         
         if ($proyecto->isValid($data))
         {
-        $fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha_licitacion']);
+        $fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha_licitacion']);
 		$data['fecha_licitacion'] = $fecha1->format("Y-m-d h:i:s");
-	    //dd($data);
+	   // dd($data);
             $proyecto->fill($data);
            
             $proyecto->save();

@@ -26,6 +26,10 @@
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
+              <div class="form-group">
+              {!! Form::label('orden', 'Orden Asociada') !!}
+           {!! Form::select('orden', App\Models\Ordencompra::pluck('numero', 'numero'), null, array('class' => 'form-control', 'id' => 'orden')) !!}
+           </div>
   <table id="listaItem" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -52,7 +56,7 @@
 
 <script type="text/javascript">
               $(document).ready(function() {
-               $('#listaItem').DataTable({
+               var table = $('#listaItem').DataTable({
             processing: false,
             serverSide: true,
             ajax: '{!! route("items.index") !!}',
@@ -85,6 +89,9 @@
             }
         });
               $('#listaItem tfoot tr').appendTo('#listaItem thead');
+              $('#orden').on('change', function(){
+            table.search(this.value).draw();   
+            });
        });
 
           </script>

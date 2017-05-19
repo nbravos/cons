@@ -167,6 +167,8 @@ return [
 	Yajra\Datatables\DatatablesServiceProvider::class,
 	DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 	Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+	Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
 
@@ -242,6 +244,8 @@ return [
 	'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 	'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 	'Khill\Lavacharts\Laravel\LavachartsFacade::class',
+	'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
 
 
 

@@ -25,7 +25,7 @@ public function isValid($data)
 			'tipo' => 'required',
 			'no_contabilidad' => 'required',
 			'monto' =>'required|min:3|max:7',
-			'fecha' =>'required|date_format:d/m/Y',
+			'fecha' =>'required|date_format:d-m-Y',
 			'rutadoc' => 'present|file',
 	
 			);
@@ -34,7 +34,7 @@ public function isValid($data)
 			'no_contabilidad.required'=> 'Debe indicar si es un documento contable',
 			'monto.required'=> 'Debe indicar el monto del documento',
 			'fecha.required' => 'Es necesaria la fecha',
-			'fecha.date_format' => 'El formato de fecha es dd/mm/YYYY',
+			'fecha.date_format' => 'El formato de fecha es dd-mm-AAAA',
 			'rutadoc.file' => 'El archivo debe ser menor a 20M',
 			'rutadoc.present' => 'Debe adjuntar el archivo correspondiente', 
 			 
@@ -61,7 +61,7 @@ public function isValid($data)
 			'tipo' => 'required',
 			'no_contabilidad' => 'required',
 			'monto' =>'required|min:3|max:7',
-			'fecha' =>'required|date_format:d/m/Y',
+			'fecha' =>'required|date_format:d-m-Y',
 	
 			);
 	$mensajes = array(
@@ -69,7 +69,7 @@ public function isValid($data)
 			'no_contabilidad.required'=> 'Debe indicar si es un documento contable',
 			'monto.required'=> 'Debe indicar el monto del documento',
 			'fecha.required' => 'Es necesaria la fecha',
-			'fecha.date_format' => 'El formato de fecha es dd/mm/YYYY',
+			'fecha.date_format' => 'El formato de fecha es dd/mm/AAAA',
 			 
 			);
 	        

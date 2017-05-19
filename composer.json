@@ -12,7 +12,11 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "yajra/laravel-datatables-oracle": "^7.3",
-	"khill/lavacharts" : "3.0.*"
+	"khill/lavacharts" : "3.0.*",
+	"khill/lavacharts" : "3.0.x-dev",
+	"khill/datatableplus": "dev-master",
+	"maatwebsite/excel": "~2.1.0"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

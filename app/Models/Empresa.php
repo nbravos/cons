@@ -23,7 +23,7 @@ class Empresa extends \Eloquent {
 			'telefono' => 'required|min:8|max:11',
 			'direccion' => 'required|min:5|max:40',
 			'web' => 'required|min:5',
-			'rut' => 'required|min:10',
+			'rut' => 'required|unique:empresa|min:10',
 			'tipo_empresa' => 'required',
 			
 			);

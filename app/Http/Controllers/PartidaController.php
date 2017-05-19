@@ -16,9 +16,11 @@ class PartidaController extends \Controller {
 	public function index()
 	{
 
+
+		//$proyectos = Proyecto::pluck('nombre', 'id');
 	    //$partidas = Partida::paginate();  
-		 /*$partidas = Partida::select(['id','nombre', 'detalle', 'item', 'inicio_real']); original que funciona*/
-		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as ProNombre', 'detalle', 'item', 'inicio_real']);
+		 /*$partidas = Partida::select(['id','nombre', 'detalle', 'item', 'inicio_real']);*/
+		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as proNombre', 'detalle', 'item', 'inicio_real']);
 		if (request()->ajax()){
 		                return Datatables::of($partidas)
 
@@ -60,19 +62,24 @@ class PartidaController extends \Controller {
 		$partida = new Partida;
 		
 		$data = Input::all();
-        	//dd($data);
+        //	dd($data);
 
 		if($partida->isValid($data))
 		{
 
-		    $fecha1 = DateTime::createFromFormat('d/m/Y', $data['inicio_teorico']);
-            $fecha2 = DateTime::createFromFormat('d/m/Y', $data['fin_teorico']);
-            $fecha3 = DateTime::createFromFormat('d/m/Y', $data['inicio_real']);
-            $fecha4 = DateTime::createFromFormat('d/m/Y', $data['fin_real']);
-		    $data['inicio_teorico'] = $fecha1->format("Y-m-d h:i:s");
-		    $data['fin_teorico'] = $fecha2->format("Y-m-d h:i:s");
-		    $data['inicio_real'] = $fecha3->format("Y-m-d h:i:s");
-		    $data['fin_real'] = $fecha4->format("Y-m-d h:i:s");
+		    $fecha1 = DateTime::createFromFormat('d-m-Y', $data['inicio_teorico']);
+            $fecha2 = DateTime::createFromFormat('d-m-Y', $data['fin_teorico']);
+            $fecha3 = DateTime::createFromFormat('d-m-Y', $data['inicio_real']);
+            $fecha4 = DateTime::createFromFormat('d-m-Y', $data['fin_real']);
+		    $data['inicio_teorico'] = $fecha1->format("Y-m-d H:i:s");
+		    $data['fin_teorico'] = $fecha2->format("Y-m-d H:i:s");
+		    if (!empty($data['inicio_real'])) {
+		    	$data['inicio_real'] = $fecha3->format("Y-m-d H:i:s");
+
+		    }
+		    	if (!empty($data['fin_real'])){
+		    		$data['fin_real'] = $fecha4->format("Y-m-d H:i:s");
+		    }
 		    
 
  		    $partida->fill($data);
@@ -120,7 +127,7 @@ class PartidaController extends \Controller {
 			App::abort(404);
 		}
         $proyectos = Proyecto::pluck('nombre','id');
-        return View::make('site/partidas/form')->with('partida', $partida)
+        return View::make('site/partidas/edit')->with('partida', $partida)
 					->with('proyectos', $proyectos);
 	}
 
@@ -141,19 +148,25 @@ class PartidaController extends \Controller {
         }
         
         $data = Input::all();
-	
+	//dd($data);
         if ($partida->isValid($data))
         {
 		
-			$fecha1 = DateTime::createFromFormat('d/m/Y', $data['inicio_teorico']);
-            $fecha2 = DateTime::createFromFormat('d/m/Y', $data['fin_teorico']);
-            $fecha3 = DateTime::createFromFormat('d/m/Y', $data['inicio_real']);
-            $fecha4 = DateTime::createFromFormat('d/m/Y', $data['fin_real']);
-		    $data['inicio_teorico'] = $fecha1->format("Y-m-d h:i:s");
-		    $data['fin_teorico'] = $fecha2->format("Y-m-d h:i:s");
-		    $data['inicio_real'] = $fecha3->format("Y-m-d h:i:s");
-		    $data['fin_real'] = $fecha4->format("Y-m-d h:i:s");
-		
+	    	$fecha1 = DateTime::createFromFormat('d-m-Y', $data['inicio_teorico']);
+            $fecha2 = DateTime::createFromFormat('d-m-Y', $data['fin_teorico']);
+           
+		    $data['inicio_teorico'] = $fecha1->format("Y-m-d H:i:s");
+		    $data['fin_teorico'] = $fecha2->format("Y-m-d H:i:s");
+
+		    if (!empty($data['inicio_real'])) {
+		    	 $fecha3 = DateTime::createFromFormat('d-m-Y', $data['inicio_real']);
+		    	$data['inicio_real'] = $fecha3->format("Y-m-d H:i:s");
+
+		    }
+		    	if (!empty($data['fin_real'])){
+		    		$fecha4 = DateTime::createFromFormat('d-m-Y', $data['fin_real']);
+		    		$data['fin_real'] = $fecha4->format("Y-m-d H:i:s");
+		    }
             $partida->fill($data);
            
             $partida->save();

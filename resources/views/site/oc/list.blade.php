@@ -27,6 +27,10 @@
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
+	<div class="form-group">
+           {!! Form::label('partida', 'Partida Asociada') !!}
+           {!! Form::select('partida', App\Models\Partida::pluck('nombre', 'item'), null, array('class' => 'form-control', 'id' => 'partida')) !!}
+    </div>
   <table id="listaOc" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -53,7 +57,7 @@
 
           <script type="text/javascript">
               $(document).ready(function() {
-               $('#listaOc').DataTable({
+            var table =  $('#listaOc').DataTable({
             processing: false,
             serverSide: true,
             ajax: '{!! route("oc.index") !!}',
@@ -73,6 +77,10 @@
             ],
         });
               $('#listaOc tfoot tr').appendTo('#listaOc thead');
+		$('#partida').on('change', function(){
+            table.search(this.value).draw();   
+            });
+
 
        });
 

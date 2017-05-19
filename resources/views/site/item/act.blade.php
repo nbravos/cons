@@ -1,6 +1,5 @@
 @extends ('layout3')
 
-@section ('title')  Modificar Item  @stop
 @section ('breadcrumbs')
 
 {!! Form::open(['action' => ['ItemController@storefromdoc'], 'class' => 'form-inline']) !!}
@@ -19,7 +18,7 @@
 @section ('content')
 
    
-
+<h1>Items</h1>
 
   @foreach($items as $item)
                     <div class="input-group">

@@ -17,8 +17,8 @@ public function isValid($data)
 	$rules = array(
 			
 			'nombre' => 'required|min:4|max:40',
-			'rut' => 'required',
-			'email' =>  'required|email|unique:empresa',
+			'rut' => 'required|unique:trabajador',
+			'email' =>  'required|email|unique:trabajador',
 			'telefono' => 'required|min:8|max:11',
 			'direccion' => 'required|min:5|max:40',
 			'fecha_nac' => 'required',

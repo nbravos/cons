@@ -13,10 +13,12 @@ class DocumentoController extends Controller {
 	 */
 	public function index()
 	{
-		//$documentos = Documento::paginate();  
+		/*$partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as ProNombre', 'detalle', 'item', 'inicio_real']);*/
 
-		 $documentos = Documento::select(['id', 'tipo', 'monto', 'fecha']);
-//		dd($documentos);
+
+		 /*$documentos = Documento::select(['id', 'tipo', 'monto', 'fecha']);*/
+
+		 $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
 		if (request()->ajax()){
 		                return Datatables::of($documentos)
 
@@ -26,6 +28,9 @@ class DocumentoController extends Controller {
        /* ->editColumn('id', '{{$id}}')*/
             ->make(true);
         }
+/*		$docs = Documento::find(34);
+		$hol = $docs->ordencompra('7')->id_proyecto;
+		dd($hol);*/
 	
 	        return view('site/documentos/list')->with('documentos', $documentos);
 
@@ -60,7 +65,7 @@ class DocumentoController extends Controller {
 		{
 
 
-	   		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha']);
+	   		$fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha']);
 			$data['fecha'] = $fecha1->format("Y-m-d h:i:s");     
 	        	$documento->fill($data);
 		    $documento->save();
@@ -171,13 +176,14 @@ class DocumentoController extends Controller {
 
         $data = Input::all();
 
-
+	//dd($data);
         
         if ($documento->isValidUpdate($data))
         {
 
-		$fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha']);
-		$data['fecha'] = $fecha1->format("Y-m-d h:i:s");
+		$fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha']);
+	//	dd($data);
+		$data['fecha'] = $fecha1->format("Y-m-d H:i:s");
 		$documento->fill($data);   
         $documento->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario

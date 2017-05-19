@@ -28,12 +28,16 @@
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
+              <div class="form-group">
+           {!! Form::label('proyecto', 'Proyecto Base') !!}
+           {!! Form::select('proyecto', App\Models\Proyecto::pluck('nombre', 'nombre'), null, array('class' => 'form-control', 'id' => 'proyecto')) !!}
+    </div>
   <table id="listaPart" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
                 <th>Numero </th>
                <th>Nombre</th>
-		<th>Proyecto</>
+		            <th>Proyecto</th>
                <th>Detalle </th>
                <th>Item</th>
                <th>Inicio Real</th>
@@ -46,7 +50,7 @@
                       <td  class="non_searchable"></td>
                       <td></td>
                       <td></td>
-		      <td></td>
+		                  <td></td>
                       <td></td>
                       <td></td>
                       <td  class="non_searchable"></td>
@@ -57,12 +61,12 @@
             </div>
           <!-- </div> -->
           <script type="text/javascript">
-              $(document).ready(function() {
-               $('#listaPart').DataTable({
+             $(document).ready(function (){
+             var table = $('#listaPart').DataTable({
             processing: false,
             serverSide: true,
             ajax: '{!! route("partidas.index") !!}',
-		order: [[5, "desc"]], 
+            order: [[5, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
@@ -71,7 +75,7 @@
             columns: [
                 {data: 'id', name: 'partida.id'},
                 {data: 'partNombre', name: 'partida.nombre'},
-		{data: 'ProNombre', name: 'proyecto.nombre'},
+                {data: 'proNombre', name: 'proyecto.nombre'},
                 {data: 'detalle', name: 'detalle'},
                 {data: 'item', name: 'item'},
                 {data: 'inicio_real', name: 'inicio_real'},
@@ -79,9 +83,14 @@
     
             ],
         });
-              $('#listaPart tfoot tr').appendTo('#listaPart thead');
-       });
-
+            
+    
+            $('#proyecto').on('change', function(){
+            table.search(this.value).draw();   
+            });
+          }); 
           </script>
 
 @stop
+
+ 

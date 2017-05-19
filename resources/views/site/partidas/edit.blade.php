@@ -48,7 +48,6 @@ $(document).ready(function () {
       </ul>
     </div>
   @endif
-@if(isset($partida))
     {!! Form::model($partida, ['route' => ['partidas.update', $partida->id], 'method' => 'patch']) !!}
 
      @section ('breadcrumbs')
@@ -65,27 +64,8 @@ $(document).ready(function () {
                 </ul>
  @stop
 	<h1>Editar Partida</h1>
-@else
-    {!! Form::open(array('route' => 'partidas.store', 'method' => 'POST'), array('role' => 'form')) !!}
-	
-     @section ('breadcrumbs')
 
-                <ul class="breadcrumb a">
-                  <li class="active">
-                    <p>Inicio</p>
-                  </li>
-                  <li><a href="" class="active">Partida</a>
-                  </li>
-                <li><a href="" class="active">Agregar</a>
-                  </li>
-
-                </ul>
- @stop
-	 <h1>Agregar Partida</h1>
-@endif
   <div class="row">
-
-
 @if(isset($partida))
     <div class="form-group">
            {!! Form::label('id_proyecto', 'Proyecto Base') !!}
@@ -134,29 +114,37 @@ $(document).ready(function () {
     </div>
     <div class="form-group">
     <label class="control-label" for="inicio_teorico">Fecha de Inicio Teórico</label>
-    <input class="form-control" id="inicio_teorico" name="inicio_teorico" placeholder="DD-MM-AA" value="@if (isset($partida->inicio_teorico))
-          {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_teorico)->format('d-m-Y') }}     
-        @endif"type="text">
+    <input class="form-control" id="inicio_teorico" name="inicio_teorico" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_teorico)->format('d-m-Y') }}" type="text">
   </div>
 <div class="form-group">
     <label class="control-label" for="fin_teorico">Fecha Término Teórica</label>
-    <input class="form-control" id="fin_teorico" name="fin_teorico" placeholder="DD-MM-AA" value="@if (isset($partida->fin_teorico))
-          {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->fin_teorico)->format('d-m-Y') }}     
-        @endif"type="text">
+    <input class="form-control" id="fin_teorico" name="fin_teorico" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->fin_teorico)->format('d-m-Y') }}" type="text">
   </div>
+  
+  @if ($partida->inicio_real == NULL)
+<div class="form-group">
+    <label class="control-label" for="inicio_real">Fecha Inicio Real</label>
+    <input class="form-control" id="inicio_real" name="inicio_real" placeholder="DD-MM-AA" value=""  type="text">
+  </div>
+  @else
   <div class="form-group">
     <label class="control-label" for="inicio_real">Fecha Inicio Real</label>
-    <input class="form-control" id="inicio_real" name="inicio_real" placeholder="DD-MM-AA" value="@if (isset($partida->inicio_real))
-        {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_real)->format('d-m-Y') }}     
-        @endif" type="text">
+    <input class="form-control" id="inicio_real" name="inicio_real" placeholder="DD-MM-AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_real)->format('d-m-Y') }}" type="text">
   </div>
+@endif
+
+  @if ($partida->fin_real == NULL)
+
   <div class="form-group">
     <label class="control-label" for="fin_real">Fecha Término Real</label>
-    <input class="form-control" id="fin_real" name="fin_real" placeholder="DD-MM-AA" value="@if (isset($partida->inicio_teorico))
-        {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->fin_real)->format('d-m-Y') }}     
-        @endif" type="text">
-  </div>    
-    
+    <input class="form-control" id="fin_real" name="fin_real" placeholder="DD-MM-AA" value="" type="text">
+  </div>   
+@else
+   <div class="form-group">
+    <label class="control-label" for="fin_real">Fecha Término Real</label>
+    <input class="form-control" id="fin_real" name="fin_real" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->fin_real)->format('d-m-Y') }}" type="text">
+  </div>   
+    @endif
 </div> 
    
 
