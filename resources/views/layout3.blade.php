@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" sizes="120x120" href="http://aragonltda.cl/pages/ico/120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="http://aragonltda.cl/pages/ico/152.png">
     <link rel="icon" type="image/x-icon" href="http://aragonltda.cl/pages/favicon.ico" />
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
     <script src="http://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,34 +95,34 @@
           </li>
           <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Proyectos</span>
+              <span class="title">Licitaciones</span>
               <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-folder_alt"></i></span>
             <ul class="sub-menu">
                <li class="">
-                <a href="http://aragonltda.cl/proyectos/create">Agregar Proyectos</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
+                <a href="http://aragonltda.cl/proyectos">Listar Licitaciones</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
               <li class="">
-                <a href="http://aragonltda.cl/proyectos">Listar Proyectos</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
+                <a href="http://aragonltda.cl/proyectos/create">Agregar Licitaciones</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
             </ul>
           </li>
           <li class="">
             <a href="javascript:;" class="detailed">
               <span class="title">Empresas</span>
-              <!-- <span class="details">234 New Emails</span> -->
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-industry"></i></span>
             <ul class="sub-menu">
-               <li class="">
-                <a href="http://aragonltda.cl/empresas/create"">Agregar Empresa</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
-              </li>
+              
                 <li class="">
                 <a href="http://aragonltda.cl/empresas">Listar Empresas</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
+               <li class="">
+                <a href="http://aragonltda.cl/empresas/create"">Agregar Empresa</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
             </ul>
           </li>
@@ -132,13 +133,14 @@
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-male"></i></span>
             <ul class="sub-menu">
-               <li class="">
-                <a href="http://aragonltda.cl/trabajador/create"">Agregar Trabajador</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
-              </li>
+               
                 <li class="">
                 <a href="http://aragonltda.cl/trabajador">Listar Trabajadores</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
+              <li class="">
+                <a href="http://aragonltda.cl/trabajador/create"">Agregar Trabajador</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
             </ul>
           </li>
@@ -147,30 +149,32 @@
             <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-truck"></i></span>
             <ul class="sub-menu">
-               <li class="">
-                <a href="http://aragonltda.cl/equipos/create">Agregar Equipos</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
-              </li> 
+                
                 <li class="">
                 <a href="http://aragonltda.cl/equipos">Listar Equipos</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
+              <li class="">
+                <a href="http://aragonltda.cl/equipos/create">Agregar Equipos</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
             </ul>
           </li>
             <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Partidas</span>
+              <span class="title">Obras</span>
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-menu"></i></span>
             <ul class="sub-menu">
-               <li class="">
-                <a href="http://aragonltda.cl/partidas/create">Agregar Partidas</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
-              </li>
-                <li class="">
-                <a href="http://aragonltda.cl/partidas">Listar Partidas</a>
+              <li class="">
+                <a href="http://aragonltda.cl/partidas">Listar Obras</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
+               <li class="">
+                <a href="http://aragonltda.cl/partidas/create">Agregar Obras</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
+              </li>
+              
             </ul>
           </li>
           <li>
@@ -178,14 +182,15 @@
             <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail">O.C</span>
             <ul class="sub-menu">
+             <li class="">
+                <a href="http://aragonltda.cl/oc">Listar O. de Compra</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
                <li class="">
                 <a href="http://aragonltda.cl/oc/create">Agregar O.C</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
-                <li class="">
-                <a href="http://aragonltda.cl/oc">Listar O. de Compra</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
+               
             </ul>
           </li>
           <li>
@@ -194,12 +199,12 @@
             <span class="bg-success icon-thumbnail"> <i class="pg-note"></i> </span>
              <ul class="sub-menu">
               <li class="">
-                <a href="http://aragonltda.cl/documentos/create">Agregar Documentos</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
-              </li>
-                <li class="">
                 <a href="http://aragonltda.cl/documentos">Listar Documentos</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
+              <li class="">
+                <a href="http://aragonltda.cl/documentos/create">Agregar Documentos</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
             </ul> 
           </li>
@@ -257,14 +262,15 @@
                <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-id-card"></i></span>
              <ul class="sub-menu">
+               <li class="">
+                <a href="http://aragonltda.cl/usuarios">Listar Usuarios</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
               <li class="">
                 <a href="http://aragonltda.cl/usuarios/create">Agregar Usuario</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
-                <li class="">
-                <a href="http://aragonltda.cl/usuarios">Listar Usuarios</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
+              
             </ul>  
           </li>
         <div class="clearfix"></div>
@@ -331,7 +337,7 @@
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="#"><i class="pg-settings_small"></i> Mi Cuenta </a>
+                <li><a href="http://aragonltda.cl/usuarios/{{ Auth::user()->id }}/edit"><i class="pg-settings_small"></i> Mi Cuenta </a>
                 </li>
                 <!-- <li><a href="#"><i class="pg-outdent"></i> Feedback</a>
                 </li>

@@ -5,7 +5,7 @@ namespace App\Models;
 use \Validator;
 
 class Partida extends \Eloquent {
-	protected $fillable = ['id', 'nombre', 'id_proyecto', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real'];
+	protected $fillable = ['id', 'nombre', 'id_proyecto', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real', 'porcentaje'];
 	
 	protected $table = 'partida'; 
 
@@ -25,7 +25,6 @@ class Partida extends \Eloquent {
                         'unidad' =>'required|min:1',
                         'cantidad' =>'required|numeric|min:1',
                         'unitario' => 'required|numeric|min:1',
-                        'total' => 'numeric',
 			'inicio_teorico' => 'date_format:d-m-Y',
 			'inicio_real' => 'sometimes',
                         'fin_teorico' => 'date_format:d-m-Y',
@@ -43,7 +42,6 @@ $mensajes = array(
 	'unidad.required' => 'Debe indicar el número de unidades',
 	'unidad.numeric' => 'El valor debe ser numérico', 
         'unitario.required' => 'El valor unitario es obligatorio',
-        'total.numeric' => 'El campo total debe ser numérico',
         'inicio_teorico.date_format' => 'La fecha de inicio teórica es obligatoria',
         //'inicio_real.date_format' => 'La fecha de inicio real es obligatoria',
         'fin_teorico.date_format' => 'La fecha de término teórica es obligatoria',
@@ -79,6 +77,13 @@ $mensajes = array(
 		return $this->hasMany('App\Models\Ordencompra');
 
 	}
+
+
+	public function avance(){
+
+                return $this->hasMany('App\Models\Avance');
+        }
+
 
 }
 

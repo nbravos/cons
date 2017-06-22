@@ -49,9 +49,14 @@
 @endif
   <div class="row">
 <div class="form-group">
-           {!! Form::label('id_proyecto', 'Proyecto Base') !!}
-           {!! Form::text('id_proyecto', $proyecto["0"]->id, array('readonly' => 'true', 'class' => 'form-control')) !!}
-    </div>
+           {!! Form::label('id_proy', 'Proyecto Base') !!}
+           {!! Form::text('id_proy', $proyecto["0"]->nombre,  array('readonly' => 'true', 'class' => 'form-control'), array('disabled')) !!}
+ </div>
+
+
+           {!! Form::hidden('id_proyecto', $proyecto["0"]->id, array('readonly' => 'true', 'class' => 'form-control')) !!}
+    
+
 
  <div class="form-group">
            {!! Form::label('id_empresa', 'Contratista Asociado') !!}
@@ -62,9 +67,16 @@
       {!! Form::text('monto_ofertado', null, array('placeholder' => 'Igresa el monto ofertado', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('bases', 'Bases de la Licitación' ) !!}
-      {!! Form::text('bases', null, array('placeholder' => 'Ingresa las bases de la Licitación ', 'class' => 'form-control')) !!}
+      {!! Form::label('dias', 'Plazo de la Licitación' ) !!}
+      {!! Form::text('dias', null, array('placeholder' => 'Ingresa el plazo en días', 'class' => 'form-control')) !!}
     </div>
+    <div class="form-group"> 
+  {{ Form::radio('estado_oferta', '1') }}
+  Ganadora
+  <br>
+  {{ Form::radio('estado_oferta', '0', true) }}
+  No Ganada
+</div>
 
   
 </div> 

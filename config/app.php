@@ -168,7 +168,7 @@ return [
 	DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 	Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 	Maatwebsite\Excel\ExcelServiceProvider::class,
-
+	Yajra\Datatables\ButtonsServiceProvider::class,
 
 
 

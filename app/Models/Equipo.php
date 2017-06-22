@@ -41,6 +41,13 @@ class Equipo extends \Eloquent {
         
         return false;
 	}
+
+
+	public function mantencion(){
+
+                return $this->hasMany('App\Models\Mantencion');
+        }
+
 }
 
 

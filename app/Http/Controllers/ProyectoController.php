@@ -5,7 +5,7 @@ use \App\Models\Empresa;
 use \App\Models\Comuna;
 use \App\Models\Partida;
 use Yajra\Datatables\Datatables;
-
+use Carbon\Carbon;
 
 
 class ProyectoController extends \BaseController {
@@ -20,7 +20,11 @@ class ProyectoController extends \BaseController {
 
 	{
 		   					
-		  $proyectos = DB::table('proyecto')->join('comuna', 'comuna.id', '=','proyecto.id_comuna')->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'proyecto.fecha_licitacion']);
+		  $proyectos = DB::table('proyecto')
+					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
+					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
+	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		
 		if (request()->ajax()){
 		                return Datatables::of($proyectos)
 
@@ -29,11 +33,13 @@ class ProyectoController extends \BaseController {
                 })
         ->editColumn('id', ' {{$id}}')
 
-        ->editColumn('proyecto.fecha_licitacion', function ($proyecto) {
-                return $proyecto->fecha_licitacion ? with(new Carbon\Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';;
+        ->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';
+			//return $proyecto->fecha_licitacion->format('d-m-Y');
+			
             })
             ->filterColumn('proyecto.fecha_licitacion', function ($query, $keyword) {
-                $query->whereRaw("DATE_FORMAT(proyecto.fecha_licitacion,'%d/%m/%Y') like ?", ["%$keyword%"]);
+                $query->whereRaw("DATE_FORMAT(proyecto.fecha_licitacion,'%d-%m-%Y') like ?", ["%$keyword%"]);
             })
 
             ->make(true);
@@ -102,6 +108,7 @@ class ProyectoController extends \BaseController {
                 {
                         App::abort(404)->with('message', 'Proyecto no encontrado');
                 }
+		//dd($proyecto);
                 return View::make('site/proyectos/show', array('proyecto' => $proyecto));
 	}
 
@@ -165,6 +172,153 @@ class ProyectoController extends \BaseController {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
             return Redirect::route('proyectos.edit', $proyecto->id)->withInput()->withErrors($proyecto->errors);
         }
+
+	}
+
+	/*public function filtroFecha(){
+		//filtro 1 para fecha 
+	}
+
+
+		  $proyectos = DB::table('proyecto')
+					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
+					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
+	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		
+		if (request()->ajax()){
+		                return Datatables::of($proyectos)
+
+		->addColumn('action', function ($proyecto) {
+                return '<a href="/proyectos/'.$proyecto->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+
+        ->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';
+			//return $proyecto->fecha_licitacion->format('d-m-Y');
+			
+            })
+            ->filterColumn('proyecto.fecha_licitacion', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(proyecto.fecha_licitacion,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+
+            ->make(true);
+        }*/
+
+
+	public function filtroComuna($id){
+		if($id == 0){
+
+				 					
+		  $proyectos = DB::table('proyecto')
+					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
+					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
+	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		
+		if (request()->ajax()){
+		                return Datatables::of($proyectos)
+
+		->addColumn('action', function ($proyecto) {
+                return '<a href="/proyectos/'.$proyecto->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+
+        ->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';
+			//return $proyecto->fecha_licitacion->format('d-m-Y');
+			
+            })
+            ->filterColumn('proyecto.fecha_licitacion', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(proyecto.fecha_licitacion,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+
+            ->make(true);
+        }
+        
+
+		}
+		else 
+		{
+		$proyectos = DB::table('proyecto')
+					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
+					->join('comuna', function($join) use ($id) {
+        				$join->on('comuna.id', '=', 'proyecto.id_comuna')
+        				->where('proyecto.id_comuna', '=', $id);
+        			})
+					->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		if(request()->ajax()){
+        			return Datatables::of($proyectos)
+        			->addColumn('action', function ($proyecto) {
+                return '<a href="/proyectos/'.$proyecto->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+
+		->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';			
+            })
+			
+        			->make(true);
+        			};
+		}
+		
+
+
+
+	}
+
+	public function filtroMandante($id){
+		if($id == 0){
+			$proyectos = DB::table('proyecto')
+					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
+					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
+	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		
+		if (request()->ajax()){
+		                return Datatables::of($proyectos)
+
+		->addColumn('action', function ($proyecto) {
+                return '<a href="/proyectos/'.$proyecto->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+
+        ->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';
+			//return $proyecto->fecha_licitacion->format('d-m-Y');
+			
+            })
+            ->filterColumn('proyecto.fecha_licitacion', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(proyecto.fecha_licitacion,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+
+            ->make(true);
+        }
+
+
+		}
+		else {
+
+
+		$proyectos = DB::table('proyecto')
+					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
+					->join('empresa', function($join) use ($id) {
+        				$join->on('empresa.id', '=', 'proyecto.id_empresa')
+        				->where('proyecto.id_empresa', '=', $id);
+        			})
+					->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+		if(request()->ajax()){
+        			return Datatables::of($proyectos)
+        			->addColumn('action', function ($proyecto) {
+                return '<a href="/proyectos/'.$proyecto->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+		
+		->editColumn('fecha_licitacion', function ($proyecto) {
+		        return $proyecto->fecha_licitacion ? with(new Carbon($proyecto->fecha_licitacion))->format('d-m-Y') : '';			
+            })
+			
+        			->make(true);
+        			};
+
+
+	}
 
 	}
 

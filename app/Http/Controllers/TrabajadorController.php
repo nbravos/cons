@@ -3,6 +3,8 @@
 use \App\Models\Trabajador;
 use \App\Models\Afp;
 use \App\Models\Salud;
+use Carbon\Carbon;
+
 class TrabajadorController extends Controller {
 
 
@@ -15,7 +17,7 @@ class TrabajadorController extends Controller {
 	public function index()
 	{
 		//$trabajadores = Trabajador::paginate();  
-		$trabajadores = Trabajador::select(['id', 'nombre', 'telefono']);
+		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino']);
 		if (request()->ajax()){
 		                return Datatables::of($trabajadores)
 
@@ -23,6 +25,11 @@ class TrabajadorController extends Controller {
                 return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
                 })
         ->editColumn('id', ' {{$id}}')
+
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+        
             ->make(true);
         }
 
@@ -58,8 +65,9 @@ class TrabajadorController extends Controller {
 		$data = Input::all();
                 $data['fecha'] = date('Y-m-d', strtotime($data['fecha']));
                 $data['fecha_nac'] = date('Y-m-d', strtotime($data['fecha_nac']));
+                $data['fecha_termino'] = date('Y-m-d', strtotime($data['fecha_termino']));
 		
-  		//dd($data);	      	
+  	//	dd($data);	      	
 
 
 		if($trabajador->isValid($data))
@@ -114,7 +122,7 @@ class TrabajadorController extends Controller {
 		{
 			App::abort(404);
 		}
-	$afp = Afp::pluck('nombre', 'id');
+		$afp = Afp::pluck('nombre', 'id');
         $salud = Salud::pluck('nombre', 'id');
 
         return View::make('site/trabajador/edit')
@@ -141,32 +149,115 @@ class TrabajadorController extends Controller {
         }
         
 
-        $data = Input::all();
-
-
-        
-        if ($trabajador->isValidUpdate($data))
-        {
-
-	$data['fecha'] = date('Y-m-d', strtotime($data['fecha']));
-	$data['fecha_nac'] = date('Y-m-d', strtotime($data['fecha_nac']));
+        $input = Input::only('nombre', 'ap_paterno', 'estado_contrato','ap_materno', 'rut', 'email', 'telefono', 'direccion', 'id_afp', 'id_salud', 'fecha_nac', 'fecha', 'fecha_termino');
 
 	
+        
+        if ($trabajador->isValidUpdate($input))
+        {
 
-            // Si la data es valida se la asignamos al usuario
-            $trabajador->fill($data);
+	$input['fecha'] = date('Y-m-d', strtotime($input['fecha']));
+	$input['fecha_nac'] = date('Y-m-d', strtotime($input['fecha_nac']));
+	$input['fecha_termino'] = date('Y-m-d', strtotime($input['fecha_termino']));
+
+	if (Input::hasFile('foto')){
+		File::delete(public_path().'workerImage', $trabajador->foto);
+		$file = Input::file('foto');
+		$fileArray = array('image' => $file);
+
+		if ($trabajador->validaFoto($fileArray)){
+			$destino = public_path('workerImage');
+			$extension = $file->getClientOriginalExtension();
+			$imageName = $trabajador->rut.'.'.$extension;
+//			Image::make(Input::file('foto')->resize(300, 200);
+			$file->move($destino, $imageName);
+			$trabajador->foto = $imageName;
+
+		}
+		else
+        {
+		//dd($data);
+            return Redirect::route('trabajador.edit', $trabajador->id)->withInput()->withErrors($trabajador->errors);
+        }
+
+		
+
+	}
+	
+            $trabajador->fill($input);
            
             $trabajador->save();
-            // Y Devolvemos una redirección a la acción show para mostrar el usuario
             return Redirect::route('trabajador.index');
         }
         else
         {
-		//dd($data);
-            // En caso de error regresa a la acción edit con los datos y los errores encontrados
             return Redirect::route('trabajador.edit', $trabajador->id)->withInput()->withErrors($trabajador->errors);
         }
 	}
+
+	public function filtroIndex($id)
+	{
+		if($id == 0)
+		{ /*cero es todos*/
+			$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino']);
+		if (request()->ajax()){
+		                return Datatables::of($trabajadores)
+
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+            ->make(true);
+        	}
+    	}
+        else {
+        	if($id == 1){
+        		/*1 es contrato vigente*/
+        		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino'])
+        		->where('estado_contrato', '=', '1');
+        		if (request()->ajax()){
+		                return Datatables::of($trabajadores)
+
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+            ->make(true);
+
+        	}
+
+        }
+        if ($id == 2) {
+        	$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino'])
+        		->where('estado_contrato', '=', '0');
+        		if (request()->ajax()){
+		                return Datatables::of($trabajadores)
+
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+            ->make(true);
+
+        	}
+        }
+
+		}
+		
+
+	}
+
+
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -183,6 +274,8 @@ class TrabajadorController extends Controller {
         	{
         	    App::abort(404);
         	}
+
+        	File::delete(public_path().'workerImage', $trabajador->foto);
         	$trabajador->delete();
 
 	        if (Request::ajax())

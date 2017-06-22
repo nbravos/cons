@@ -5,6 +5,7 @@ use \App\Models\Partida;
 use \App\Models\Ordencompra;
 use \App\Models\Item;
 //use Session;
+use Carbon\Carbon;
 
 class OrdenCompraController extends Controller {
 
@@ -25,7 +26,14 @@ class OrdenCompraController extends Controller {
              ->addColumn('action', function ($oc) {
                 return '<a href="/oc/'.$oc->id.'" class="btn btn-info"> Ver</a>';		                
             })
-            ->editColumn('id', '{{$id}}')
+		->editColumn('fecha_emision', function ($oc) {
+		        return $oc->fecha_emision ? with(new Carbon($oc->fecha_emision))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha_emision', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(oc.fecha_e,osopm,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+             ->editColumn('id', '{{$id}}')	  
             ->make(true);
 		}
             return View::make('site/oc/list');

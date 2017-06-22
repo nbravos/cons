@@ -32,9 +32,9 @@ class Ordencompra extends Model {
 			'id_partida.required' => 'Debe indicar a qué partida pertenece',
 			'id_empresa.required' => 'Debe indicar a qué empresa pertenece la Orden de Compra', 	
 			'fecha_emision.required'  => 'El campo fecha de emisión es obligatorio',
-			'fecha_emision.date_format' => 'El formato de la fecha es dd/mm/YYYY',
+			
 			'fecha_entrega.required' => 'El campo fecha de entrega es obligatorio',
-                        'fecha_entrega.date_format' => 'El formato de la fecha es dd/mm/YYYY',
+                        //'fecha_entrega.date_format' => 'El formato de la fecha es dd/mm/YYYY',
 			'uf.required' => 'La cantidad en U.F es un valor obligatorio',
 			'condicion_pago.required' => 'Debe indicar las condiciones de pago',
 			'numero.required' => 'El número de la Orden de Compra es obligatorio',

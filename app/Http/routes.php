@@ -20,8 +20,13 @@ Route::group(['middlewareGroups' => ['web']], function () {
 
 /*Controlador de CRUD usuarios*/
 Route::resource('usuarios', 'UsersController');
+
+
+Route::resource('ofertas/getEmpGan/{id}', ['uses' => 'ProyectoContratistaController'])->name('getEmpGan');
 Route::resource('empresas', 'EmpresaController');
+
 Route::resource('equipos', 'EquipoController');
+
 Route::get('descargardoc/{filename}', ['as' => 'descargardoc',  function($filename)
 {
 
@@ -40,23 +45,42 @@ Route::get('descargardoc/{filename}', ['as' => 'descargardoc',  function($filena
 
 
 }]);
-
+/*Rutas resource*/
 Route::resource('documentos', 'DocumentoController');
+
+Route::get('trabajador/getfil/{id}', ['uses' =>'TrabajadorController@filtroIndex'])->name('getfil');
+
 Route::resource('trabajador', 'TrabajadorController');
+
 Route::resource('oc', 'OrdenCompraController');
+
+Route::get('partidas/proyecto/{id}', ['uses' =>'PartidaController@verPartProyecto'])->name('verPart');
 Route::resource('partidas', 'PartidaController');
+
+Route::get('proyectos/getcom/{id}', ['uses' =>'ProyectoController@filtroComuna'])->name('getComuna');
+Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante'])->name('getMand');
 Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
+
 Route::get('reportes/test', 'ReporteController@graficos');
 Route::resource('reportes', 'ReporteController');
+
 Route::resource('sueldos', 'SueldoController');
+
 Route::get('ofertas/create/{id}',['uses' =>'ProyectoContratistaController@create'])->name('addof');
+Route::get('ofertas/ver/{id}', ['uses' =>'ProyectoContratistaController@verOfertasProyecto'])->name('verof');
+Route::get('ofertas/empresa/{id}', ['uses' =>'ProyectoContratistaController@verOfertasEmpresa'])->name('verofEmp');
 Route::resource('ofertas', 'ProyectoContratistaController');
+
 Route::get('items/doc/{id}',['uses' => 'ItemController@fromdocumento'])->name('moditem');
 Route::get('items/add', ['uses' =>'ItemController@storeandcreate'])->name('additem');
 Route::post('items/mod', ['uses' => 'ItemController@storefromdoc'])->name('additemdoc');
 /*Route::post('items/mod', 'ItemController@storefromdoc');*/
 Route::resource('items', 'ItemController');
+
+Route::get('mantencion/add/{id}', ['uses' => 'MantencionController@create'])->name('addMant');
+Route::get('mantencion/ver/{id}', ['uses' => 'MantencionController@verMantencionEquipo'])->name('verMant');
+Route::resource('mantencion', 'MantencionController');
 
 Route::get('login', 'AuthController@showLogin'); // Mostrar login
 Route::post('login', 'AuthController@postLogin'); // Verificar datos

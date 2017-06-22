@@ -33,18 +33,17 @@ class ItemController extends Controller
 */
     public function index()
     {
-                $idoc_orden = Session::get('idindex');
-//	dd($idoc_orden);
-        $items = DB::table('item')
+            $idoc_orden = Session::get('idindex');
+            $items = DB::table('item')
             ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
                     ->join('orden_compra', 'orden_compra.id', '=', 'orden_item.id_orden')
                     ->select(['item.id', 'item.detalle', 'item.unitario',  'orden_compra.numero']);
 		
-                /*$items = DB::table('item')
+               /* $items = DB::table('item')
                 ->join('orden_item', 'orden_item.id_item', '=', 'item.id')
                 ->join('orden_compra', function($join) use($idoc_orden){
                     $join->on( 'orden_item.id_orden', '=', $idoc_orden);
-                }); //7 abril -  malo */
+                }) 7 abril -  malo */
     
        if (request()->ajax()){
                         return Datatables::of($items)
@@ -85,6 +84,11 @@ class ItemController extends Controller
         return View::make('site/item/form');
     }
 
+    public function createfromdoc()
+    {
+    
+        return View::make('site/item/new');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -93,13 +97,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item;
+    $item = new Item;
 	$data = Input::all();
-//	dd($data);
+    	$boton = $data['button1'];
+	//dd($data);
 	if($item->isValid($data))
         {
 
-            $item->fill($data);
+            $item->cantidad = $data['cantidad'];
+            $item->detalle = $data['detalle'];
+            $item->unidad = $data['unidad'];
+            $item->unitario = $data['unitario'];
             $item->save();
          
 		 $idoc = Session::get('idorden');
@@ -107,10 +115,15 @@ class ItemController extends Controller
 		$item->ordencompra()->attach($idoc);
           
          $id_index = $item->ordencompra();
-	$id_index = $item->ordencompra['0']->id;
+	     $id_index = $item->ordencompra['0']->id;
         Session::put('idindex', $id_index);
-        	
+        if($boton == '2'){
+
+            return Redirect::route('items.create');
+        }else { if($boton == '1'){
              return Redirect::route('items.index'); 
+         }
+        }
 
         }
         else
@@ -161,7 +174,37 @@ $secondResult = DB::select("SELECT * FROM calendar WHERE year = 2015 and week = 
 return View::make('calendar')->with('weekdays',$secondResult);
 */
 
-	public function fromdocumento($id)
+     public function newfromdoc(Request $request)
+    {
+    $item = new Item;
+    $data = Input::all();
+//  dd($data);
+    if($item->isValid($data))
+        {
+
+            $item->fill($data);
+            $item->save();
+         
+         $idoc = Session::get('idorden');
+         
+        $item->ordencompra()->attach($idoc);
+          
+         $id_index = $item->ordencompra();
+         $id_index = $item->ordencompra['0']->id;
+        Session::put('idindex', $id_index);
+            
+             return Redirect::route('items.index'); 
+
+        }
+        else
+        {
+            //Si no se valida redirige a create con los errores qeu se encontraron
+            return Redirect::route('items.create')->withInput()->withErrors($item->errors);
+ 
+        }       
+    }
+
+	public function fromdocumento($id)//vista para modificar items desde vista de documento 
     {
 
 	$idoc_orden = Session::get('idocumento');
@@ -215,7 +258,7 @@ return View::make('calendar')->with('weekdays',$secondResult);
 
 	  
 
-	  public function storefromdoc()
+	  public function storefromdoc()//guarda desde documento
     {
         $data = Input::all();
         //dd($data['cantidad'][0]);
@@ -266,7 +309,16 @@ return View::make('calendar')->with('weekdays',$secondResult);
      */
     public function edit(Item $item)
     {
-        //
+        $items = Item::find($id);
+        if (is_null ($documento))
+        {
+            App::abort(404);
+        }
+
+        $ocs = Ordencompra::pluck('numero', 'id');
+
+        return View::make('site/documentos/edit')->with('documento', $documento)
+                                                 ->with('ocs', $ocs);
     }
 
     /**

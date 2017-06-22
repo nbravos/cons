@@ -9,7 +9,7 @@
                   </li>
                   <li><a href="" class="active">Trabajador</a>
                   </li>
-                <li><a href="">{{ $trabajador->nombre }}</a>
+                <li><a href="">{{ $trabajador->nombre }} {{$trabajador->ap_paterno}}</a>
                   </li>
 
                 </ul>
@@ -23,7 +23,7 @@
                     <tbody>
                       <tr>
                         <td> <strong>Nombre </strong></td>
-                        <td>{!!$trabajador->nombre!!}</td>
+                        <td>{{$trabajador->nombre}} {{$trabajador->ap_paterno}} {{$trabajador->ap_materno}}</td>
                       </tr>
                       <tr>
                         <td><strong>Dirección</strong> </td>
@@ -48,6 +48,21 @@
                       <tr>
                         <td><strong> Fecha Ingreso </strong></td>
                         <td>{!!date('d-m-Y', strtotime($trabajador->fecha))!!}</td>   
+                      </tr>
+                      <tr>
+                        <td><strong> Fecha Fin de Contrato </strong></td>
+                        <td>{!!date('d-m-Y', strtotime($trabajador->fecha_termino))!!}</td>   
+                      </tr>
+                      <tr>
+                        <td><strong>Estado de Contrato </strong></td>
+                        
+                        @if($trabajador->estado_contrato == 1)
+                        <td>Contrato Vigente</td>
+                        
+                        @else
+                        <td>Finiquitado</td>
+                        
+                        @endif
                       </tr>
                        <tr>
                         <td><strong> Foto </strong></td>

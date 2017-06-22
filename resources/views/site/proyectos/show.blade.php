@@ -7,7 +7,7 @@
                   <li class="active">
                     <p>Inicio</p>
                   </li>
-                  <li><a href="" class="active">Proyecto</a>
+                  <li><a href="" class="active">Licitaciones</a>
                   </li>
                 <li><a href="">{{ $proyecto->nombre }}</a>
                   </li>
@@ -20,12 +20,18 @@
         <h1> <strong> {!! $proyecto->nombre!!} </strong> </h1> 
 
 <a href="{{ route('addof', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Agregar Oferta</a>
+<a href="{{ route('verPart', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Ver Obras </a>
+
 <!-- <a href="/ofertas/create/'.$proyecto->id.'" class="btn btn-primary"> Oferta</a>-->
 <table class="table table-user-information">
                     <tbody>
                       <tr>
                         <td> <strong>Nombre </strong></td>
                         <td>{!!$proyecto->nombre!!}</td>
+                      </tr>
+                       <tr>
+                        <td><strong>ID</strong></td>
+                        <td>{!!$proyecto->ide!!}</td>
                       </tr>
                       <tr>
                         <td><strong>Empresa</strong> </td>
@@ -48,44 +54,60 @@
                         <td><strong>Estado de Proyecto</strong></td>
                         <td>{!!$proyecto->estado!!}</td>
                       </tr>
+		      <tr>
+                        <td><strong>Presupuesto</strong></td>
+                        <td>${!!$proyecto->presupuesto_oficial!!}</td>
+                      </tr>
                         <tr>
                         <td><strong>Financiamiento</strong></td>
                         <td>{!!$proyecto->financiamiento!!}</td>
                       </tr>
-                      <tr>
-                        <td><strong>Monto Disponible</strong></td>
-                        <td>{!!$proyecto->monto_disponible!!}</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Monto Mínimo Ofertado</strong></td>
-                        <td>{!!$proyecto->monto_minimo_oferta!!}</td>   
-                      </tr>
-                          <tr>
-                        <td><strong>Monto Ofertado</strong></td>
-                        <td>{!!$proyecto->monto_ofertado!!}</td>   
-                      </tr>
-                      <tr>
-                        <td><strong>Presupuesto Oficial</strong></td>
-                        <td>{!!$proyecto->presupuesto_oficial!!}</td>   
-                      </tr>
-                      <tr>
-                        <td><strong> Costos Directos </strong></td>
-                        <td>{!!$proyecto->giro!!}</td>   
-                      </tr>
-                      <tr>
-                        <td><strong> Costos Generales </strong></td>
-                        <td>{!!$proyecto->generales!!}</td>   
-                      </tr>
                          <tr>
                         <td><strong> Fecha de Licitación </strong></td>
-                        <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $proyecto->fecha_licitacion)->format('d-m-Y') }}</td>   
+			 <td>{!!date('d-m-Y', strtotime($proyecto->fecha_licitacion))!!}</td>                       
                       </tr>
                      
                     </tbody>
                   </table>
                   <p>
+
+<!-- Agregar acá tabla con datos -->
+<div  class="panel panel-transparent">
+              <div class="panel-heading">
+                <div class="panel-title">Listado de Ofertas
+                </div>
+                <div class="export-options-container pull-right"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div  class="panel-body">
+  <table id="listaOf" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                <th>Número</th>
+                <th>Empresa</th>
+                <th>Monto Ofertado</th> 
+                <th>Plazo</th>
+               <th>Acciones</th>
+                </tr>
+              </thead>
+              <tfoot>
+                    <tr>
+                      <td class="non_searchable"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+		      <td></td>
+
+                    </tr>
+                  </tfoot>
+              </table>
+              </div>
+            </div>
+
 <a href="{!!route('proyectos.index')!!}" class="btn btn-primary">Volver</a>
 <a href="{!!route('proyectos.edit', $proyecto->id)!!}" class="btn btn-primary">Editar</a>
+<br>
+<br>
 {!! Form::model($proyecto, array('route' => array('proyectos.destroy', $proyecto->id), 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
   {{ Form::submit('Eliminar Proyecto', array('class' => 'btn btn-danger')) }}
 {!! Form::close() !!}
@@ -103,6 +125,31 @@
   }
 
 </script>
+
+<script type="text/javascript">
+              $(document).ready(function() {
+               $('#listaOf').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: '{!! route('verof', ['id' =>  $proyecto->id]) !!}',
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+                {data: 'id', name: 'proyecto_contratista.id', visible: false},
+                {data: 'mand', name:'empresa.nombre'},
+                {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
+                {data: 'diasOf', name: 'proyecto_contratista.dias'},
+		{data: 'action', name: 'action', orderable: false, searchable: false}    
+            ],
+            
+        });
+              $('#listaOf tfoot tr').appendTo('#listaOf thead');
+       });
+
+          </script>
 
 @stop
 

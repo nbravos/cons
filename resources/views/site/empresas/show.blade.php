@@ -60,9 +60,50 @@
                      
                     </tbody>
                   </table>
-                  <p>
+
+<!-- Agregar acá tabla con datos -->
+<div  class="panel panel-transparent">
+              <div class="panel-heading">
+                <div class="panel-title">Listado de Ofertas
+                </div>
+                <div class="export-options-container pull-right"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div  class="panel-body">
+
+          {!! Form::label('filtro', 'Filtrar por: ') !!}
+          {!!Form::select('filtroTrab', array(
+          '0' => 'Todos',
+          '1' => 'Oferta Ganadora', 
+          '2' => 'Ofertas No Ganadoras'), null, ['id' =>'filtroTrab', 'class' => 'form-control']) !!}
+
+  <table id="listaOf" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+	             	<th>Id </th>	
+		            <th>Empresa</th>                
+                <th>Proyecto</th>
+                <th>Monto Ofertado</th> 
+                <th>Plazo</th>
+                </tr>
+              </thead>
+              <tfoot>
+                    <tr>
+		      <td class="non_searchable"></td>	
+                       <td></td>
+                      <td></td>
+                  <td></td>
+                      <td></td> 
+                    </tr>
+                  </tfoot>
+              </table>
+              </div>
+            </div>
+            <p>
 <a href="{!!route('empresas.index')!!}" class="btn btn-primary">Volver</a>
 <a href="{!!route('empresas.edit', $empresa->id)!!}" class="btn btn-primary">Editar</a>
+<br>
+<br>
 {!! Form::model($empresa, array('route' => array('empresas.destroy', $empresa->id), 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
   {!! Form::submit('Eliminar Empresa', array('class' => 'btn btn-danger')) !!}
 {!! Form::close() !!}
@@ -80,6 +121,73 @@
   }
 
 </script>
+
+<script type="text/javascript">
+              $(document).ready(function() {
+               $('#listaOf').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: '{!! route('verofEmp', ['id' =>  $empresa->id]) !!}',
+            order: [[2, "desc"]], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+		            {data: 'id', name: 'proyecto_contratista.id', visible:false},                
+                {data: 'mand', name:'empresa.nombre'},
+		            {data: 'proNom', name:'proyecto.nombre'},
+                {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
+                {data: 'diasOf', name: 'proyecto_contratista.dias'}    
+            ],
+            
+        });
+              $('#listaOf tfoot tr').appendTo('#listaOf thead');
+       });
+
+          </script>
+
+      <script type="text/javascript">
+       
+       $('#filtroTrab').on('change', function(e) {
+        var e = document.getElementById("filtroTrab");
+        var valorCom = e.options[e.selectedIndex].value;
+        var url = 'http://aragonltda.cl/ofertas/getEmpGan/'+ valorCom;
+      $('#listaOf').dataTable( {
+
+         "bDestroy": true   
+});
+   $('#listaOf').dataTable().fnDestroy();
+   $('#listaOf').empty();
+
+        $('#listaOf').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: url,
+      order: [[2, "desc"]], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+                {data: 'id', name: 'proyecto_contratista.id', visible:false},                
+                {data: 'mand', name:'empresa.nombre'},
+                {data: 'proNom', name:'proyecto.nombre'},
+                {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
+                {data: 'diasOf', name: 'proyecto_contratista.dias'}    
+            ],
+            
+        });
+
+          $('#listaOf tfoot tr').appendTo('#listaOf thead');
+         
+            
+        }); 
+
+
+      </script>
 
 @stop
 

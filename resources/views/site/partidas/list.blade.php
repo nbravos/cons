@@ -30,7 +30,7 @@
               <div class="panel-body">
               <div class="form-group">
            {!! Form::label('proyecto', 'Proyecto Base') !!}
-           {!! Form::select('proyecto', App\Models\Proyecto::pluck('nombre', 'nombre'), null, array('class' => 'form-control', 'id' => 'proyecto')) !!}
+           {!! Form::select('proyecto', App\Models\Proyecto::pluck('nombre', 'nombre'), null, array('class' => 'form-control', 'id' => 'proyecto', 'placeholder' => 'Todos')) !!}
     </div>
   <table id="listaPart" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -73,7 +73,7 @@
               url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'partida.id'},
+                {data: 'id', name: 'partida.id', visible: false},
                 {data: 'partNombre', name: 'partida.nombre'},
                 {data: 'proNombre', name: 'proyecto.nombre'},
                 {data: 'detalle', name: 'detalle'},

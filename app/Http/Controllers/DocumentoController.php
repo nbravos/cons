@@ -2,6 +2,7 @@
 
 use \App\Models\Ordencompra;
 use \App\Models\Documento;
+use Carbon\Carbon;
 
 class DocumentoController extends Controller {
 
@@ -13,9 +14,7 @@ class DocumentoController extends Controller {
 	 */
 	public function index()
 	{
-		/*$partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as ProNombre', 'detalle', 'item', 'inicio_real']);*/
-
-
+		
 		 /*$documentos = Documento::select(['id', 'tipo', 'monto', 'fecha']);*/
 
 		 $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
@@ -25,12 +24,17 @@ class DocumentoController extends Controller {
 		->addColumn('action', function ($documento) {
                 return '<a href="/documentos/'.$documento->id.'" class="btn btn-info"> Ver</a>';		                
                 })
-       /* ->editColumn('id', '{{$id}}')*/
+       ->editColumn('fecha', function ($documento) {
+		        return $documento->fecha ? with(new Carbon($documento->fecha))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(documento.fecha,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+
             ->make(true);
         }
-/*		$docs = Documento::find(34);
-		$hol = $docs->ordencompra('7')->id_proyecto;
-		dd($hol);*/
+
 	
 	        return view('site/documentos/list')->with('documentos', $documentos);
 

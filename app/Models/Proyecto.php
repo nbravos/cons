@@ -3,7 +3,7 @@
 use \Validator;
 
 class Proyecto extends \Eloquent {
-	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'costos_generales', 'fecha_licitacion', 'estado', 'tipo_proyecto'];
+	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'gastos_generales', 'fecha_licitacion', 'estado'];
 	protected $table = 'proyecto';
 	public $errors;
 	
@@ -16,17 +16,16 @@ class Proyecto extends \Eloquent {
 
                         'id_comuna' => 'required|',                       
                         'id_empresa' => 'required|',
-			'tipo_licitacion' => 'sometimes', 
-			'tipo_proyecto' =>'required',
+						'tipo_licitacion' => 'sometimes', 
                         'nombre' =>'required|max:60',
                         'financiamiento' => 'required',
                         'monto_disponible' =>'sometimes|numeric',
                         'monto_minimo_oferta' =>'sometimes|numeric',
                         'monto_ofertado' => 'sometimes|numeric',
-			'presupuesto_oficial' => 'sometimes|numeric',
-			'costos_directos' => 'numeric',
-                        'costos_generales' => 'numeric',
-                        'fecha_licitacion' => 'required',
+						'presupuesto_oficial' => 'sometimes|numeric',
+						'costos_directos' => 'numeric',
+                        'gastos_generales' => 'numeric',
+                        'fecha_licitacion' => 'required|date_format:d/m/Y',
 			            'estado' => 'required', 
                         );
 	$mensajes = array (
@@ -40,8 +39,7 @@ class Proyecto extends \Eloquent {
 		'monto_ofertado.numeric' => 'El valor del monto ofertado debe ser numérico',
 		'presupuesto_oficial.numeric' => 'El valor del presupuesto debe ser numérico',
 		'costos_directos.numeric' => 'El valor de los costos directos debe ser numérico',
-		'costos_generales.numeric' => 'El valor de los costos generales debe ser numérico',
-                'tipo_proyecto.required' => 'Debe indicar el tipo de proyecto', 
+		'gastos_generales.numeric' => 'El valor de los costos generales debe ser numérico',
 		'fecha_licitacion.required' => 'Debe indicar la fecha de licitación en formato dd/mm/yyyy',
 
 	);
@@ -91,7 +89,7 @@ class Proyecto extends \Eloquent {
         
         static::deleted(function($proyecto)
         {
-            $proyecto->partida()->delete();
+            $proyecto->partida()->delete(); /*borra la partida también*/
             
         });
     }    

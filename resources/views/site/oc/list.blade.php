@@ -34,7 +34,7 @@
   <table id="listaOc" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                <th>OC</th>
+		<th>OC</th>
                 <th>Partida (Item)</th>
                  <th>Número</th>
                  <th>Fecha Emisión</th>
@@ -43,7 +43,7 @@
               </thead>
               <tfoot>
                     <tr>
-                      <td class="non_searchable"></td>
+		      <td  class="non_searchable"></td>	
                       <td></td>
                       <td></td>
                       <td></td>
@@ -68,7 +68,8 @@
               url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'orden_compra.id'},
+		
+                {data: 'item', name: 'orden_compra.id', visible: false},
                 {data: 'item', name: 'partida.item'},
                 {data: 'numero', name: 'orden_compra.numero'},
                 {data: 'fecha_emision', name: 'orden_compra.fecha_emision'},

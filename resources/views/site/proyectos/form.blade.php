@@ -21,7 +21,7 @@
                   <li class="active">
                     <p>Inicio</p>
                   </li>
-                  <li><a href="" class="active">Proyectos</a>
+                  <li><a href="" class="active">Licitaciones</a>
                   </li>
                 <li><a href="Editar:">{{ $proyecto->nombre }}</a>
                   </li>
@@ -29,7 +29,7 @@
                 </ul>
  @stop
 
-	<h1>Editar Proyecto</h1>
+	<h1>Editar</h1>
 @else
     {!! Form::open(array('route' => 'proyectos.store', 'method' => 'POST'), array('role' => 'form')) !!}
         @section ('breadcrumbs')
@@ -46,16 +46,21 @@
                 </ul>
  @stop
 
-	 <h1>Agregar Proyecto</h1>
+	 <h1>Agregar </h1>
 @endif
 {!! csrf_field() !!}
   <div class="row">
     <div class="form-group">
-      {!! Form::label('nombre', 'Nombre del Proyecto') !!}
-      {!! Form::text('nombre', null, array('placeholder' => 'Ingresa el nombre del proyecto', 'class' => 'form-control')) !!}
+      {!! Form::label('nombre', 'Nombre Licitación') !!}
+      {!! Form::text('nombre', null, array('placeholder' => 'Ingresa el nombre de la licitación', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
-           {!! Form::label('id_empresa', 'Empresa Asociada') !!}
+      {!! Form::label('ide', 'ID de Licitación') !!}
+      {!! Form::text('ide', null, array('placeholder' => 'Ingresa el ID de licitación', 'class' => 'form-control')) !!}
+    </div>
+
+    <div class="form-group">
+           {!! Form::label('id_empresa', 'Mandante') !!}
            {!! Form::select('id_empresa', $empresa, null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
@@ -74,7 +79,7 @@
       {!!Form::label('tipo_proyecto', 'Tipo de Proyecto')!!}
       {!!Form::select('tipo_proyecto', array(
           'Pavimento Participativo' => 'Pavimento Participativo', 
-          'Mejoramiento Vía' => 'Mejoramiento Vía', 
+          'Mejoramiento Vía' => 'Mejoramiento Vial', 
           'Reconstrucción' => 'Reconstrucción',
           'Espacios Públicos' => 'Espacios Públicos',
           'Saneamiento'  => 'Saneamiento',
@@ -92,7 +97,7 @@
   </div>
 
     <div class="form-group">
-      {!!Form::label('financiamiento', 'Financiamiento del Proyecto')!!}
+      {!!Form::label('financiamiento', 'Financiamiento')!!}
       {!!Form::select('financiamiento', array(
           'Propio' => 'Propio', 
           'GORE' => 'GORE',
@@ -100,7 +105,7 @@
   </div>
   </div>
    <div class="row">
-    <div class="form-group">
+<!--    <div class="form-group">
       {!! Form::label('monto_disponible', 'Monto Disponible') !!}
       {!! Form::text('monto_disponible', null, array('placeholder' => 'Indica el Monto Disponible Proyecto', 'class' => 'form-control')) !!}
     </div>
@@ -123,7 +128,7 @@
       <div class="form-group">
       {!! Form::label('costos_generales', 'Costos Generales') !!}
       {!! Form::text('costos_generales', null, array('placeholder' => 'Costos Generales del Proyecto', 'class' => 'form-control')) !!}
-    </div>
+    </div>-->
        <div class="form-group">
     <label class="control-label" for="fecha_licitacion">Fecha Licitación</label>
     <input class="form-control" id="datepicker1" name="fecha_licitacion" placeholder="DD/MM/AA" value="@if (isset($proyecto->fecha_licitacion))

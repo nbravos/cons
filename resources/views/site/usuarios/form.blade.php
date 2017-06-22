@@ -82,7 +82,7 @@
       {!! Form::text('roles', null, array('placeholder' => 'Rol de usuario', 'class' => 'form-control')) !!}
     </div> -->
  </div>
-  {!! Form::button('Crear usuario', array('type' => 'submit', 'class' => 'btn btn-primary btn-lg')) !!}    
+  {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary btn-lg')) !!}    
   
 {!! Form::close() !!}
 

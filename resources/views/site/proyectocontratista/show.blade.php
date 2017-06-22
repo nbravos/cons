@@ -18,6 +18,8 @@
 @section ('content')
 
         <h1> <strong> {!! $pc->proyecto->nombre!!} </strong> </h1> 
+        
+
 <!-- </div>-->
 <table class="table table-user-information">
                     <tbody>
@@ -34,17 +36,26 @@
                         <td><strong>Monto Ofertado</strong></td>
                         <td>{!!$pc->monto_ofertado!!}</td>
                       </tr>
+                      <tr>
+                        <td><strong>Estado Oferta</strong></td>
+                        @if ($pc->estado_oferta == 0)
+                        <td>No Ganada</td>
+                        @else
+                        <td>Ganada</td>
+                        @endif
+                      </tr>
                         <tr>
-                        <td><strong>Bases</strong></td>
-                        <td>{!!$pc->bases!!}</td>
+                        <td><strong>Plazo (días)</strong></td>
+                        <td>{!!$pc->dias!!}</td>
                       </tr>                  
                     </tbody>
                   </table>
                   <p>
 <a href="{!!route('proyectos.index')!!}" class="btn btn-primary">Volver a Proyectos</a>
-<a href="{!!route('proyectocontratista.edit', $pc->id)!!}" class="btn btn-primary">Editar</a>
-{!! Form::model($pc, array('route' => array('proyectocontratista.destroy', $pc->id), 'method' => 'DELETE', 'onsubmit' => 'ConfirmDelete()'), array('role' => 'form')) !!}
-  {!! Form::submit('Eliminar Partida', array('class' => 'btn btn-danger')) !!}
+<a href="{!!route('ofertas.edit', $pc->id)!!}" class="btn btn-primary">Editar</a>
+<br>
+<br>
+  {!! Form::submit('Eliminar', array('class' => 'btn btn-danger')) !!}
   {!! Form::close() !!}
 </p>
 

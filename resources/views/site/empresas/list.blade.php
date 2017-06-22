@@ -65,7 +65,7 @@
               url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'id', name: 'id', visible: false},
                 {data: 'nombre', name: 'nombre'},
                 {data: 'nombre_contacto', name: 'nombre_contacto'},
                 {data: 'telefono', name: 'telefono'},

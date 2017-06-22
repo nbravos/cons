@@ -7,14 +7,14 @@
 $(document).ready(function () {
        
   $( "#fecha_emision" ).datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd-mm-yyyy',
         language: 'es',
         autoclose: true
 
   });
 
   $( "#fecha_entrega" ).datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd-mm-yyyy',
         language: 'es',
         autoclose: true
 

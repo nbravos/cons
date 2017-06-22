@@ -129,9 +129,15 @@ $(document).ready(function () {
   </div>
    <div class="row">
     <div class="form-group">
-      {!! Form::label('total', 'Total') !!}
-      {!! Form::text('total', null, array('placeholder' => 'Ingresa el total ', 'class' => 'form-control')) !!}
+      {!! Form::hidden('total', 'Total') !!}
+      {!! Form::hidden('total', 1, array('id' => 'total')) !!}
     </div>
+
+   <div class="form-group">
+      {!! Form::hidden('porcentaje', 'Porcentaje del Proyecto') !!}
+      {!! Form::hidden('porcentaje', 1, array('id' => 'porcentaje')) !!}
+    </div>
+
     <div class="form-group">
     <label class="control-label" for="inicio_teorico">Fecha de Inicio Teórico</label>
     <input class="form-control" id="inicio_teorico" name="inicio_teorico" placeholder="DD-MM-AA" value="@if (isset($partida->inicio_teorico))

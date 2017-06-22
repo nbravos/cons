@@ -30,7 +30,8 @@
 
   <h1>Editar Item</h1>
 @else
-    {!! Form::open(array('route' => 'items.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
+    {!! Form::open(array('route' => 'items.store', 'method' => 'POST', 'files'=> true), array('role' => 'form', 'name' => 'form1', 'id' => 'form1')) !!}
+
              @section ('breadcrumbs')
 
                 <ul class="breadcrumb a">
@@ -67,12 +68,14 @@
 
 {{ $order = Input::get('oc')  }}
 
- {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
-  
-{!! Form::close() !!}
+ {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'button1', 'value' => '1')) !!}    
 <br>
-<p>
+<br>
+ {!! Form::button('Guardar y Agregar nuevo', array('type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'button1', 'value' => '2')) !!}
+{!! Form::close() !!}
+
+<!--<p>
   <a href="{{ route('additem') }}" class="btn btn-primary">Guardar y Agregar nuevo </a>
-  </p>
+  </p>-->
 
 @stop

@@ -1,28 +1,7 @@
 @extends ('layout3')
 
 @section ('content')
-<script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-   <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
-    <script type="text/javascript">
-$(document).ready(function () {
-       
-  $( "#datepicker1" ).datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'es',
-        autoclose: true
 
-  });
-
-  $( "#datepicker2" ).datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'es',
-        autoclose: true
-
-  });
- 
-
-});
-</script>
   @if ($errors->any())
     <div class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -73,6 +52,14 @@ $(document).ready(function () {
       {!! Form::text('nombre', null, array('placeholder' => 'Ingresa el nombre del trabajador', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
+      {!! Form::label('ap_paterno', 'Apellido Paterno') !!}
+      {!! Form::text('ap_paterno', null, array('placeholder' => 'Ingresa el apellido paterno', 'class' => 'form-control')) !!}
+    </div>
+    <div class="form-group">
+      {!! Form::label('ap_materno', 'Apellido Materno') !!}
+      {!! Form::text('ap_materno', null, array('placeholder' => 'Ingresa el apellido materno', 'class' => 'form-control')) !!}
+    </div>
+    <div class="form-group">
       {!! Form::label('email', 'Correo de Contacto') !!}
       {!! Form::text('email', null, array('placeholder' => 'Ingresa el correo del trabajador ', 'class' => 'form-control')) !!}
     </div>
@@ -99,6 +86,18 @@ $(document).ready(function () {
     <input class="form-control" id="datepicker2" name="fecha" placeholder="DD/MM/AA" value="@if (isset($trabajador->fecha))
             {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }} @endif" type="text">
   </div>
+  <div class="form-group">
+    <label class="control-label" for="fecha_termino">Fecha Término Contrato</label>
+    <input class="form-control" id="datepicker3" name="fecha_termino" placeholder="DD/MM/AA" value="@if (isset($trabajador->fecha))
+            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_termino)->format('d-m-Y') }} @endif" type="text">
+  </div>
+ <div class="form-group"> 
+  {{ Form::radio('estado_contrato', '1') }}
+  Vigente
+  <br>
+  {{ Form::radio('estado_contrato', '0', true) }}
+  Finiquitado
+</div>
         <div class="form-group">
            {!! Form::label('id_afp', 'Afp') !!}
            {!! Form::select('id_afp', $afp, null, ['class' => 'form-control']) !!}
@@ -152,6 +151,36 @@ $("#rut").change(function(){
 });
 
 
+</script>
+
+<script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+       
+  $( "#datepicker1" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+
+  });
+
+  $( "#datepicker2" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+
+  });
+
+   $( "#datepicker3" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+
+  });
+ 
+
+});
 </script>
 
 @stop

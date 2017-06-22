@@ -66,7 +66,7 @@
               url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'item.id'},
+                {data: 'id', name: 'item.id', visible: false},
 		{data: 'detalle', name: 'item.detalle'},
                 {data: 'unitario', name: 'item.unitario'},
 		{data: 'numero', name: 'orden_compra.numero'},

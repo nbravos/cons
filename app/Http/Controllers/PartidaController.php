@@ -2,7 +2,8 @@
 
 use App\Models\Proyecto; 
 use App\Models\Partida;
-
+use App\Models\Avance;
+use Carbon\Carbon;
 
 class PartidaController extends \Controller {
 
@@ -27,6 +28,13 @@ class PartidaController extends \Controller {
 		->addColumn('action', function ($partida) {
                 return '<a href="/partidas/'.$partida->id.'" class="btn btn-info">Ver</a>';		                
                 })
+		->editColumn('inicio_real', function ($partida) {
+		        return $partida->inicio_real ? with(new Carbon($partida->inicio_real))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(partida.inicio_real,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
         ->editColumn('id', ' {{$id}}')
             ->make(true);
         }
@@ -80,8 +88,11 @@ class PartidaController extends \Controller {
 		    	if (!empty($data['fin_real'])){
 		    		$data['fin_real'] = $fecha4->format("Y-m-d H:i:s");
 		    }
-		    
 
+		    $idProyecto = Proyecto::find($data['id_proyecto']);	 	
+		    $presupuesto = $idProyecto->presupuesto_oficial;
+                    $data['total'] = $data['unitario']*$data['cantidad'];
+		    $data['porcentaje'] = ($data['total'])/($idProyecto->presupuesto_oficial);	 	    
  		    $partida->fill($data);
 		    $partida->save();	           
 		//dd($partida->inicio_teorico);
@@ -104,6 +115,7 @@ class PartidaController extends \Controller {
 	public function show($id)
 	{
 		$partida = Partida::find($id);
+		//dd($partida->avance[0]->fecha_termino);	
 		 if (is_null ($partida))
                 {
                         App::abort(404)->with('message', 'Partida no encontrada');
@@ -178,6 +190,27 @@ class PartidaController extends \Controller {
             return Redirect::route('partidas.edit', $partida->id)->withInput()->withErrors($partida->errors);
         }
 	}
+
+	public function verPartProyecto($id){
+	
+		      $proy = Proyecto::find($id);
+        $partidas = DB::table('partida')
+        			->join('proyecto', function($join) use ($id) {
+        				$join->on('proyecto.id', '=', 'partida.id_proyecto')
+        				->where('partida.id_proyecto', '=', $id);
+        			})
+        			->select(['partida.id','partida.nombre as partNombre', 'detalle', 'inicio_real']);
+        			if(request()->ajax()){
+        				return Datatables::of($partidas)
+				 ->editColumn('inicio_real', function ($partida) {
+                        return $partida->inicio_real ? with(new Carbon($partida->inicio_real))->format('d-m-Y') : '';
+					})
+        				->make(true);
+
+        				};
+        		 return View::make('site/partidas/proy')->with('proy', $proy);
+
+        			}
 
 	/**
 	 * Remove the specified resource from storage.

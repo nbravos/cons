@@ -19,6 +19,10 @@
 
 
         <h1> <strong> {!! $equipo->nombre!!} </strong> </h1> 
+ <a href="{{ route('verMant', ['id' =>  $equipo->id]) }}" class="btn btn-primary">Ver Mantenciones</a>
+ <a href="{{ route('addMant', ['id' =>  $equipo->id]) }}" class="btn btn-primary">Agregar Mantención</a>
+<br>
+<br>
 <!-- </div>-->
 <table class="table table-user-information">
                     <tbody>

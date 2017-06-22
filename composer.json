@@ -9,14 +9,13 @@
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "freshwork/chilean-bundle": "^2.0",
         "illuminate/html": "~5.0",
+        "khill/datatableplus": "dev-master",
+        "khill/lavacharts": "3.0.x-dev",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "yajra/laravel-datatables-oracle": "^7.3",
-	"khill/lavacharts" : "3.0.*",
-	"khill/lavacharts" : "3.0.x-dev",
-	"khill/datatableplus": "dev-master",
-	"maatwebsite/excel": "~2.1.0"
-
+        "maatwebsite/excel": "~2.1.0",
+        "yajra/laravel-datatables-buttons": "^1.0",
+        "yajra/laravel-datatables-oracle": "^7.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
