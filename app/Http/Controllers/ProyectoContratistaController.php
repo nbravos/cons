@@ -27,6 +27,8 @@ class ProyectoContratistaController extends Controller
 	{
 	 $pc = new Proyectocontratista;
 	 $data =  Input::all(); 
+     $data['fecha_oferta'] = date('Y-m-d', strtotime($data['fecha_oferta']));
+
 	
 //	if($pc->isValid($data))
 //	{
@@ -55,7 +57,7 @@ class ProyectoContratistaController extends Controller
 
 	public function verOfertasProyecto($id){
 
-		      
+		  
         $ofertas = DB::table('proyecto_contratista')
                                 ->join('empresa', 'empresa.id', '=', 'proyecto_contratista.id_empresa')
         			->join('proyecto', function($join) use ($id) {
@@ -78,22 +80,112 @@ class ProyectoContratistaController extends Controller
 
     public function verOfertasEmpresa($id){
 
-		      
-        $ofertas = DB::table('proyecto_contratista')
+         $ofertas = DB::table('proyecto_contratista')
                                 ->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
-        			->join('empresa', function($join) use ($id) {
-        				$join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
-        				->where('proyecto_contratista.id_empresa', '=', $id);
-        			})
-        			->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf']);
-        			if(request()->ajax()){
-        				return Datatables::of($ofertas)
-        				->make(true);
+                    ->join('empresa', function($join) use ($id) {
+                        $join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
+                        ->where('proyecto_contratista.id_empresa', '=', $id);
+                    })
+                    ->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf']);
+                    if(request()->ajax()){
+                        return Datatables::of($ofertas)
+                ->addColumn('action', function ($oferta) {
+                        return '<a href="/ofertas/'.$oferta->id.'" class="btn btn-info"> Ver</a>';                      
+                              })
+                
+                        ->make(true);
 
-        				};
-        		 //return View::make('site/proyectos/show');
+                        };
+       if($id == 0) {
+         $ofertas = DB::table('proyecto_contratista')
+                                ->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
+                    ->join('empresa', function($join) use ($id) {
+                        $join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
+                        ->where('proyecto_contratista.id_empresa', '=', $id);
+                    })
+                    ->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf'])
+                    ->where('proyecto_contratista.estado_oferta', '=', 0);
 
-        			}
+                    if(request()->ajax()){
+                        return Datatables::of($ofertas)
+                ->addColumn('action', function ($oferta) {
+                        return '<a href="/ofertas/'.$oferta->id.'" class="btn btn-info"> Ver</a>';                      
+                              })
+                
+                        ->make(true);
+
+            }
+        }
+
+        if($id == 1)
+        {
+             $ofertas = DB::table('proyecto_contratista')
+                                ->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
+                    ->join('empresa', function($join) use ($id) {
+                        $join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
+                        ->where('proyecto_contratista.id_empresa', '=', $id);
+                    })
+                    ->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf'])
+                    ->where('proyecto_contratista.estado_oferta', '=', 1);
+
+                    if(request()->ajax()){
+                        return Datatables::of($ofertas)
+                ->addColumn('action', function ($oferta) {
+                        return '<a href="/ofertas/'.$oferta->id.'" class="btn btn-info"> Ver</a>';                      
+                              })
+                
+                        ->make(true);
+            }
+        
+        }
+
+        if($id == 2)
+        {
+            $ofertas = DB::table('proyecto_contratista')
+                                ->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
+                    ->join('empresa', function($join) use ($id) {
+                        $join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
+                        ->where('proyecto_contratista.id_empresa', '=', $id);
+                    })
+                    ->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom','proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf'])
+                    ->where('proyecto_contratista.estado_oferta', '=', 2);
+
+                    if(request()->ajax()){
+                        return Datatables::of($ofertas)
+                ->addColumn('action', function ($oferta) {
+                        return '<a href="/ofertas/'.$oferta->id.'" class="btn btn-info"> Ver</a>';                      
+                              })
+                
+                        ->make(true);
+                    }
+
+
+        }     
+        }     
+
+  
+public function filtroFecha($from, $to, $id){
+
+
+           $ofertas = DB::table('proyecto_contratista')
+                                ->join('proyecto', 'proyecto.id', '=', 'proyecto_contratista.id_proyecto')
+                    ->join('empresa', function($join) use ($id) {
+                        $join->on('empresa.id', '=', 'proyecto_contratista.id_empresa')
+                        ->where('proyecto_contratista.id_empresa', '=', $id);
+                    })
+                    ->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto.nombre as proNom', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf'])
+                    ->whereBetween('fecha_oferta', [$from, $to]);
+        
+          if(request()->ajax()){
+                        return Datatables::of($ofertas)
+                ->addColumn('action', function ($oferta) {
+                        return '<a href="/ofertas/'.$oferta->id.'" class="btn btn-info"> Ver</a>';                      
+                              })
+                
+                        ->make(true);
+        }
+}
+
 
 public function show($id)
     {

@@ -22,7 +22,10 @@ Route::group(['middlewareGroups' => ['web']], function () {
 Route::resource('usuarios', 'UsersController');
 
 
-Route::resource('ofertas/getEmpGan/{id}', ['uses' => 'ProyectoContratistaController'])->name('getEmpGan');
+Route::resource('cuadrillas', 'CuadrillaController');
+
+Route::get('ofertas/getEmpGan/{id}', ['uses' => 'ProyectoContratistaController@verOfertasEmpresa'])->name('getEmpGan');
+Route::get('ofertas/getfilFecha/{from}/{to}/{idempresa}', ['uses' =>'ProyectoContratistaController@filtroFecha']);
 Route::resource('empresas', 'EmpresaController');
 
 Route::resource('equipos', 'EquipoController');
@@ -46,17 +49,22 @@ Route::get('descargardoc/{filename}', ['as' => 'descargardoc',  function($filena
 
 }]);
 /*Rutas resource*/
+Route::get('documentos/getfilFecha/{from}/{to}', ['uses' =>'DocumentoController@filtroFecha']);
 Route::resource('documentos', 'DocumentoController');
 
+Route::get('trabajador/getfilFecha/{from}/{to}', ['uses' =>'TrabajadorController@filtroFecha'])->name('getFechaTrab');
 Route::get('trabajador/getfil/{id}', ['uses' =>'TrabajadorController@filtroIndex'])->name('getfil');
+Route::get('trabajador/getfilPro/{id}', ['uses' =>'TrabajadorController@filtroProyecto'])->name('getfilPro');
 
 Route::resource('trabajador', 'TrabajadorController');
 
 Route::resource('oc', 'OrdenCompraController');
 
+Route::get('cuadrillas/create/{id}',['uses' =>'CuadrillaController@create'])->name('addCuad');
 Route::get('partidas/proyecto/{id}', ['uses' =>'PartidaController@verPartProyecto'])->name('verPart');
 Route::resource('partidas', 'PartidaController');
 
+Route::get('proyectos/getfilFecha/{from}/{to}', ['uses' =>'ProyectoController@filtroFecha']);
 Route::get('proyectos/getcom/{id}', ['uses' =>'ProyectoController@filtroComuna'])->name('getComuna');
 Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante'])->name('getMand');
 Route::resource('proyectos', 'ProyectoController');

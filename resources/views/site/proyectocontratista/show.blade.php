@@ -47,7 +47,11 @@
                         <tr>
                         <td><strong>Plazo (días)</strong></td>
                         <td>{!!$pc->dias!!}</td>
-                      </tr>                  
+                      </tr> 
+                       <tr>
+                        <td><strong>Fecha de la Oferta</strong></td>
+                        <td>{!!date('d-m-Y', strtotime($pc->fecha_oferta))!!}</td>
+                      </tr>                 
                     </tbody>
                   </table>
                   <p>

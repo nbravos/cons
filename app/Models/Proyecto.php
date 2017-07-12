@@ -79,6 +79,11 @@ class Proyecto extends \Eloquent {
 
 		return $this->hasMany('App\Models\Partida');
 	}
+	
+	public function trabajador(){
+
+                return $this->belongsToMany('App\Models\Trabajador', 'proyecto_trabajador', 'id_trabajador', 'id_proyecto');
+        }
 
 
 

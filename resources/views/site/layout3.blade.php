@@ -5,39 +5,35 @@
     <meta charset="utf-8" />
     <title>Constructora Aragon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" href="http://aragonltda.cl/pages/ico/60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="http://aragonltda.cl/pages/ico/76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="http://aragonltda.cl/pages/ico/120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="http://aragonltda.cl/pages/ico/152.png">
-    <link rel="icon" type="image/x-icon" href="http://aragonltda.cl/pages/favicon.ico" />
+    <link rel="apple-touch-icon" href="http://192.241.187.240/pages/ico/60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://192.241.187.240/pages/ico/76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://192.241.187.240/pages/ico/120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://192.241.187.240/pages/ico/152.png">
+    <link rel="icon" type="image/x-icon" href="http://192.241.187.240/favicon.ico" />
 
-    <script src="http://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="http://aragonltda.cl/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-	    <link href="http://aragonltda.cl/pages/css/pages.min.css" rel="stylesheet" type="text/css" />
-<!--    <link href="http://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
-   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
-    <link href="http://aragonltda.cl/pages/css/datatables.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://aragonltda.cl/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.241.187.240/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.241.187.240/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.241.187.240/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <!-- font awesome link -->
-    <link href="http://aragonltda.cl/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://aragonltda.cl/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="http://aragonltda.cl/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="http://aragonltda.cl/assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="http://aragonltda.cl/pages/css/pages-icons.css" rel="stylesheet" type="text/css">
-    <link href="http://aragonltda.cl/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" media="screen">
-    <link class="main-stylesheet" href="http://aragonltda.cl/pages/css/pages.css" rel="stylesheet" type="text/css" />
-    <link href="http://aragonltda.cl/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
-<!--<link href="http://aragonltda.cl/assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="http://aragonltda.cl/assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://aragonltda.cl/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />    
-	<link href="" >
-<!--    <script src="http://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.js"></script>-->
+    <link href="http://192.241.187.240/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.241.187.240/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="http://192.241.187.240/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="http://192.241.187.240/assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="http://192.241.187.240/pages/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link href="http://192.241.187.240/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link class="main-stylesheet" href="http://192.241.187.240/pages/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.241.187.240/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />    
+
+<!--    <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.js"></script>-->
     <!--[if lte IE 9]>
   <link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
   <![endif]-->
@@ -49,21 +45,21 @@
       <div class="sidebar-overlay-slide from-top" id="appMenu">
         <div class="row">
           <div class="col-xs-6 no-padding">
-            <a href="#" class="p-l-40"><img src="http://aragonltda.cl/assets/img/demo/social_app.svg" alt="socail">
+            <a href="#" class="p-l-40"><img src="http://192.241.187.240/assets/img/demo/social_app.svg" alt="socail">
             </a>
           </div>
           <div class="col-xs-6 no-padding">
-            <a href="#" class="p-l-10"><img src="http://aragonltda.cl/assets/img/demo/email_app.svg" alt="socail">
+            <a href="#" class="p-l-10"><img src="http://192.241.187.240/assets/img/demo/email_app.svg" alt="socail">
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 m-t-20 no-padding">
-            <a href="#" class="p-l-40"><img src="http://aragonltda.cl/assets/img/demo/calendar_app.svg" alt="socail">
+            <a href="#" class="p-l-40"><img src="http://192.241.187.240/assets/img/demo/calendar_app.svg" alt="socail">
             </a>
           </div>
           <div class="col-xs-6 m-t-20 no-padding">
-            <a href="#" class="p-l-10"><img src="http://aragonltda.cl/assets/img/demo/add_more.svg" alt="socail">
+            <a href="#" class="p-l-10"><img src="http://192.241.187.240/assets/img/demo/add_more.svg" alt="socail">
             </a>
           </div>
         </div>
@@ -71,7 +67,7 @@
       <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
       <!-- BEGIN SIDEBAR MENU HEADER-->
       <div class="sidebar-header">
-        <img src="http://aragonltda.cl/assets/img/logo_white_2.png" alt="logo" class="brand" data-src="http://aragonltda.cl/assets/img/logo_white_2.png" data-src-retina="http://aragonltda.cl/assets/img/logo_white_2.png" width="50" height="52">
+        <img src="http://192.241.187.240/assets/img/logo_white.png" alt="logo" class="brand" data-src="http://192.241.187.240/assets/img/logo_white.png" data-src-retina="http://192.241.187.240/assets/img/logo_white_2x.png" width="120" height="48">
         <div class="sidebar-header-controls">
           <!-- <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
           </button> -->
@@ -85,7 +81,7 @@
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
           <li class="m-t-30 ">
-            <a href="http://aragonltda.cl/home" class="detailed">
+            <a href="http://192.241.187.240/home" class="detailed">
               <span class="title">Inicio</span>
               <!-- Frase abajo de inicio --> 
               <!-- <span class="details">12 New Updates</span> -->
@@ -94,34 +90,34 @@
           </li>
           <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Licitaciones</span>
+              <span class="title">Proyectos</span>
               <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-folder_alt"></i></span>
             <ul class="sub-menu">
                <li class="">
-                <a href="http://aragonltda.cl/proyectos">Listar Licitaciones</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
+                <a href="http://192.241.187.240/proyectos/create">Agregar Proyectos</a>
+                <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
               <li class="">
-                <a href="http://aragonltda.cl/proyectos/create">Agregar Licitaciones</a>
-                <span class="bg-success-lighter icon-thumbnail">A</span>
+                <a href="http://192.241.187.240/proyectos">Listar Proyectos</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>
           </li>
           <li class="">
             <a href="javascript:;" class="detailed">
               <span class="title">Empresas</span>
+              <!-- <span class="details">234 New Emails</span> -->
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-industry"></i></span>
             <ul class="sub-menu">
-              
-                <li class="">
-                <a href="http://aragonltda.cl/empresas">Listar Empresas</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
                <li class="">
-                <a href="http://aragonltda.cl/empresas/create"">Agregar Empresa</a>
+                <a href="http://192.241.187.240/empresas/create"">Agregar Empresa</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
+              </li>
+                <li class="">
+                <a href="http://192.241.187.240/empresas">Listar Empresas</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>
           </li>
@@ -132,14 +128,13 @@
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-male"></i></span>
             <ul class="sub-menu">
-               
-                <li class="">
-                <a href="http://aragonltda.cl/trabajador">Listar Trabajadores</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
-              <li class="">
-                <a href="http://aragonltda.cl/trabajador/create"">Agregar Trabajador</a>
+               <li class="">
+                <a href="http://192.241.187.240/trabajador/create"">Agregar Trabajador</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
+              </li>
+                <li class="">
+                <a href="http://192.241.187.240/trabajador">Listar Trabajadores</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>
           </li>
@@ -148,32 +143,30 @@
             <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-truck"></i></span>
             <ul class="sub-menu">
-                
-                <li class="">
-                <a href="http://aragonltda.cl/equipos">Listar Equipos</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
-              <li class="">
-                <a href="http://aragonltda.cl/equipos/create">Agregar Equipos</a>
+               <li class="">
+                <a href="http://192.241.187.240/equipos/create">Agregar Equipos</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
+              </li> 
+                <li class="">
+                <a href="http://192.241.187.240/equipos">Listar Equipos</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>
           </li>
             <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Obras</span>
+              <span class="title">Partidas</span>
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-menu"></i></span>
             <ul class="sub-menu">
-              <li class="">
-                <a href="http://aragonltda.cl/partidas">Listar Obras</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
                <li class="">
-                <a href="http://aragonltda.cl/partidas/create">Agregar Obras</a>
+                <a href="http://192.241.187.240/partidas/create">Agregar Partidas</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
-              
+                <li class="">
+                <a href="http://192.241.187.240/partidas">Listar Partidas</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
             </ul>
           </li>
           <li>
@@ -181,15 +174,14 @@
             <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail">O.C</span>
             <ul class="sub-menu">
-             <li class="">
-                <a href="http://aragonltda.cl/oc">Listar O. de Compra</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
                <li class="">
-                <a href="http://aragonltda.cl/oc/create">Agregar O.C</a>
+                <a href="http://192.241.187.240/oc/create">Agregar O.C</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
-               
+                <li class="">
+                <a href="http://192.241.187.240/oc">Listar O. de Compra</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
             </ul>
           </li>
           <li>
@@ -198,12 +190,12 @@
             <span class="bg-success icon-thumbnail"> <i class="pg-note"></i> </span>
              <ul class="sub-menu">
               <li class="">
-                <a href="http://aragonltda.cl/documentos">Listar Documentos</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
-              <li class="">
-                <a href="http://aragonltda.cl/documentos/create">Agregar Documentos</a>
+                <a href="http://192.241.187.240/documentos/create">Agregar Documentos</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
+              </li>
+                <li class="">
+                <a href="http://192.241.187.240/documentos">Listar Documentos</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul> 
           </li>
@@ -215,13 +207,12 @@
             <span class="bg-success icon-thumbnail">$</span>
              <ul class="sub-menu">
               <li class="">
-                <a href="sueldos">Seleccionar Quincena</a>
+                <a href="#">Seleccionar Quincena</a>
                 <span class="bg-success-lighter icon-thumbnail"><i class="fa fa-money"></i></span>
               </li>
             </ul>  
           </li>
-          
-           <li class="">
+          <li class="">
             <a href="javascript:;">
               <span class="title">Reportes</span>
               <span class=" arrow"></span>
@@ -229,47 +220,25 @@
             <span class="bg-success icon-thumbnail"><i class="pg-charts"></i></span>
              <ul class="sub-menu">
               <li class="">
-                <a href="javascript:;">Proyectos
-                <span class=" arrow"></span>
-                </a>
+                <a href="http://192.241.187.240/reportes">Menú</a>
                 <span class="bg-success-lighter icon-thumbnail">M</span>
-                <ul class="sub-menu">
               </li>
-              <li>
-                    <a href="javascript:;">Monto Ofertado/Disponible</a>
-                    <span class="icon-thumbnail">M</span>
-                  </li>
-                   </ul>
-                  <li>
-                    <a href="ujavascript:;">Avances</a>
-                    <span class="icon-thumbnail">A</span>
-                  </li>
-                  <li>
-                    <a href="ujavascript:;">Asistencia</a>
-                    <span class="icon-thumbnail">A</span>
-                  </li>
-                  <li>
-                    <a href="ujavascript:;">Contratistas</a>
-                    <span class="icon-thumbnail">C</span>
-                  </li>
             </ul>  
-          </li>   
-
+          </li>
           <li class="">
             <a href="javascript:;">
               <span class="title">Usuarios</span>
                <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="fa fa-id-card"></i></span>
              <ul class="sub-menu">
-               <li class="">
-                <a href="http://aragonltda.cl/usuarios">Listar Usuarios</a>
-                <span class="bg-success-lighter icon-thumbnail">L</span>
-              </li>
               <li class="">
-                <a href="http://aragonltda.cl/usuarios/create">Agregar Usuario</a>
+                <a href="http://192.241.187.240/usuarios/create">Agregar Usuario</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
-              
+                <li class="">
+                <a href="http://192.241.187.240/usuarios">Listar Usuarios</a>
+                <span class="bg-success-lighter icon-thumbnail">L</span>
+              </li>
             </ul>  
           </li>
         <div class="clearfix"></div>
@@ -295,7 +264,7 @@
           <div class="pull-center hidden-md hidden-lg">
             <div class="header-inner">
               <div class="brand inline">
-                <img src="http://aragonltda.cl/assets/img/logo_white.png" alt="logo" data-src="http://aragonltda.cl/assets/img/logo_white.png" data-src-retina="http://aragonltda.cl/assets/img/logo_white.png" width="120" height="48">
+                <img src="http://192.241.187.240/assets/img/logo.png" alt="logo" data-src="http://192.241.187.240/assets/img/logo.png" data-src-retina="http://192.241.187.240/assets/img/logo_2x.png" width="120" height="48">
               </div>
             </div>
           </div>
@@ -304,6 +273,7 @@
             <!-- START ACTION BAR -->
             <div class="header-inner">
               <a href="#" class="btn-link visible-sm-inline-block visible-xs-inline-block" data-toggle="quickview" data-toggle-element="#quickview">
+                <span class="icon-set menu-hambuger-plus"></span>
               </a>
             </div>
             <!-- END ACTION BAR -->
@@ -313,7 +283,7 @@
         <div class=" pull-left sm-table hidden-xs hidden-sm">
           <div class="header-inner">
             <div class="brand inline">
-              <img src="http://aragonltda.cl/assets/img/logo.png" alt="logo" data-src="http://aragonltda.cl/assets/img/logo.png" data-src-retina="http://aragonltda.cl/assets/img/logo.png" width="120" height="48">
+              <img src="http://192.241.187.240/assets/img/logo.png" alt="logo" data-src="http://192.241.187.240/assets/img/logo.png" data-src-retina="http://192.241.187.240/assets/img/logo_2x.png" width="120" height="48">
             </div>
          
           <!-- <a href="#" class="search-link" data-toggle="search"><i class="pg-search"></i> <span class="bold">Buscar</span></a> --> </div> 
@@ -327,21 +297,16 @@
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
-		if(Auth::check()){
-              <span class="semi-bold">  {{ Auth::user()->name }} </span>
-		}
-		else{
-			return
-		}
+              <span class="semi-bold">User Name</span> <!-- <span class="text-master">Nest</span> -->
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class=" inline m-t-5">
-               <img  class="img-circle" src="" alt="" data-src="" data-src-retina="" width="" height="">
+                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+                <!--<img src="http://192.241.187.240/assets/img/profiles/avatar.jpg" alt="" data-src="http://192.241.187.240/assets/img/profiles/avatar.jpg" data-src-retina="http://192.241.187.240/assets/img/profiles/avatar_small2x.jpg" width="32" height="32">-->
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="http://aragonltda.cl/usuarios/{{ Auth::user()->id }}/edit"><i class="pg-settings_small"></i> Mi Cuenta </a>
+                <li><a href="#"><i class="pg-settings_small"></i> Mi Cuenta </a>
                 </li>
                 <!-- <li><a href="#"><i class="pg-outdent"></i> Feedback</a>
                 </li>
@@ -369,10 +334,10 @@
             <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
               <div class="inner">
 	<!--TEST BREADCRUMB -->
+		<ul class="breadcrumb">
 		
-		@yield('breadcrumbs')
-		  <!--<i class="fa fa-home"></i>
-		   <a href="href="http://aragonltda.cl/home">Home</a> 
+		  <i class="fa fa-home"></i>
+		   <a href="href="http://192.241.187.240/home">Home</a> 
 		  <i class="fa fa-angle-right"></i>
 		
 		@for($i = 0; $i <= count(Request::segments()); $i++)
@@ -382,8 +347,8 @@
 		    {!!'<i class="fa fa-angle-right"></i>'!!} 
 		  @endif
 	
-		@endfor -->
-		 
+		@endfor
+		</ul>
                 <!-- START BREADCRUMB
                 <ul class="breadcrumb">
                   <li>
@@ -433,43 +398,74 @@
     </div>
     <!-- END PAGE CONTAINER -->
 
-
+    <!-- START OVERLAY -->
+    <div class="overlay hide" data-pages="search">
+      <!-- BEGIN Overlay Content !-->
+      <div class="overlay-content has-results m-t-20">
+        <!-- BEGIN Overlay Header !-->
+        <div class="container-fluid">
+          <!-- BEGIN Overlay Logo !-->
+          <img class="overlay-brand" src="http://192.241.187.240/assets/img/logo.png" alt="logo" data-src="http://192.241.187.240/assets/img/logo.png" data-src-retina="http://192.241.187.240/assets/img/logo_2x.png" width="
+120" height="48">
+          <!-- END Overlay Logo !-->
+          <!-- BEGIN Overlay Close !-->
+          <a href="#" class="close-icon-light overlay-close text-black fs-16">
+            <i class="pg-close"></i>
+          </a>
+          <!-- END Overlay Close !-->
+        </div>
+        <!-- END Overlay Header !-->
+        <div class="container-fluid">
+          <!-- BEGIN Overlay Controls !-->
+          <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">
+          <br>
+          <div class="inline-block">
+            <div class="checkbox right">
+              <input id="checkboxn" type="checkbox" value="1" checked="checked">
+              <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
+            </div>
+          </div>
+          <div class="inline-block m-l-10">
+            <p class="fs-13">Press enter to search</p>
+          </div>
+          <!-- END Overlay Controls !-->
+        </div>
+       
+      <!-- END Overlay Content !-->
+    </div>
     <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
-    <script src="http://aragonltda.cl/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-   <!-- <script src="http://aragonltda.cl/assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script> -->
-    <script src="http://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+   <!-- <script src="http://192.241.187.240/assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script> -->
+    <script src="http://192.241.187.240/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
     <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --> 
-    <script src="http://aragonltda.cl/assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-bez/jquery.bez.min.js"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="http://aragonltda.cl/assets/plugins/select2/js/select2.full.min.js"></script>
-    <script type="text/javascript" src="http://aragonltda.cl/assets/plugins/classie/classie.js"></script>
-    <script src="http://aragonltda.cl/assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://aragonltda.cl/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
- <script src="http://aragonltda.cl/assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
-    <script src="http://aragonltda.cl/assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
-    <script type="http://aragonltda.cl/text/javascript" src="http://aragonltda.cl/assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script type="text/javascript" src="http://aragonltda.cl/assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+    <script src="http://192.241.187.240/assets/plugins/modernizr.custom.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-bez/jquery.bez.min.js"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-actual/jquery.actual.min.js"></script>
+    <script src="http://192.241.187.240/assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="http://192.241.187.240/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="http://192.241.187.240/assets/plugins/classie/classie.js"></script>
+    <script src="http://192.241.187.240/assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://192.241.187.240/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+ <script src="assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
     <!-- END VENDOR JS -->
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="http://aragonltda.cl/pages/js/pages.min.js"></script>
+    <script src="http://192.241.187.240/pages/js/pages.min.js"></script>
     <!-- END CORE TEMPLATE JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="http://aragonltda.cl/assets/js/datatables.js" type="text/javascript"></script>
-
-    <script src="http://aragonltda.cl/assets/js/scripts.js" type="text/javascript"></script>
-
+    <script src="http://192.241.187.240/assets/js/scripts.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS -->
   </body>
 </html>

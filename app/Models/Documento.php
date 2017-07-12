@@ -24,7 +24,7 @@ public function isValid($data)
 			'id_orden' => 'required',
 			'tipo' => 'required',
 			'no_contabilidad' => 'required',
-			'monto' =>'required|min:3|max:7',
+			'monto' =>'numeric|min:3|max:7',
 			'fecha' =>'required|date_format:d-m-Y',
 			'rutadoc' => 'present|file',
 	
@@ -32,7 +32,7 @@ public function isValid($data)
 	$mensajes = array(
 			'tipo.required' => 'Debe indicar un tipo de documento',
 			'no_contabilidad.required'=> 'Debe indicar si es un documento contable',
-			'monto.required'=> 'Debe indicar el monto del documento',
+			'monto.numeric'=> 'El monto debe ser un valor numérico válido sin puntos ni comas',
 			'fecha.required' => 'Es necesaria la fecha',
 			'fecha.date_format' => 'El formato de fecha es dd-mm-AAAA',
 			'rutadoc.file' => 'El archivo debe ser menor a 20M',

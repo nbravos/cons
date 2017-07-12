@@ -1,29 +1,15 @@
-
+ 
 @extends ('layout3')
 
 @section ('title') Lista de Usuarios @stop
 
-@section ('breadcrumbs')
-
-		<ul class="breadcrumb a">
-                  <li class="active">
-                    <p>Inicio</p>
-                  </li>
-                  <li><a href="" class="active">Usuarios</a>
-                  </li>
-                </ul>
- @stop
-
 @section ('content')
  
-<p>
-  <a href="{!! route('usuarios.create') !!}" class="btn btn-primary">Agregar nuevo  </a>
-  </p>
 
-<!--         <div class="container-fluid container-fixed-lg bg-white"> -->
+         <div class="container-fluid container-fixed-lg bg-white">
             <!-- START PANEL -->
             <div class="panel panel-transparent">
-              <div class="panel-heading" style>
+              <div class="panel-heading">
                 <div class="panel-title">Usuarios
                 </div>
                 <div class="export-options-container pull-right"></div>
@@ -44,39 +30,48 @@
                       <td class="non_searchable"></td>
                       <td></td>
                       <td></td>
-                      <td  class="non_searchable"></td>
+                      <td class="non_searchable"></td>
                     </tr>
                   </tfoot>
               </table>
               </div>
             </div>
-<!--          </div> -->
+          </div>
 
             <!-- END PANEL -->
          <script type="text/javascript">
               $(document).ready(function() {
-               $('#users-table').DataTable({
-            processing: false,
+              $('#users-table').DataTable({
+            processing: true,
             serverSide: true,
             ajax: '{!! route("usuarios.index") !!}',
-		order: [[0, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            dom: 'lBfrtip',
             language: {
-              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'id', visible: false},
+                {data: 'id', name: 'id'},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
 		
             ],
-           
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var columnClass = column.footer().className;
+                    if(columnClass != 'non_searchable'){
+                      var input = document.createElement("input");
+                      $(input).appendTo($(column.footer()).empty())
+                      .on('keydown change', function () {
+                          column.search($(this).val(), false, false, true).draw();
+                      });
+                  } 
+                });
+            }
         });
-              $('#users-table tfoot tr').appendTo('#users-table thead');
-
-       });
-
+               
+              });
           </script>
 @stop 

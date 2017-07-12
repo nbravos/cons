@@ -17,7 +17,7 @@
 @section ('content')
 
 
-        <h1> <strong> {!! $documento->tipo!!}  </strong></h1> 
+        <h1> <strong> {!! $documento->tipo!!} # {!!$documento->numero!!}  </strong></h1> 
 
                     
                        <div class="form-group">
@@ -26,7 +26,7 @@
                          <a  class="active"> {{ $documento->tipo }} </a> 
                       </div>
                       <div class="form-group">
-                        {{ Form::label( 'monto', 'Monto') }}
+                        {{ Form::label( 'monto', 'Monto (IVA incluido)') }}
                         <br>
                        <a class="active">  {!!$documento->monto!!} </a>
                       </div>

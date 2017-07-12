@@ -19,6 +19,9 @@
 
 
         <h1> <strong> {!! $partida->nombre!!} </strong> </h1> 
+        <a href="{{ route('addCuad', ['id' =>  $partida->id]) }}" class="btn btn-primary">Agregar Cuadrilla</a>
+
+
 <!-- </div>-->
 <table class="table table-user-information">
                     <tbody>

@@ -17,7 +17,7 @@ class DocumentoController extends Controller {
 		
 		 /*$documentos = Documento::select(['id', 'tipo', 'monto', 'fecha']);*/
 
-		 $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
+		 $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'documento.numero', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
 		if (request()->ajax()){
 		                return Datatables::of($documentos)
 
@@ -39,6 +39,32 @@ class DocumentoController extends Controller {
 	        return view('site/documentos/list')->with('documentos', $documentos);
 
 	}
+
+	public function filtroFecha($from, $to){
+
+
+		  $documentos = DB::table('documento')
+					->join('orden_compra', 'orden_compra.id', '=','documento.id_orden')
+					->select(['documento.id', 'documento.numero', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum'])
+					->whereBetween('fecha', [$from, $to]);
+		
+		if (request()->ajax()){
+		                return Datatables::of($documentos)
+
+		->addColumn('action', function ($documento) {
+                return '<a href="/documentos/'.$documento->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+       ->editColumn('fecha', function ($documento) {
+		        return $documento->fecha ? with(new Carbon($documento->fecha))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(documento.fecha,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+
+            ->make(true);
+        }
+}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -202,6 +228,9 @@ class DocumentoController extends Controller {
         }
 
 	}
+
+
+
 
 	/**
 	 * Remove the specified resource from storage.

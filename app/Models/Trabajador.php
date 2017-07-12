@@ -136,6 +136,18 @@ public function isValid($data)
 
     }
 
+	public function cuadrillas()
+	{
+		return $this->belongsToMany('App\Models\Cuadrilla', 'cuadrilla_trabajador', 'id_trabajador', 'id_cuadrilla');
+
+	}
+
+	 public function proyecto()
+        {
+
+                return $this->belongsToMany('App\Models\Proyecto', 'proyecto_trabajador', 'id_trabajador', 'id_proyecto');
+
+        }
 
 
 	public $timestamps = false;

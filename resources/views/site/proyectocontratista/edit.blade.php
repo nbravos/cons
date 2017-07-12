@@ -52,6 +52,10 @@
       {!! Form::label('dias', 'Plazo de la Licitación' ) !!}
       {!! Form::text('dias', null, array('placeholder' => 'Ingresa el plazo en días', 'class' => 'form-control')) !!}
     </div>
+    <div class="form-group">
+    <label class="control-label" for="fecha_oferta">Fecha de la Oferta</label>
+    <input class="form-control" id="datepicker1" name="fecha_oferta" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $pc->fecha_oferta)->format('d-m-Y') }}" type="text">
+  </div>
     <div class="form-group"> 
   {{ Form::radio('estado_oferta', '1') }}
   Ganadora
@@ -66,6 +70,18 @@
   {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
   
 {!! Form::close() !!}
+
+<script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+    
+        $( "#datepicker1" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+
+  });
+    </script>
 
 @stop
 

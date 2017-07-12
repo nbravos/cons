@@ -175,15 +175,14 @@ class ProyectoController extends \BaseController {
 
 	}
 
-	/*public function filtroFecha(){
-		//filtro 1 para fecha 
-	}
+	public function filtroFecha($from, $to){
 
 
 		  $proyectos = DB::table('proyecto')
 					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
 					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
-	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+					->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion'])
+					->whereBetween('fecha_licitacion', [$from, $to]);
 		
 		if (request()->ajax()){
 		                return Datatables::of($proyectos)
@@ -203,8 +202,8 @@ class ProyectoController extends \BaseController {
             })
 
             ->make(true);
-        }*/
-
+        }
+}
 
 	public function filtroComuna($id){
 		if($id == 0){
@@ -319,8 +318,9 @@ class ProyectoController extends \BaseController {
 
 
 	}
+}
 
-	}
+
 
 	/**
 	 * Remove the specified resource from storage.

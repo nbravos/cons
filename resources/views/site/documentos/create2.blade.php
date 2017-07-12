@@ -8,7 +8,7 @@
 $(document).ready(function () {
        
   $( "#datepicker" ).datepicker({
-	format: 'dd-mm-yyyy',
+	format: 'dd/mm/yyyy',
 	language: 'es'     
   });
  
@@ -26,22 +26,7 @@ $(document).ready(function () {
       </ul>
     </div>
   @endif 
-@if(isset($documento))
-    {!! Form::model($documento, ['route' => ['documentos.update', $documento->id], 'method' => 'patch']) !!}
- @section ('breadcrumbs')
 
-                <ul class="breadcrumb a">
-                  <li class="active">
-                    <p>Inicio</p>
-                  </li>
-                  <li><a href="" class="active">Documentos</a>
-                  </li>
-                <li><a href="Editar:">{{ $documento->tipo }}</a>
-                  </li>
-                </ul>
- @stop
-	<h1>Editar Documento</h1>
-@else
     {!! Form::open(array('route' => 'documentos.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
          @section ('breadcrumbs')
 
@@ -56,7 +41,7 @@ $(document).ready(function () {
                 </ul>
  @stop
 	 <h1>Agregar Documento</h1>
-@endif
+
   <div class="row">
   <div class="form-group">
       {!!Form::label('tipo', 'Tipo de Documento')!!}
@@ -75,24 +60,13 @@ $(document).ready(function () {
       {!! Form::label('monto', 'Monto Documento') !!}
       {!!Form::text('monto', null, array('placeholder' => 'Monto del Documento', 'class' => 'form-control')) !!}
     </div>
-
-    <div class="form-group">
-      {!! Form::label('numero', 'Numero del Documento') !!}
-      {!!Form::text('numero', null, array('placeholder' => 'Número del Documento', 'class' => 'form-control')) !!}
-    </div>
 	 
     <div class="form-group">
      <label class="control-label" for="fecha_">Fecha </label>
-    <input class="form-control" id="datepicker" name="fecha" placeholder="DD-MM-AA" value="@if (isset($documento->fecha))
+    <input class="form-control" id="datepicker" name="fecha" placeholder="DD/MM/AA" value="@if (isset($documento->fecha))
             {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $documento->fecha)->format('d-m-Y') }}
         @endif"  type="text">
   </div>
-
-  <div class="form-group">
-           {!! Form::label('proyecto', 'Proyecto Base') !!}
-           {!! Form::select('proyecto', App\Models\Proyecto::pluck('nombre', 'id'), null, array('class' => 'form-control', 'id' => 'proyecto')) !!}
-    </div>
-
  <div class="form-group">
            {!! Form::label('id_orden', 'Orden de Compra Asociada') !!}
            {!! Form::select('id_orden', $ocs, null, ['class' => 'form-control']) !!}

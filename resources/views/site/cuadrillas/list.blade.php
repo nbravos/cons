@@ -1,45 +1,44 @@
-
+ 
 @extends ('layout3')
 
-@section ('title') Lista de Usuarios @stop
-
+@section ('title') Lista de Cuadrillas @stop
 @section ('breadcrumbs')
 
-		<ul class="breadcrumb a">
+                <ul class="breadcrumb a">
                   <li class="active">
                     <p>Inicio</p>
                   </li>
-                  <li><a href="" class="active">Usuarios</a>
+                  <li><a href="" class="active">Cuadrillas</a>
                   </li>
                 </ul>
  @stop
 
 @section ('content')
- 
+
 <p>
-  <a href="{!! route('usuarios.create') !!}" class="btn btn-primary">Agregar nuevo  </a>
+  <a href="{!! route('cuadrillas.create') !!}" class="btn btn-primary">Agregar nueva </a>
   </p>
 
-<!--         <div class="container-fluid container-fixed-lg bg-white"> -->
+<!-- <div class="container-fluid container-fixed-lg bg-white"> -->
             <!-- START PANEL -->
             <div class="panel panel-transparent">
-              <div class="panel-heading" style>
-                <div class="panel-title">Usuarios
+              <div class="panel-heading">
+                <div class="panel-title">Listado de Cuadrillas
                 </div>
                 <div class="export-options-container pull-right"></div>
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
-  <table id="users-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+  <table id="listaCuad" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
-                      <tr>
-                  <th>Número</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Acciones</th>
-                      </tr>
+                <tr>
+                <th>Número</th>
+                <th>Nombre</th>
+                 <th>Descripción</th>
+                 <th>Acciones</th>
+                 </tr>
               </thead>
-              <tfoot>
+               <tfoot>
                     <tr>
                       <td class="non_searchable"></td>
                       <td></td>
@@ -50,16 +49,15 @@
               </table>
               </div>
             </div>
-<!--          </div> -->
+<!--           </div> -->
 
-            <!-- END PANEL -->
-         <script type="text/javascript">
+<script type="text/javascript">
               $(document).ready(function() {
-               $('#users-table').DataTable({
+               $('#listaCuad').DataTable({
             processing: false,
             serverSide: true,
-            ajax: '{!! route("usuarios.index") !!}',
-		order: [[0, "desc"]], 
+            ajax: '{!! route("cuadrillas.index") !!}',
+	    order: [[0, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
@@ -67,16 +65,18 @@
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
+                {data: 'nombre', name: 'nombre'},
+                {data: 'descripcion', name: 'descripcion'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
-		
+    
             ],
-           
-        });
-              $('#users-table tfoot tr').appendTo('#users-table thead');
 
+        });
+              $('#listaCuad tfoot tr').appendTo('#listaCuad thead');
        });
 
           </script>
-@stop 
+
+
+
+@stop

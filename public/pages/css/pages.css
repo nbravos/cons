@@ -3238,8 +3238,8 @@ fieldset[disabled] .btn-danger.active {
 .btn-default,
 .btn-default:focus {
   color: #5e5e5e;
-  background-color: #fff;
-  border-color: #f0f0f0;
+  background-color: #ef9300;
+  border-color: #ef9300;
 }
 .btn-default.active,
 .btn-default:active,

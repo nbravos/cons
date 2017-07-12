@@ -1,8 +1,8 @@
 @extends ('layout3')
 
 @section ('content')
- <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-   <script src="http://192.241.187.240/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"> charset="UTF-8"</script>
+ <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"> charset="UTF-8"</script>
   
    <script type="text/javascript">
 $(document).ready(function () {

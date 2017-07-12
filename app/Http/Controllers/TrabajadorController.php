@@ -256,7 +256,70 @@ class TrabajadorController extends Controller {
 
 	}
 
+	public function filtroFecha($from, $to)
+	{
+		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino'])
+		->whereBetween('fecha_termino', [$from, $to]);
+		if (request()->ajax()){
+		                return Datatables::of($trabajadores)
 
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+            ->make(true);
+        	}
+
+	}
+
+	public function filtroProyecto($id){
+
+		if($id == 0 ){
+        		
+        		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino']);
+		if (request()->ajax()){
+		                return Datatables::of($trabajadores)
+
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+        
+            ->make(true);
+        }
+
+    	}
+
+		else{
+			$trabajadores = DB::table('trabajador')
+			->join('proyecto_trabajador', function($join) use ($id) {
+        				$join->on('proyecto_trabajador.id_trabajador', '=', 'trabajador.id')
+        				->where('proyecto_trabajador.id_proyecto', '=', $id);
+        			}) 
+			->select(['trabajador.id', 'trabajador.nombre', 'trabajador.ap_paterno', 'trabajador.fecha_termino']);
+			if (request()->ajax()){
+		                return Datatables::of($trabajadores)
+
+		->addColumn('action', function ($trabajador) {
+                return '<a href="/trabajador/'.$trabajador->id.'" class="btn btn-info"> Ver</a>';		                
+                })
+        ->editColumn('id', ' {{$id}}')
+        ->editColumn('fecha_termino', function ($trabajador) {
+		        return $trabajador->fecha_termino ? with(new Carbon($trabajador->fecha_termino))->format('d-m-Y') : '';
+		        })
+            ->make(true);
+        	}
+
+		}
+		
+	}
 
 
 	/**

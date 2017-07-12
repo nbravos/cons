@@ -77,6 +77,22 @@
           '1' => 'Oferta Ganadora', 
           '2' => 'Ofertas No Ganadoras'), null, ['id' =>'filtroTrab', 'class' => 'form-control']) !!}
 
+          <div class="row">
+          <div class= "col-xs-6 col-md-4">
+          <div class="form-group">
+           <label class="control-label" for="inicio">Desde</label>
+          <input class="form-control" id="datepicker1" name="inicio" placeholder="DD/MM/AA" type="text">
+      </div>
+      </div>
+      <div class ="col-xs-6 col-md-4">
+      <div class="form-group">
+           <label class="control-label" for="fin">Hasta</label>
+          <input class="form-control" id="datepicker2" name="fin" placeholder="DD/MM/AA" type="text">
+      </div>
+      </div>
+      <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-default btn-sm m-t-10" >Filtrar </p></div>
+      </div>
+<br>
   <table id="listaOf" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -128,16 +144,16 @@
             processing: false,
             serverSide: true,
             ajax: '{!! route('verofEmp', ['id' =>  $empresa->id]) !!}',
-            order: [[2, "desc"]], 
+           
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
-              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-		            {data: 'id', name: 'proyecto_contratista.id', visible:false},                
+		{data: 'id', name: 'proyecto_contratista.id', visible:false},                
                 {data: 'mand', name:'empresa.nombre'},
-		            {data: 'proNom', name:'proyecto.nombre'},
+		{data: 'proNom', name:'proyecto.nombre'},
                 {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
                 {data: 'diasOf', name: 'proyecto_contratista.dias'}    
             ],
@@ -153,7 +169,7 @@
        $('#filtroTrab').on('change', function(e) {
         var e = document.getElementById("filtroTrab");
         var valorCom = e.options[e.selectedIndex].value;
-        var url = 'http://aragonltda.cl/ofertas/getEmpGan/'+ valorCom;
+        var url = 'https://aragonltda.cl/ofertas/getEmpGan/'+ valorCom;
       $('#listaOf').dataTable( {
 
          "bDestroy": true   
@@ -165,11 +181,10 @@
             processing: false,
             serverSide: true,
             ajax: url,
-      order: [[2, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
-              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
                 {data: 'id', name: 'proyecto_contratista.id', visible:false},                
@@ -188,6 +203,69 @@
 
 
       </script>
+
+
+ <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+       
+  $( "#datepicker1" ).datepicker({
+        format: 'yy-mm-dd',
+        language: 'es',
+        autoclose: true
+
+  });
+
+  $( "#datepicker2" ).datepicker({
+        format: 'yy-mm-dd',
+        language: 'es',
+        autoclose: true
+
+  });
+
+$("#button").click(function() {
+   var from = $("#datepicker1").val();
+   var to = $("#datepicker2").val();
+   var idempresa =   "<?php echo $empresa->id; ?>";
+   var url = 'https://aragonltda.cl/ofertas/getfilFecha/'+ from +'/' + to + '/' + idempresa;
+  
+
+
+  
+    $('#listaOf').dataTable( {
+
+         "bDestroy": true   
+});
+   $('#listaOf').dataTable().fnDestroy();
+   $('#listaOf').empty();
+         $('#listaOf').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: url,
+            order: [4, "asc"], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+                {data: 'id', name: 'proyecto_contratista.id', visible:false},                
+                {data: 'mand', name:'empresa.nombre'},
+                {data: 'proNom', name:'proyecto.nombre'},
+                {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
+                {data: 'diasOf', name: 'proyecto_contratista.dias'}    
+            ],
+
+         
+        });
+              $('#listaOf tfoot tr').appendTo('#listaOf thead');
+        });
+
+});
+
+</script>  
+
 
 @stop
 

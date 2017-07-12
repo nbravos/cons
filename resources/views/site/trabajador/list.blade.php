@@ -34,6 +34,33 @@
           '1' => 'Contrato Vigente', 
           '2' => 'Finiquitado'), null, ['id' =>'filtroTrab', 'class' => 'form-control']) !!}
 
+<br>
+          @php
+  $role = App\Models\Proyecto::pluck('nombre', 'id');
+  $role['0'] = 'Todos'; 
+  
+  @endphp 
+           {!! Form::label('proyecto', 'Filtrar por: Proyecto') !!}
+           {!! Form::select('proyecto', $role, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'proyecto')) !!}
+
+          <br>
+
+          <div class="row">
+          <div class= "col-xs-6 col-md-4">
+          <div class="form-group">
+           <label class="control-label" for="inicio">Desde</label>
+          <input class="form-control" id="datepicker1" name="inicio" placeholder="AA/MM/DD" type="text">
+      </div>
+      </div>
+      <div class ="col-xs-6 col-md-4">
+      <div class="form-group">
+           <label class="control-label" for="fin">Hasta</label>
+          <input class="form-control" id="datepicker2" name="fin" placeholder="AA/MM/DD" type="text">
+      </div>
+      </div>
+      <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-default btn-sm m-t-10" >Filtrar </p></div>
+      </div>
+      <br>
             <table id="listaTra" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -67,7 +94,7 @@
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
-              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
@@ -90,7 +117,7 @@
         $('#filtroTrab').on('change', function(e) {
         var e = document.getElementById("filtroTrab");
         var filtroTrabajador = e.options[e.selectedIndex].value;
-        var url = 'http://aragonltda.cl/trabajador/getfil/'+ filtroTrabajador;
+        var url = 'https://aragonltda.cl/trabajador/getfil/'+ filtroTrabajador;
 
          $('#listaTra').dataTable( {
 
@@ -110,7 +137,7 @@
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
-              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
@@ -123,10 +150,120 @@
 
          
         });
+
               $('#listaTra tfoot tr').appendTo('#listaTra thead');
             });
 
 
-</script>        
+</script>      
+
+<script type="text/javascript">
+
+        $('#proyecto').on('change', function(e) {
+        var e = document.getElementById("proyecto");
+        var filtroProyecto = e.options[e.selectedIndex].value;
+        var url = 'https://aragonltda.cl/trabajador/getfilPro/'+ filtroProyecto;
+
+         $('#listaTra').dataTable( {
+
+         "bDestroy": true   
+});
+   $('#listaTra').dataTable().fnDestroy();
+   $('#listaTra').empty();
+
+         $('#listaTra').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: url,
+            order: [4, "asc"], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+                {data: 'id', name: 'trabajador.id', visible: false},
+                {data: 'nombre', name: 'trabajador.nombre'},
+                {data: 'ap_paterno', name: 'trabajador.ap_paterno'},
+                {data: 'fecha_termino', name: 'trabajador.fecha_termino'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+    
+            ],
+
+         
+        });
+
+              $('#listaTra tfoot tr').appendTo('#listaTra thead');
+            });
+
+
+</script>      
+
+<script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+       
+  $( "#datepicker1" ).datepicker({
+        format: 'yy-mm-dd',
+        language: 'es',
+        autoclose: true
+
+  });
+
+  $( "#datepicker2" ).datepicker({
+        format: 'yy-mm-dd',
+        language: 'es',
+        autoclose: true
+
+  });
+
+
+ });
+
+$("#button").click(function() {
+  var from = $('#datepicker1').val();
+   var to = $("#datepicker2").val();
+   var url = 'https://aragonltda.cl/trabajador/getfilFecha/'+ from +'/' + to;
+
+  
+    $('#listaTra').dataTable( {
+
+         "bDestroy": true   
+});
+   $('#listaTra').dataTable().fnDestroy();
+   $('#listaTra').empty();
+         $('#listaTra').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: url,
+            order: [4, "asc"], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+                {data: 'id', name: 'id', visible: false},
+                {data: 'nombre', name: 'nombre'},
+                {data: 'ap_paterno', name: 'ap_paterno'},
+                {data: 'fecha_termino', name: 'fecha_termino'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+    
+            ],
+
+         
+        });
+            
+              $('#listaTra tfoot tr').appendTo('#listaTra thead');
+        });
+
+
+
+</script>  
 
 @stop
+
+
+
+ 

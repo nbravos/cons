@@ -10,7 +10,7 @@ use \Validator;
 
 class Proyectocontratista extends Model
 {
-    protected $fillable = ['id_proyecto', 'id_empresa', 'monto_ofertado', 'dias', 'estado_oferta'];
+    protected $fillable = ['id_proyecto', 'id_empresa', 'monto_ofertado', 'dias', 'estado_oferta', 'fecha_oferta'];
 
     protected $table ='proyecto_contratista';
     public $errors;
@@ -27,6 +27,7 @@ class Proyectocontratista extends Model
                         'monto_ofertado' => 'required',
 			             'dias' => 'required',
                          'estado_oferta' => 'required',
+			'fecha_oferta' => 'required',
                         
                         );
         $mensajes = array (
@@ -34,6 +35,8 @@ class Proyectocontratista extends Model
                 'dias.required' => 'Debe indicar las dias del proyecto',
                 'monto_ofertado.numeric' => 'El valor debe ser numérico',
                 'estado_oferta.required' => 'Debe indicar si la oferta fue ganadora',
+                'fecha_oferta.required' => 'Debe indicar la fecha en que se realizó la oferta',
+
         );
 
 

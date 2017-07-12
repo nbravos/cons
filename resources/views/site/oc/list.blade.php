@@ -65,7 +65,7 @@
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
-              url: 'http://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
 		

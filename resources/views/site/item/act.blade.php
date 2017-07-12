@@ -17,10 +17,13 @@
  @stop
 @section ('content')
 
-   
-<h1>Items</h1>
+   @php
+   $a =  App\Models\Documento::find($id);
+   @endphp
+  <h1>Items de {{$a->tipo}} {{$a->numero}}</h1>
 
   @foreach($items as $item)
+
                     <div class="input-group">
 			{{$item->detalle}}
                         {!! Form::number('cantidad[]', $item->cantidad, ['class' => 'form-control']) !!} {{$item->unidad}}
