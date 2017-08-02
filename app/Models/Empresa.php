@@ -17,13 +17,13 @@ class Empresa extends \Eloquent {
 			
 			'nombre' => 'required|min:4|max:40',
 			'razon_social' => 'required|min:4|max:40',
-			'giro' =>'required|min:4|max:40',
+			'giro' =>'required',
 			'nombre_contacto' =>'required|min:4|max:40',
 			'email' =>  'required|email|unique:empresa',
 			'telefono' => 'required|min:8|max:11',
 			'direccion' => 'required|min:5|max:40',
 			'web' => 'required|min:5',
-			'rut' => 'required|unique:empresa|min:10',
+			'rut' => 'required|unique:empresa',
 			'tipo_empresa' => 'required',
 			
 			);
@@ -34,6 +34,8 @@ class Empresa extends \Eloquent {
 			'nombre_contacto.required' => 'Campo nombre de contacto es obligatorio', 
 			'email.required' => 'Campo correo de contacto es obligatorio',
 			'telefono.required' => 'Campo teléfono de Empresa es obligatorio',
+			'telefono.min' => 'El teléfono debe tener al menos 8 dígitos',
+			'telefono.max' => 'El teléfono debe contener a lo más 11 digítos',
 			'direccion.required' => 'Campo dirección es obligatorio',
 			'web.required' => 'El sitio web de la empresa es obligatorio',
 			'rut.required' => 'El rut de la empresa es obligatorio',

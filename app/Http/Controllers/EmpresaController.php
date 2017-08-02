@@ -3,6 +3,7 @@
 use \App\Models\Empresa;
 
 use Yajra\Datatables\Datatables;
+use \App\Helpers;
 
 class EmpresaController extends Controller {
 
@@ -60,12 +61,12 @@ class EmpresaController extends Controller {
 		//dd($data);	
 		
 		//Comprueba que sea válido
-		if($empresa->isValid($data))
+		if(($empresa->isValid($data)) && (Custom::validaRut($data['rut'])))
 		{
 		    $empresa->tipo_proovedor = null;
 		    $empresa->fill($data);
 		
-		    if(! $data['tipo_proovedor']) {
+		    if(! $data['tipo_provedor']) {
                         $empresa->tipo_proveedor = null;
 	                }
 
@@ -76,7 +77,7 @@ class EmpresaController extends Controller {
 		else
 		{
 			//Si no se valida redirige a create con los errores qeu se encontraron
-			return Redirect::route('empresas.create')->withInput()->withErrors($empresa->errors); //- Errores tienen que ser con ajax
+			return Redirect::route('empresas.create')->withInput()->withErrors($empresa->errors)->with('errorMessageDuration', 'Error en el Rut');; //- Errores tienen que ser con ajax
 		}		
 	}
 

@@ -141,10 +141,10 @@
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
-                {data: 'nombre', name: 'nombre'},
-                {data: 'ap_paterno', name: 'ap_paterno'},
-                {data: 'fecha_termino', name: 'fecha_termino'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
+                {data: 'nombre', name: 'nombre', title: 'Nombre'},
+                {data: 'ap_paterno', name: 'ap_paterno', title: 'Apellido'},
+                {data: 'fecha_termino', name: 'fecha_termino', title: 'Fecha Término Contrato'},
+                {data: 'action', name: 'action', orderable: false, searchable: false, title: 'Acciones' }
     
             ],
 
@@ -183,10 +183,10 @@
           },
             columns: [
                 {data: 'id', name: 'trabajador.id', visible: false},
-                {data: 'nombre', name: 'trabajador.nombre'},
-                {data: 'ap_paterno', name: 'trabajador.ap_paterno'},
-                {data: 'fecha_termino', name: 'trabajador.fecha_termino'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
+                {data: 'nombre', name: 'trabajador.nombre', title: 'Nombre'},
+                {data: 'ap_paterno', name: 'trabajador.ap_paterno', title: 'Apellido'},
+                {data: 'fecha_termino', name: 'trabajador.fecha_termino', title: 'Fecha Fin Contrato'},
+                {data: 'action', name: 'action', orderable: false, searchable: false, title: 'Acciones'}
     
             ],
 

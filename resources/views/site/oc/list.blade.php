@@ -28,7 +28,7 @@
               </div>
               <div class="panel-body">
 	<div class="form-group">
-           {!! Form::label('partida', 'Partida Asociada') !!}
+           {!! Form::label('partida', 'Obra Asociada') !!}
            {!! Form::select('partida', App\Models\Partida::pluck('nombre', 'item'), null, array('class' => 'form-control', 'id' => 'partida')) !!}
     </div>
   <table id="listaOc" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

@@ -41,12 +41,24 @@ class CuadrillaController extends Controller
     public function create($id)
     {
         $partida = DB::select(DB::raw("SELECT * FROM partida WHERE id = '$id'"));
-        $trabajadores = trabajador::pluck('nombre', 'id');
+        $trabajadores = Trabajador::all();
+//	dd($trabajadores["7"]);
         return View::make('site/cuadrillas/form')
         ->with('partida', $partida)
         ->with('trabajadores', $trabajadores);
+	
+	
     }
 
+    public function createfromProyecto($id){
+        
+        $partidas = Partida::where('id_proyecto', $id)->pluck('nombre', 'id');
+        $trabajadores = Trabajador::all();
+        return View::make('site/cuadrillas/form_proy')
+         ->with('partidas', $partidas)
+         ->with('trabajadores', $trabajadores);
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -59,6 +71,7 @@ class CuadrillaController extends Controller
 
         //Se obtiene la data del usuario
         $data = Input::all();
+//	dd($data);
         $cuad->nombre = $data['nombre'];
         $cuad->id_partida = $data['id_partida'];
         $cuad->descripcion = $data['descripcion'];
@@ -87,6 +100,13 @@ class CuadrillaController extends Controller
     {
         $cuadrilla = Cuadrilla::find($id);
 	//dd($cuadrilla);
+      
+         /* $cuadrillas = DB::table('cuadrilla')
+          ->join('cuadrilla_trabajador',function($join) use ($id) {
+            $join->on('cuadrilla_trabajador.id_cuadrilla' '=', 'cuadrilla.id')
+            ->where('cuadrilla.id', '=', $id)
+          })
+          ->select(['cuadrilla.id', 'cuadrilla.id_partida', 'cuadrilla.nombre', 'cuadrilla.descripcion', 'cuadrilla.']);*/
          if (is_null ($cuadrilla))
           {
             App::abort(404)->with('message', 'Cuadrilla no  encontrado');

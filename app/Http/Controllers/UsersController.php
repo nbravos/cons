@@ -19,22 +19,21 @@ class UsersController extends Controller {
 	{
 	      
 	   //  $users = User::paginate();  //Users::all() trae todos los usuarios, paginate() crea páginas con 15 registros cada una
-	     // dd($users);
-		//abort(500);
 
-               $users = User::select(['id', 'name', 'email']);
+               $users = User::select(['name', 'email']);
 		if (request()->ajax()){
 		                return Datatables::of($users)
-       
+
              ->addColumn('action', function ($user) {
                return '<a href="/usuarios/'.$user->id.'" class="btn btn-info"> Ver</a>';
-               //return '<a href="/usuarios/'.$user->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+               return '<a href="/usuarios/'.$user->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
             })
-            ->editColumn('id', ' {{$id}}')
+            //->editColumn('id', ' {{$id}}')
             ->removeColumn('password')
             ->make(true);
 		}
 	      return View::make('site/usuarios/list')->with('users', $users);
+		//return $datatable->render('site/usuarios/list');
 
 	}
 

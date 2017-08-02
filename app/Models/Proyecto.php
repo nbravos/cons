@@ -3,7 +3,7 @@
 use \Validator;
 
 class Proyecto extends \Eloquent {
-	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'gastos_generales', 'fecha_licitacion', 'estado'];
+	protected $fillable = ['id', 'id_empresa', 'id_comuna', 'tipo_licitacion', 'nombre', 'financiamiento', 'monto_disponible', 'monto_minimo_oferta', 'monto', 'monto_ofertado', 'presupuesto_oficial', 'costos_directos', 'gastos_generales', 'fecha_licitacion', 'estado', 'activo'];
 	protected $table = 'proyecto';
 	public $errors;
 	
@@ -16,17 +16,20 @@ class Proyecto extends \Eloquent {
 
                         'id_comuna' => 'required|',                       
                         'id_empresa' => 'required|',
-						'tipo_licitacion' => 'sometimes', 
-                        'nombre' =>'required|max:60',
+			'tipo_licitacion' => 'sometimes', 
+                        'nombre' =>'required|max:100',
                         'financiamiento' => 'required',
                         'monto_disponible' =>'sometimes|numeric',
                         'monto_minimo_oferta' =>'sometimes|numeric',
                         'monto_ofertado' => 'sometimes|numeric',
-						'presupuesto_oficial' => 'sometimes|numeric',
-						'costos_directos' => 'numeric',
+			'presupuesto_oficial' => 'sometimes|numeric',
+			'costos_directos' => 'numeric',
                         'gastos_generales' => 'numeric',
                         'fecha_licitacion' => 'required|date_format:d/m/Y',
-			            'estado' => 'required', 
+		        'estado' => 'required', 
+			'ide' => 'required',
+			'tipo_proyecto' => 'required', 
+			'activo' => 'required',
                         );
 	$mensajes = array (
 
@@ -41,6 +44,9 @@ class Proyecto extends \Eloquent {
 		'costos_directos.numeric' => 'El valor de los costos directos debe ser numérico',
 		'gastos_generales.numeric' => 'El valor de los costos generales debe ser numérico',
 		'fecha_licitacion.required' => 'Debe indicar la fecha de licitación en formato dd/mm/yyyy',
+		'ide.required' => 'Debe indicar el ID de proyecto',
+		'tipo_proyecto.required' => 'Debe indicar tipo de proyecto, ej: Pavimento Participativo',
+		'activo.required' =>'Debe indicar si se encuentra activa esta licitación',
 
 	);
 

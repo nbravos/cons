@@ -15,7 +15,7 @@ class Item extends \Eloquent {
 
     public $errors;
 
-   public function isValid($data)
+/*   public function isValid($data)
     	{
 	$rules = array(
 			
@@ -30,7 +30,7 @@ class Item extends \Eloquent {
 			'cantidad.required' => 'Debe indicar la cantidad',
 			'detalle.required'=> 'Debe indicar el detalle del item',
 			'unidad.required'=> 'Debe indicar el monto del item',
-			'unitario' => 'Debe indicar el valor unitario del iem',
+			'unitario.required' => 'Debe indicar el valor unitario del item',
 			 
 
 			);
@@ -45,7 +45,7 @@ class Item extends \Eloquent {
         $this->errors = $validator->errors();
         
         return false;
-	}
+	}*/
 
 
 	public function ordencompra(){

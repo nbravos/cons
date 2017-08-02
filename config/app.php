@@ -243,8 +243,9 @@ return [
 	'Input' => Illuminate\Support\Facades\Input::class,
 	'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 	'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
-	'Khill\Lavacharts\Laravel\LavachartsFacade::class',
+	'Lava'=> Khill\Lavacharts\Laravel\LavachartsFacade::class,
 	'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+	'Custom' => App\Helpers\Custom::class,
 
 
 

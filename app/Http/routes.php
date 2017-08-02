@@ -21,7 +21,7 @@ Route::group(['middlewareGroups' => ['web']], function () {
 /*Controlador de CRUD usuarios*/
 Route::resource('usuarios', 'UsersController');
 
-
+Route::get('cuadrillas/addtrab/{id}',['uses' =>'CuadrillaController@createfromProyecto'])->name('addTrab');
 Route::resource('cuadrillas', 'CuadrillaController');
 
 Route::get('ofertas/getEmpGan/{id}', ['uses' => 'ProyectoContratistaController@verOfertasEmpresa'])->name('getEmpGan');
@@ -60,6 +60,9 @@ Route::resource('trabajador', 'TrabajadorController');
 
 Route::resource('oc', 'OrdenCompraController');
 
+
+Route::get('partidas/getIndex/{id}', ['uses' => 'PartidaController@index2'])->name('getIndex');
+Route::get('partidas/getDrop/{id}', ['uses' => 'PartidaController@dropProyectos'])->name('getProyActivo');
 Route::get('cuadrillas/create/{id}',['uses' =>'CuadrillaController@create'])->name('addCuad');
 Route::get('partidas/proyecto/{id}', ['uses' =>'PartidaController@verPartProyecto'])->name('verPart');
 Route::resource('partidas', 'PartidaController');
@@ -70,6 +73,16 @@ Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante
 Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
 
+Route::get('reportes/asistencia', ['uses' =>'ReporteController@asistencia']); //carga página asistencia
+/* Route::get('reportes/test2', function(){
+
+    return View::make("site/reportes/asist")->render;
+       
+
+});*/
+Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
+Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
+Route::get('reportes/getTablaTrab/{id}', ['uses' => 'ReporteController@tablaAsistenciaTrabajador']);
 Route::get('reportes/test', 'ReporteController@graficos');
 Route::resource('reportes', 'ReporteController');
 
@@ -80,9 +93,9 @@ Route::get('ofertas/ver/{id}', ['uses' =>'ProyectoContratistaController@verOfert
 Route::get('ofertas/empresa/{id}', ['uses' =>'ProyectoContratistaController@verOfertasEmpresa'])->name('verofEmp');
 Route::resource('ofertas', 'ProyectoContratistaController');
 
-Route::get('items/doc/{id}',['uses' => 'ItemController@fromdocumento'])->name('moditem');
-Route::get('items/add', ['uses' =>'ItemController@storeandcreate'])->name('additem');
-Route::post('items/mod', ['uses' => 'ItemController@storefromdoc'])->name('additemdoc');
+//Route::get('items/doc/{id}',['uses' => 'ItemController@fromdocumento'])->name('moditem');
+//Route::get('items/add', ['uses' =>'ItemController@storeandcreate'])->name('additem');
+//Route::post('items/mod', ['uses' => 'ItemController@storefromdoc'])->name('additemdoc');
 /*Route::post('items/mod', 'ItemController@storefromdoc');*/
 Route::resource('items', 'ItemController');
 

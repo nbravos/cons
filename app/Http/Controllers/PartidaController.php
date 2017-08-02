@@ -16,32 +16,69 @@ class PartidaController extends \Controller {
 
 	public function index()
 	{
-
-
-		//$proyectos = Proyecto::pluck('nombre', 'id');
-	    //$partidas = Partida::paginate();  
-		 /*$partidas = Partida::select(['id','nombre', 'detalle', 'item', 'inicio_real']);*/
-		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre', 'proyecto.nombre as proNombre', 'detalle', 'item', 'inicio_real']);
+		
+/*
+		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre','partida.item', 'partida.total', 'partida.activa']);
 		if (request()->ajax()){
 		                return Datatables::of($partidas)
 
 		->addColumn('action', function ($partida) {
                 return '<a href="/partidas/'.$partida->id.'" class="btn btn-info">Ver</a>';		                
                 })
-		->editColumn('inicio_real', function ($partida) {
-		        return $partida->inicio_real ? with(new Carbon($partida->inicio_real))->format('d-m-Y') : '';
+		//->editColumn('inicio_real', function ($partida) {
+		        //return $partida->inicio_real ? with(new Carbon($partida->inicio_real))->format('d-m-Y') : '';
 			
-            })
-            ->filterColumn('fecha', function ($query, $keyword) {
-                $query->whereRaw("DATE_FORMAT(partida.inicio_real,'%d-%m-%Y') like ?", ["%$keyword%"]);
-            })
+            //})
+            //->filterColumn('fecha', function ($query, $keyword) {
+              //  $query->whereRaw("DATE_FORMAT(partida.inicio_real,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            //})
+        ->editColumn('id', ' {{$id}}')
+            ->make(true);
+        } 
+
+*/
+	    return View::make('site/partidas/list');//->with('partidas', $partidas);
+	    								
+	}
+
+
+	public function dropProyectos($id){
+		if ($id == 0){ //todos
+			$proyectos = DB::table('proyecto')->select('nombre', 'id')->get();
+		}
+		if ($id == 1) { //proyectos activos
+			$proyectos = DB::table('proyecto')->select('nombre', 'id')->where('activo', '=', 1)->get();
+		}
+		if ($id == 2) { //proy no activos
+			$proyectos = DB::table('proyecto')->select('nombre', 'id')->where('activo', '=', 2)->get();
+		} 
+
+		return response()->json($proyectos);
+	}
+
+    public function index2($id)
+    {
+
+
+    	 $partidas = DB::table('partida')
+    	 ->join('proyecto', function($join) use ($id){
+    	 	$join->on('proyecto.id', '=', 'partida.id_proyecto')
+                        ->where('partida.id_proyecto', '=', $id);
+
+    	 })
+    	
+    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.activa']);
+
+		if (request()->ajax()){
+		                return Datatables::of($partidas)
+
+		->addColumn('action', function ($partida) {
+                return '<a href="/partidas/'.$partida->id.'" class="btn btn-info">Ver</a>';		                
+                })
         ->editColumn('id', ' {{$id}}')
             ->make(true);
         }
-
-	    return View::make('site/partidas/list')->with('partidas', $partidas);
-	    								
-	}
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -96,6 +133,7 @@ class PartidaController extends \Controller {
  		    $partida->fill($data);
 		    $partida->save();	           
 		//dd($partida->inicio_teorico);
+		    
 		    return Redirect::route('partidas.index'); 
 
 		}

@@ -78,6 +78,7 @@
       <div class="form-group">
       {!!Form::label('tipo_proyecto', 'Tipo de Proyecto')!!}
       {!!Form::select('tipo_proyecto', array(
+          '0' => 'Seleccionar Tipo',
           'Pavimento Participativo' => 'Pavimento Participativo', 
           'Mejoramiento Vía' => 'Mejoramiento Vial', 
           'Reconstrucción' => 'Reconstrucción',
@@ -120,15 +121,23 @@
     <div class="form-group">
       {!! Form::label('presupuesto_oficial', 'Presupuesto Oficial') !!}
       {!! Form::text('presupuesto_oficial', null, array('placeholder' => 'Indica el presupuesto Oficial del Proyecto', 'class' => 'form-control')) !!}
-    </div>
-       <div class="form-group">
-      {!! Form::label('costos_directos', 'Costos Directos') !!}
-      {!! Form::text('costos_directos', null, array('placeholder' => 'Costos Directos del Proyecto', 'class' => 'form-control')) !!}
-    </div>
+   
       <div class="form-group">
       {!! Form::label('costos_generales', 'Costos Generales') !!}
       {!! Form::text('costos_generales', null, array('placeholder' => 'Costos Generales del Proyecto', 'class' => 'form-control')) !!}
     </div>-->
+     </div>
+       <div class="form-group">
+      {!! Form::label('costos_directos', 'Costos Directos') !!}
+      {!! Form::text('costos_directos', null, array('placeholder' => 'Costos Directos del Proyecto', 'class' => 'form-control')) !!}
+    </div>
+     <div class="form-group"> 
+  {{ Form::radio('activo', '1') }}
+  Proyecto Vigente
+  <br>
+  {{ Form::radio('activo', '0', true) }}
+  Proyecto No Vigente
+</div>
        <div class="form-group">
     <label class="control-label" for="fecha_licitacion">Fecha Licitación</label>
     <input class="form-control" id="datepicker1" name="fecha_licitacion" placeholder="DD/MM/AA" value="@if (isset($proyecto->fecha_licitacion))

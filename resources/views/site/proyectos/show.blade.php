@@ -21,6 +21,8 @@
 
 <a href="{{ route('addof', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Agregar Oferta</a>
 <a href="{{ route('verPart', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Ver Obras </a>
+<a href="{{ route('addTrab', ['id' =>  $proyecto->id]) }}" class="btn btn-primary">Agregar Cuadrilla </a>
+
 
 <!-- <a href="/ofertas/create/'.$proyecto->id.'" class="btn btn-primary"> Oferta</a>-->
 <table class="table table-user-information">
@@ -45,7 +47,14 @@
                         <td><strong>Tipo Proyecto</strong></td>
                         <td>{!!$proyecto->tipo_proyecto!!}</td>
                       </tr>
-                    
+                    <tr>
+                        <td><strong>Vigencia</strong></td>
+                        @if ($proyecto->activo == 1)
+                        <td> Proyecto Activo </td>
+                        @else
+                        <td> Proyecto No Vigente</td>
+                        @endif
+                      </tr>
                         <tr>
                         <td><strong>Tipo de Licitación</strong></td>
                         <td>{!!$proyecto->tipo_licitacion!!}</td>

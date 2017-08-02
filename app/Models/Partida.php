@@ -5,7 +5,7 @@ namespace App\Models;
 use \Validator;
 
 class Partida extends \Eloquent {
-	protected $fillable = ['id', 'nombre', 'id_proyecto', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real', 'porcentaje'];
+	protected $fillable = ['id', 'nombre', 'id_proyecto', 'item', 'detalle', 'unidad', 'cantidad', 'unitario', 'total', 'inicio_teorico', 'inicio_real', 'fin_teorico', 'fin_real', 'porcentaje', 'activa'];
 	
 	protected $table = 'partida'; 
 
@@ -20,7 +20,7 @@ class Partida extends \Eloquent {
 
                         'nombre' => 'required|min:1',                       
                         'id_proyecto' => 'required',
-                        'item' =>'required|numeric|min:1',
+                        'item' =>'required|min:1',
                         'detalle' => 'required|min:1',
                         'unidad' =>'required|min:1',
                         'cantidad' =>'required|numeric|min:1',
@@ -29,6 +29,8 @@ class Partida extends \Eloquent {
 			'inicio_real' => 'sometimes',
                         'fin_teorico' => 'date_format:d-m-Y',
                         'fin_real' => 'sometimes',
+			'porcentaje' => 'required|between:0,99', 
+			'activa' => 'required',
                         );
 
 			
@@ -46,8 +48,9 @@ $mensajes = array(
         //'inicio_real.date_format' => 'La fecha de inicio real es obligatoria',
         'fin_teorico.date_format' => 'La fecha de término teórica es obligatoria',
         //'fin_real.date_format' => 'La fecha de término real es obligatoria',
-	'item.numeric' => 'Item debe ser un valor numérico',
-
+	
+	'porcentaje.required' => 'Debe ser un valor entre 0 - 100',
+	'activa.required' => 'Debe indicar si se encuentra activa',
 
         );
 

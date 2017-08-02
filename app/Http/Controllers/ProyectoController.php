@@ -158,8 +158,9 @@ class ProyectoController extends \BaseController {
         
         if ($proyecto->isValid($data))
         {
-        $fecha1 = DateTime::createFromFormat('d-m-Y', $data['fecha_licitacion']);
-		$data['fecha_licitacion'] = $fecha1->format("Y-m-d h:i:s");
+	//dd($data);
+        $fecha1 = DateTime::createFromFormat('d/m/Y', $data['fecha_licitacion']);
+	$data['fecha_licitacion'] = $fecha1->format("Y-m-d h:i:s");
 	   // dd($data);
             $proyecto->fill($data);
            

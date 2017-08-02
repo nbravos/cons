@@ -39,7 +39,11 @@
                       </tr>
                         <tr>
                         <td><strong>Correo</strong></td>
+                        @if(empty($trabajador->email))
+                        <td>Trabajador sin correo disponible</td>
+                        @else
                         <td>{!!$trabajador->email!!}</td>
+                        @endif
                       </tr>
                       <tr>
                         <td><strong>Fecha de Nacimiento</strong></td>
@@ -64,10 +68,7 @@
                         
                         @endif
                       </tr>
-                      <tr>
-                        <td><strong>Proyecto Actual</strong></td>
-                        <td>{!!$trabajador->proyecto[0]->nombre!!}</td>
-                      </tr>
+                     
                        <tr>
                         <td><strong> Foto </strong></td>
                         <td><img height="400" width="400 "src="<?php echo asset("workerImage/$trabajador->foto")?>"></img> </td>

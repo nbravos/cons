@@ -13,23 +13,7 @@
       </ul>
     </div>
   @endif
-<!--@if(isset($trabajador))
-    {!! Form::model($trabajador, ['route' => ['trabajador.update', $trabajador->id], 'method' => 'patch']) !!}
- @section ('breadcrumbs')
 
-                <ul class="breadcrumb a">
-                  <li class="active">
-                    <p>Inicio</p>
-                  </li>
-                  <li><a href="" class="active">Trabajador</a>
-                  </li>
-                <li><a href="Editar:">{{ $trabajador->nombre }}</a>
-                  </li>
-
-                </ul>
- @stop
-	<h1>Editar Trabajador</h1>
-@else -->
     {!! Form::open(array('route' => 'trabajador.store', 'method' => 'POST', 'files'=> true), array('role' => 'form')) !!}
          @section ('breadcrumbs')
 
@@ -44,8 +28,14 @@
 
                 </ul>
  @stop
+
+ @if (!empty(session('errorMessageDuration')))
+         <div class="alert alert-danger">
+             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             {{ session('errorMessageDuration') }}
+         </div>
+@endif
 	 <h1>Agregar Trabajador</h1>
-<!--@endif -->
   <div class="row">
     <div class="form-group">
       {!! Form::label('nombre', 'Nombre del Trabajador') !!}

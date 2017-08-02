@@ -31,7 +31,7 @@
                         <td>{!!$oc->partida->item!!}</td>
                       </tr>
                       <tr>
-                        <td><strong>Empresa Asociada</strong> </td>
+                        <td><strong>Proveedor</strong> </td>
                         <td>{!!$oc->empresa->nombre!!}</td>
                       </tr>
                       <tr>

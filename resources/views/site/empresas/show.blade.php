@@ -50,8 +50,14 @@
                         <td>{!!$empresa->web!!}</td>   
                       </tr>
                       <tr>
-                        <td><strong>Tipo</strong></td>
-                        <td>{!!$empresa->tipo_empresa!!}</td>   
+                      <td><strong>Tipo</strong></td>
+                      @if ($empresa->tipo_empresa == 1)
+                        <td>Proveedor</td>   
+                      @elseif ($empresa->tipo_empresa == 2)
+                        <td>Mandante</td>
+                      @elseif ($empresa->tipo_empresa == 3)
+                        <td>Contratista</td>
+                      @endif
                       </tr>
                       <tr>
                         <td><strong> Giro </strong></td>

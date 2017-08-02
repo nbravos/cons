@@ -7,12 +7,12 @@
                   <li class="active">
                     <p>Inicio</p>
                   </li>
-                  <li><a href="" class="active">Gráfico de Prueba</a>
+                  <li><a href="" class="active">Contratistas</a>
                   </li>
                 </ul>
  @stop
 @section ('content')
- <h1> Ejemplo </h1>
+ <h1> Oferta </h1>
 
 <div id="perf_div"></div>
 <?= $lava->render('ColumnChart', 'Contratistas', 'perf_div') ?>

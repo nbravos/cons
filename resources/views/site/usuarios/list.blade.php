@@ -15,7 +15,7 @@
  @stop
 
 @section ('content')
- 
+
 <p>
   <a href="{!! route('usuarios.create') !!}" class="btn btn-primary">Agregar nuevo  </a>
   </p>
@@ -33,7 +33,7 @@
   <table id="users-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                       <tr>
-                  <th>Número</th>
+                  
                   <th>Nombre</th>
                   <th>Correo</th>
                   <th>Acciones</th>
@@ -41,7 +41,7 @@
               </thead>
               <tfoot>
                     <tr>
-                      <td class="non_searchable"></td>
+                      
                       <td></td>
                       <td></td>
                       <td  class="non_searchable"></td>
@@ -53,6 +53,7 @@
 <!--          </div> -->
 
             <!-- END PANEL -->
+
          <script type="text/javascript">
               $(document).ready(function() {
                $('#users-table').DataTable({
@@ -61,12 +62,24 @@
             ajax: '{!! route("usuarios.index") !!}',
 		order: [[0, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
-            language: {
+             "sDom": 'TRfrtlip',
+             "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Usuarios - *.csv",
+               "mColumns": [ 0, 1],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
+ language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
-                {data: 'id', name: 'id', visible: false},
+                
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
@@ -74,9 +87,14 @@
             ],
            
         });
+
               $('#users-table tfoot tr').appendTo('#users-table thead');
+
+              
 
        });
 
           </script>
+
+
 @stop 

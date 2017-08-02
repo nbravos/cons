@@ -4,7 +4,7 @@ use \App\Models\Trabajador;
 use \App\Models\Afp;
 use \App\Models\Salud;
 use Carbon\Carbon;
-
+use \App\Helpers;
 class TrabajadorController extends Controller {
 
 
@@ -70,24 +70,35 @@ class TrabajadorController extends Controller {
   	//	dd($data);	      	
 
 
-		if($trabajador->isValid($data))
+		if (($trabajador->isValid($data)) && (Custom::validaRut($data['rut'])))
 		{
 		   
+			if(!empty($data['foto']))
+			{
+				$destino = public_path('workerImage');
+		  		$extension = Input::file('foto')->getClientOriginalExtension();
+		  		$imageName = Input::get('rut').'.'.$extension;
+//				Image::make(Input::file('foto')->resize(300, 200);
+		  		Input::file('foto')->move($destino, $imageName);
+		  		$data['foto'] = $imageName;
+ 		   		$trabajador->fill($data);	
+		    	$trabajador->save();	         
+		    	return Redirect::route('trabajador.index');
 
-		  	$destino = public_path('workerImage');
-		  	$extension = Input::file('foto')->getClientOriginalExtension();
-		  	$imageName = Input::get('rut').'.'.$extension;
-//			Image::make(Input::file('foto')->resize(300, 200);
-		  	Input::file('foto')->move($destino, $imageName);
-		  	$data['foto'] = $imageName;
- 		    $trabajador->fill($data);
-		    $trabajador->save();	         
-		    return Redirect::route('trabajador.index'); 
+			}
+		  	elseif ((empty($data['foto'])) && (Custom::validaRut($data['rut'])))
+		  	{
+
+		   		$trabajador->fill($data);
+		   	 	$trabajador->save();	         
+		    	return Redirect::route('trabajador.index'); 
+		  	}
+		  	
 
 		}
 		else
 		{
-			return Redirect::route('trabajador.create')->withInput()->withErrors($trabajador->errors);
+			return Redirect::route('trabajador.create')->withInput()->withErrors($trabajador->errors)->with('errorMessageDuration', 'Error en el Rut');;
 		}
 	}
 

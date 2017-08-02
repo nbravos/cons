@@ -134,9 +134,16 @@ $(document).ready(function () {
     </div>
 
    <div class="form-group">
-      {!! Form::hidden('porcentaje', 'Porcentaje del Proyecto') !!}
-      {!! Form::hidden('porcentaje', 1, array('id' => 'porcentaje')) !!}
+      {!! Form::label('porcentaje', 'Porcentaje del Proyecto') !!}
+      {!! Form::text('porcentaje', null, array('placeholder' => 'Ingresa el porcentaje correspondiente al proyecto ', 'class' => 'form-control')) !!}
     </div>
+ <div class="form-group"> 
+  {{ Form::radio('activa', '1') }}
+  Partida Activa
+  <br>
+  {{ Form::radio('activa', '0', true) }}
+  Partida No Activa
+</div>
 
     <div class="form-group">
     <label class="control-label" for="inicio_teorico">Fecha de Inicio Teórico</label>

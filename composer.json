@@ -28,6 +28,7 @@
             "database",
 	    "app/Http/Controllers",
 	    "app/Models",
+	    "app/Helpers",
 	    "app/Models/User.php"
 
         ],

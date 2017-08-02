@@ -44,7 +44,12 @@
 
                 </ul>
  @stop
-
+ @if (!empty(session('errorMessageDuration')))
+         <div class="alert alert-danger">
+             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             {{ session('errorMessageDuration') }}
+         </div>
+@endif
 	 <h1>Agregar Empresa</h1>
 @endif
   <div class="row">

@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="152x152" href="https://aragonltda.cl/pages/ico/152.png">
     <link rel="icon" type="image/x-icon" href="https://aragonltda.cl/pages/favicon.ico" />
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+<!--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" /> -->
     <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -20,10 +20,9 @@
     <meta content="" name="author" />
     <link href="https://aragonltda.cl/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
 	    <link href="https://aragonltda.cl/pages/css/pages.min.css" rel="stylesheet" type="text/css" />
-<!--    <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
+    <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> 
    <!-- <link rel="stylesheet" type="text/css" href="httpss://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
-    <link href="https://aragonltda.cl/pages/css/datatables.min.css" rel="stylesheet" type="text/css"/>
-    <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+     <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://aragonltda.cl/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <!-- font awesome link -->
     <link href="https://aragonltda.cl/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -35,8 +34,12 @@
     <link class="main-stylesheet" href="https://aragonltda.cl/pages/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="https://aragonltda.cl/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
 <!--<link href="https://aragonltda.cl/assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="https://aragonltda.cl/assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://aragonltda.cl/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />    
+       
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/datatables.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/datatables.js"></script>
+
 	<link href="" >
 <!--    <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.js"></script>-->
     <!--[if lte IE 9]>
@@ -187,7 +190,7 @@
                 <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
                <li class="">
-                <a href="https://aragonltda.cl/oc/create">Agregar O.C</a>
+                <a href="javascript:;">Agregar O.C</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
                
@@ -246,7 +249,7 @@
                     <span class="icon-thumbnail">A</span>
                   </li>
                   <li>
-                    <a href="ujavascript:;">Asistencia</a>
+                    <a href="https://aragonltda.cl/reportes/asistencia">Asistencia</a>
                     <span class="icon-thumbnail">A</span>
                   </li>
                   <li>

@@ -113,6 +113,17 @@ $(document).ready(function () {
       {!! Form::text('total', null, array('placeholder' => 'Ingresa el total ', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
+      {!! Form::label('porcentaje', 'Porcentaje del Proyecto') !!}
+      {!! Form::text('porcentaje', null, array('placeholder' => 'Ingresa el porcentaje correspondiente al proyecto ', 'class' => 'form-control')) !!}
+    </div>
+    <div class="form-group"> 
+  {{ Form::radio('activa', '1') }}
+  Partida Activa
+  <br>
+  {{ Form::radio('activa', '0', true) }}
+  Partida No Activa
+</div>
+    <div class="form-group">
     <label class="control-label" for="inicio_teorico">Fecha de Inicio Teórico</label>
     <input class="form-control" id="inicio_teorico" name="inicio_teorico" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->inicio_teorico)->format('d-m-Y') }}" type="text">
   </div>

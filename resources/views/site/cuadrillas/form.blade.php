@@ -42,21 +42,28 @@
            {!! Form::hidden('id_partida', $partida["0"]->id, array('readonly' => 'true', 'class' => 'form-control')) !!}
   </div>
 
-  <div class="form-group">
-        {{Form::label('trabajadores', 'Trabajadores Asociados')}}
-	<br>
-        {{Form::select('trabajadores[]', $trabajadores, null, array('multiple'=>true,'class'=>'custom-scroll')) }}
-      </div>
 
-   <div class="row">
+  <div class="row">
     <div class="form-group">
-      {!! Form::label('descipcion', 'Descripción') !!}
+      {!! Form::label('descripcion', 'Descripción') !!}
       {!! Form::text('descripcion', null, array('placeholder' => 'Descripción del cuadrilla', 'class' => 'form-control')) !!}
     </div>
+     <div class="form-group ">
+     {!! Form::label('trabajadores[]', 'Seleccionar') !!}
+    <select id="trabajadores[]" name="trabajadores[]" class="form-control" data-init-plugin="select2" multiple="multiple">
+          @foreach($trabajadores as $trabajador)
+           <option value="{{$trabajador->id}}">{{$trabajador->nombre}} {{$trabajador->ap_paterno}}</option>
+         @endforeach
+         </select>
+     </div>   
    </div> 
+
+  
    
   {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
   
 {!! Form::close() !!}
+
+
 
 @stop

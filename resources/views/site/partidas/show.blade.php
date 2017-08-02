@@ -20,7 +20,7 @@
 
         <h1> <strong> {!! $partida->nombre!!} </strong> </h1> 
         <a href="{{ route('addCuad', ['id' =>  $partida->id]) }}" class="btn btn-primary">Agregar Cuadrilla</a>
-
+        
 
 <!-- </div>-->
 <table class="table table-user-information">
@@ -54,15 +54,7 @@
                         <td><strong>Precio Total</strong></td>
                         <td>${!!$partida->total!!}</td>
                       </tr>
-			<tr>
-                        <td><strong>Porcentaje Proyecto </strong></td>
-                        <td>{!!$partida->porcentaje!!}</td>
-                      </tr>
-
-		       <tr>
-                        <td><strong>Porcentaje de Avance al: {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $partida->avance[0]->fecha_termino)->format('d-m-Y') }} </strong></td>
-                        <td>{!!$partida->avance[0]->porcentaje!!}</td>
-                      </tr>
+		
 
 
                       <tr>

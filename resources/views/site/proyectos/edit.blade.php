@@ -41,6 +41,11 @@
            {!! Form::select('id_empresa', $empresa, null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
+      {!! Form::label('ide', 'ID de Licitación') !!}
+      {!! Form::text('ide', null, array('placeholder' => 'Ingresa el ID de licitación', 'class' => 'form-control')) !!}
+    </div>
+
+    <div class="form-group">
            {!! Form::label('id_comuna', 'Comuna') !!}
            {!! Form::select('id_comuna', $comuna, null, ['class' => 'form-control']) !!}
     </div>
@@ -101,8 +106,15 @@
     </div>
       <div class="form-group">
       {!! Form::label('gastos_generales', 'Gastos Generales') !!}
-      {!! Form::text('gastos_generales', null, array('placeholder' => 'Gastos Generales', 'class' => 'form-control')) !!}
+      {!! Form::text('costos_generales', null, array('placeholder' => 'Gastos Generales', 'class' => 'form-control')) !!}
     </div>
+     <div class="form-group"> 
+  {{ Form::radio('activo', '1') }}
+  Proyecto Vigente
+  <br>
+  {{ Form::radio('activo', '0', true) }}
+  Proyecto No Vigente
+</div>
        <div class="form-group">
     <label class="control-label" for="fecha_licitacion">Fecha Licitación</label>
     <input class="form-control" id="datepicker1" name="fecha_licitacion" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $proyecto->fecha_licitacion)->format('d-m-Y') }}" type="text">
