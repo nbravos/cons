@@ -58,7 +58,7 @@ class ProyectoController extends \BaseController {
 	public function create()
 	{
 			$empresa = Empresa::pluck('nombre', 'id');
-			$comuna = Comuna::pluck('nombre', 'id');
+			$comuna = Comuna::orderBy('nombre', 'asc')->pluck('nombre', 'id');
 
 			return View::make('site/proyectos/form')
 					->with('empresa', $empresa)

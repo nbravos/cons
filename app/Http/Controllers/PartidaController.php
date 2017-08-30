@@ -67,7 +67,7 @@ class PartidaController extends \Controller {
 
     	 })
     	
-    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.activa']);
+    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.unidad', 'partida.cantidad','partida.activa']);
 
 		if (request()->ajax()){
 		                return Datatables::of($partidas)
@@ -126,10 +126,18 @@ class PartidaController extends \Controller {
 		    		$data['fin_real'] = $fecha4->format("Y-m-d H:i:s");
 		    }
 
-		    $idProyecto = Proyecto::find($data['id_proyecto']);	 	
-		    $presupuesto = $idProyecto->presupuesto_oficial;
-                    $data['total'] = $data['unitario']*$data['cantidad'];
-		    $data['porcentaje'] = ($data['total'])/($idProyecto->presupuesto_oficial);	 	    
+		    $idProyecto = Proyecto::find($data['id_proyecto']);	
+		    if(!empty($idProyecto->presupuesto_oficial)){
+		    	$presupuesto = $idProyecto->presupuesto_oficial;
+           		$data['total'] = $data['unitario']*$data['cantidad'];
+		    	$data['porcentaje'] = ($data['total'])/($idProyecto->presupuesto_oficial);
+		    } 
+		    else{
+		    	$presupuesto = 1;
+		    	$data['total'] = $data['unitario']*$data['cantidad'];
+		    	$data['porcentaje'] = ($data['total'])/($presupuesto);
+		    }	
+		    	 	    
  		    $partida->fill($data);
 		    $partida->save();	           
 		//dd($partida->inicio_teorico);

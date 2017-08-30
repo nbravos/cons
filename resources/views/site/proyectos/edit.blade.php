@@ -83,6 +83,7 @@
       {!!Form::select('financiamiento', array(
           'Propio' => 'Propio', 
           'GORE' => 'GORE',
+	  'SERVIU', => 'SERVIU', 	
           'FFNDR' => 'FFNDR'), null, ['id' =>'financiamiento', 'class' => 'form-control']) !!}
   </div>
   </div>

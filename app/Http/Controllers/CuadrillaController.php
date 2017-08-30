@@ -42,10 +42,12 @@ class CuadrillaController extends Controller
     {
         $partida = DB::select(DB::raw("SELECT * FROM partida WHERE id = '$id'"));
         $trabajadores = Trabajador::all();
+        $equipos = Equipo::pluck('nombre', 'id');
 //	dd($trabajadores["7"]);
         return View::make('site/cuadrillas/form')
         ->with('partida', $partida)
-        ->with('trabajadores', $trabajadores);
+        ->with('trabajadores', $trabajadores)
+        ->with('equipos', $equipos);
 	
 	
     }
@@ -54,9 +56,11 @@ class CuadrillaController extends Controller
         
         $partidas = Partida::where('id_proyecto', $id)->pluck('nombre', 'id');
         $trabajadores = Trabajador::all();
+        $equipos = Equipo::pluck('nombre', 'id');
         return View::make('site/cuadrillas/form_proy')
          ->with('partidas', $partidas)
-         ->with('trabajadores', $trabajadores);
+         ->with('trabajadores', $trabajadores)
+         ->with('equipos', $equipos);
 
     }
     /**
@@ -71,20 +75,33 @@ class CuadrillaController extends Controller
 
         //Se obtiene la data del usuario
         $data = Input::all();
-//	dd($data);
-        $cuad->nombre = $data['nombre'];
-        $cuad->id_partida = $data['id_partida'];
-        $cuad->descripcion = $data['descripcion'];
+        //	dd($data);
+
+        $fecha = DateTime::createFromFormat('d/m/Y', $data['fecha']);
+        $data['fecha'] = $fecha->format("Y-m-d h:i:s");
         $cuad->fill($data);
         $cuad->save();    
+        /*if (! $cart->items->contains($newItem->id)) {
+    $cart->items()->save($newItem);
+}*/
 
-            $trabajadores =  $data['trabajadores'];
+          /*  $trabajadores =  $data['trabajadores'];
             foreach ($trabajadores as $trabajador) {
                 $id_trabajador = $trabajador;
                 $id_cuadrilla = $cuad->id;
                 $cuad->trabajadores()->attach($id_trabajador);
+                
             }
 
+	        $equipo = $data['equipo'];
+            $id_equipo = $equipo;
+            $id_cuadrilla = $cuad->id;
+            
+
+            date_default_timezone_set("Chile/Continental");
+            $fecha = date("Y-m-d H:i:s"); 
+            $estado = 1;
+	        $cuad->equipos()->attach($id_equipo, ['fecha' => $fecha, 'estado' => $estado]);*/
            
             return Redirect::route('cuadrillas.index'); 
       
@@ -98,7 +115,7 @@ class CuadrillaController extends Controller
      */
     public function show($id)
     {
-        $cuadrilla = Cuadrilla::find($id);
+        $cuadrilla = Cuadrilla::with('trabajadores')->find($id);
 	//dd($cuadrilla);
       
          /* $cuadrillas = DB::table('cuadrilla')
@@ -107,6 +124,7 @@ class CuadrillaController extends Controller
             ->where('cuadrilla.id', '=', $id)
           })
           ->select(['cuadrilla.id', 'cuadrilla.id_partida', 'cuadrilla.nombre', 'cuadrilla.descripcion', 'cuadrilla.']);*/
+	
          if (is_null ($cuadrilla))
           {
             App::abort(404)->with('message', 'Cuadrilla no  encontrado');
@@ -122,7 +140,13 @@ class CuadrillaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuadrilla =  Cuadrilla::find($id);
+        $partidas = Partida::pluck('nombre', 'id');
+        $trabajadores =  Trabajador::all();
+         $equipos = Equipo::pluck('nombre', 'id');
+        //$trabajadores = DB::select(DB::raw("SELECT * FROM trabajador WHERE id NOT IN (SELECT id_trabajador FROM cuadrilla_trabajador WHERE id_cuadrilla = '$id')");
+        return View::make('site/cuadrillas/edit')->with('cuadrilla', $cuadrilla)->with('partidas', $partidas)->with('trabajadores', $trabajadores)->with('equipos', $equipos);
+
     }
 
     /**
@@ -134,7 +158,20 @@ class CuadrillaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	$data =  Input::all();
+
+        $cuad = Cuadrilla::find($id);
+
+        if(!empty($data['fecha'])){
+
+            $fecha = DateTime::createFromFormat('d/m/Y', $data['fecha']);
+            $data['fecha'] = $fecha->format("Y-m-d H:i:s");
+
+
+        }
+        $cuad->fill($data);
+        $cuad->save();  
+            return Redirect::route('cuadrillas.index');
     }
 
     /**
@@ -153,11 +190,11 @@ class CuadrillaController extends Controller
             }
             $cuadrilla->delete();
 
-            if (Request::ajax())
+            if (request()->ajax())
             {
                     return Response::json(array (
             'success' => true,
-            'msg'     => 'Equipo ' . $cuadrilla->nombre . ' eliminada',
+            'msg'     => 'Cuadrilla ' . $cuadrilla->nombre . ' eliminada',
                         'id'      => $cuadrilla->id
                 ));
             }

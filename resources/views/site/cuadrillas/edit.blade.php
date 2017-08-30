@@ -14,51 +14,79 @@
     </div>
   @endif
 
-    {!! Form::model($pc, ['route' => ['cuadrillas.update', $pc->id], 'method' => 'patch']) !!}
- @section ('breadcrumbs')
+ {!! Form::model($cuadrilla, ['route' => ['cuadrillas.update', $cuadrilla->id], 'method' => 'patch']) !!}
+ @section ('breadcrumbs')     
 
                 <ul class="breadcrumb a">
                   <li class="active">
                     <p>Inicio</p>
                   </li>
-                  <li><a href="" class="active">Cuadrilla</a>
+                  <li><a href="" class="active">cuadrilla</a>
                   </li>
-                <li><a href="Editar:" ></a>
+                <li><a href="" class="active">Agregar</a>
                   </li>
 
                 </ul>
  @stop
-  <h1>Editar Cuadrilla</h1>
-
-@extends ('layout3')
-
-
+   <h1>Editar Cuadrilla</h1>
   <div class="row">
     <div class="form-group">
       {!! Form::label('nombre', 'Nombre cuadrilla') !!}
       {!! Form::text('nombre', null, array('placeholder' => 'Ingresa el nombre del cuadrilla', 'class' => 'form-control')) !!}
     </div>
 <div class="form-group">
-           {!! Form::label('id_part', 'Partida Asociada') !!}
-           {!! Form::text('id_part', $->proyecto->nombre,  array('readonly' => 'true', 'class' => 'form-control'), array('disabled')) !!}
- </div>
-
-
-           {!! Form::hidden('id_partida', $partida["0"]->id, array('readonly' => 'true', 'class' => 'form-control')) !!}
+           {!! Form::label('id_partida', 'Partida Asociada') !!}
+           {!! Form::select('id_partida', $partidas, null, ['class' => 'form-control']) !!}
+    </div>
+         
   </div>
-
-          {!! Form::label('trabajadores', 'Trabajadores') !!}
-          {!! Form::select('trabajadores[]', $trabajadores, $cuadrilla->trabajadores->pluck('id')->all(), ['id' => 'trabajadores', 'multiple' => 'multiple']) !!}    
-                 
-   <div class="row">
+  <div class="row">
     <div class="form-group">
-      {!! Form::label('descipcion', 'Descripción') !!}
+      {!! Form::label('descripcion', 'Descripción') !!}
       {!! Form::text('descripcion', null, array('placeholder' => 'Descripción del cuadrilla', 'class' => 'form-control')) !!}
     </div>
+
+  <div class="form-group">
+    <label class="control-label" for="fecha">Fecha de Ingreso</label>
+    <input class="form-control" id="fecha" name="fecha" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $cuadrilla->fecha)->format('d/m/Y') }}" type="text">
+  </div>
+
+
+     <div class="form-group">
+           {!! Form::label('equipo', 'Equipo') !!}
+           {!! Form::select('equipo', $equipos, null, ['class' => 'form-control']) !!}
+    </div>
+     <div class="form-group ">
+     {!! Form::label('trabajadores[]', 'Seleccionar') !!}
+    <select id="trabajadores[]" name="trabajadores[]" class="form-control" data-init-plugin="select2" multiple="multiple">
+          @foreach($trabajadores as $trabajador)
+           <option value="{{$trabajador->id}}">{{$trabajador->nombre}} {{$trabajador->ap_paterno}}</option>
+         @endforeach
+         </select>
+     </div>   
    </div> 
+
+  
    
   {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
   
 {!! Form::close() !!}
 
+<script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+       
+  $( "#fecha" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+
+  });
+});
+  </script>
+
+
 @stop
+
+

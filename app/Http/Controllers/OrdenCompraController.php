@@ -19,7 +19,9 @@ class OrdenCompraController extends Controller {
 	{
 	   
   
-        $ocs = DB::table('orden_compra')->join('partida', 'partida.id', '=' ,'orden_compra.id_partida')->select(['orden_compra.id', 'partida.item', 'orden_compra.numero', 'orden_compra.fecha_emision']);
+        $ocs = DB::table('orden_compra')
+        ->join('partida', 'partida.id', '=' ,'orden_compra.id_partida')
+        ->select(['orden_compra.id', 'partida.item', 'orden_compra.numero', 'orden_compra.fecha_emision']);
        if (request()->ajax()){
 		                return Datatables::of($ocs)
        
@@ -37,11 +39,69 @@ class OrdenCompraController extends Controller {
             ->make(true);
 		}
             return View::make('site/oc/list');
+    }
+
+    public function filtroIndex($id)
+    {
+    	
+    	if($id == 0){
+    		$ocs = DB::table('orden_compra')
+        ->join('partida', 'partida.id', '=' ,'orden_compra.id_partida')
+        ->select(['orden_compra.id', 'partida.item', 'orden_compra.numero', 'orden_compra.fecha_emision']);
+       if (request()->ajax()){
+		                return Datatables::of($ocs)
+       
+             ->addColumn('action', function ($oc) {
+                return '<a href="/oc/'.$oc->id.'" class="btn btn-info"> Ver</a>';		                
+            })
+		->editColumn('fecha_emision', function ($oc) {
+		        return $oc->fecha_emision ? with(new Carbon($oc->fecha_emision))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha_emision', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(oc.fecha_e,osopm,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+             ->editColumn('id', '{{$id}}')	  
+            ->make(true);
+		}
+
+    	}
+
+    	else{
+    			$ocs = DB::table('orden_compra')
+    					->join('partida', function($join) use ($id) {
+        				$join->on('partida.id', '=', 'orden_compra.id_partida')
+        				->where('partida.id_proyecto', '=', $id);
+        			})
+        /*$ocs = DB::select(DB::raw("SELECT o.id, p.nombre, o.numero, o.fecha_emision 
+        FROM orden_compra o, partida p
+        WHERE o.id_partida = p.id
+        AND p.id_proyecto = '$id'"));*/			
+        ->select(['orden_compra.id', 'partida.item', 'orden_compra.numero', 'orden_compra.fecha_emision']);
+
+       if (request()->ajax()){
+		                return Datatables::of($ocs)
+       
+             ->addColumn('action', function ($oc) {
+                return '<a href="/oc/'.$oc->id.'" class="btn btn-info"> Ver</a>';		                
+            })
+		->editColumn('fecha_emision', function ($oc) {
+		        return $oc->fecha_emision ? with(new Carbon($oc->fecha_emision))->format('d-m-Y') : '';
+			
+            })
+            ->filterColumn('fecha_emision', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(oc.fecha_e,osopm,'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
+             ->editColumn('id', '{{$id}}')	  
+            ->make(true);
+		}
+
+    	}
 
 
- 
 
-
+    	
+  
     }
 
 	/**

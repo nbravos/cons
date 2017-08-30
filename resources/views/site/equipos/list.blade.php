@@ -1,4 +1,4 @@
- 
+
 @extends ('layout3')
 
 @section ('title') Lista de Equipos @stop
@@ -14,7 +14,8 @@
  @stop
 
 @section ('content')
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0oVFzgMpoDrPfOG_rBVRzA-_vgSdcf38" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <p>
   <a href="{!! route('equipos.create') !!}" class="btn btn-primary">Agregar nuevo </a>
   </p>
@@ -48,8 +49,43 @@
                   </tfoot>
               </table>
               </div>
+              <div id="mymap"></div>
             </div>
 <!--           </div> -->
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+   var locations = <?php print_r(json_encode($ubicaciones)) ?>;
+  
+    var mymap = new GMaps({
+      div: '#mymap',
+      lat: -33.047238,
+      lng: -71.61268849999999,
+      width: '800px',
+      height: '800px',
+      zoom:12
+    });
+
+    $.each( locations, function( index, value ){
+      var fecha =  new Date(value.fecha);
+      mymap.addMarker({
+        lat: value.lat,
+        lng: value.lon,
+        infoWindow: {
+          content: '<p>Código Equipo:  </p> '+ value.nombre +' <br> <br> <p>Fecha: </p>' + (fecha.getDate() + 1) + '/' + fecha.getMonth() + '/' +  fecha.getFullYear()
+        }
+        
+      });
+   });
+
+});
+
+   
+
+  </script>
 
 <script type="text/javascript">
               $(document).ready(function() {

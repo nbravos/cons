@@ -26,13 +26,24 @@
 <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td> <strong>Nombre </strong></td>
+                        <td> <strong>Nombre Cuadrilla </strong></td>
                         <td>{!!$cuadrilla->nombre!!}</td>
                       </tr>
                         <tr>
                         <td><strong>Descripción</strong></td>
                         <td>{!!$cuadrilla->descripcion!!}</td>
                       </tr>
+                      <tr>
+                        <td> <strong>Equipo </strong></td>
+                        <td>{!!$cuadrilla->equipo!!}</td>
+                      </tr>
+		@foreach ($cuadrilla->trabajadores as $trabajador)
+                          <tr>
+			<td> </td>
+                          <td>{{ $trabajador->nombre }} {{ $trabajador->ap_paterno }}</td>
+                      </tr>
+			
+                      @endforeach
                     </tbody>
                   </table>
                   <p>

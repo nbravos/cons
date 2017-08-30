@@ -100,7 +100,14 @@ class Proyecto extends \Eloquent {
         
         static::deleted(function($proyecto)
         {
-            $proyecto->partida()->delete(); /*borra la partida también*/
+        	//if(!empty($proyecto->partida())){
+        	//	$proyecto->partida()->delete(); /*borra la partida también*/
+        	//}
+        	//else{
+        		$proyecto->delete();
+
+        	//}
+           
             
         });
     }    

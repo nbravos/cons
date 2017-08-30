@@ -48,6 +48,11 @@ class Equipo extends \Eloquent {
                 return $this->hasMany('App\Models\Mantencion');
         }
 
+	public function cuadrilla(){
+
+		return $this->belongsTo('App\Models\Cuadrilla');
+	}
+
 }
 
 

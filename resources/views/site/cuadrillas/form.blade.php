@@ -48,6 +48,16 @@
       {!! Form::label('descripcion', 'Descripción') !!}
       {!! Form::text('descripcion', null, array('placeholder' => 'Descripción del cuadrilla', 'class' => 'form-control')) !!}
     </div>
+    <div class="form-group">
+      {!! Form::label('fecha', 'Fecha') !!}
+      {!! Form::text('fecha', null, array('placeholder' => 'Fecha de Ingreso', 'class' => 'form-control')) !!}
+    </div>
+
+     <div class="form-group">
+           {!! Form::label('equipo', 'Equipo') !!}
+           {!! Form::select('equipo', $equipos, null, ['class' => 'form-control']) !!}
+    </div>
+
      <div class="form-group ">
      {!! Form::label('trabajadores[]', 'Seleccionar') !!}
     <select id="trabajadores[]" name="trabajadores[]" class="form-control" data-init-plugin="select2" multiple="multiple">
@@ -64,6 +74,18 @@
   
 {!! Form::close() !!}
 
+<script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+       
+  $( "#fecha" ).datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
 
+  });
+});
+  </script>
 
 @stop

@@ -42,17 +42,17 @@ return response()->json($trabajadores);
 public function grapAsistenciaTrabajador($id) //grafico de la asistencia x trabajador x proyecto
 {
 
-    $lava = new Lavacharts;
+   
 
-    $asist = \Lava::DataTable();
+//    $asist = \Lava::DataTable();
     $data = DB::table('asistencia')
         ->join('trabajador', function($join) use ($id) {
                         $join->on('trabajador.id', '=', 'asistencia.id_trabajador')
                         ->where('asistencia.id_trabajador', '=', $id);
                     }) 
-        ->select(['trabajador.nombre', 'trabajador.ap_paterno', 'asistencia.presente', 'asistencia.atraso', 'asistencia.fecha'])->get()->toArray();
+        ->select(['trabajador.nombre', 'trabajador.ap_paterno', 'asistencia.presente', 'asistencia.atraso', 'asistencia.fecha'])->get();
 
-        $asist->addStringColumn('Fecha')
+/*        $asist->addDateColumn('Fecha')
                 ->addNumberColumn('Presente')
                 ->addNumberColumn('Atraso')
                 ->setDateTimeFormat('d-m-Y');
@@ -60,19 +60,24 @@ public function grapAsistenciaTrabajador($id) //grafico de la asistencia x traba
 
                     $data[$i]->fecha = Carbon::createFromFormat('Y-m-d H:i:s', $data[$i]->fecha)->format('d-m-Y');
                     $asist->addRow([$data[$i]->fecha, $data[$i]->atraso, $data[$i]->presente]);
-                }
+                }*/
                 
-       $columchart = \Lava::ColumnChart('Asistencia', $asist, [
+     /*  \Lava::ColumnChart('Asistencia', $asist, [
             'title' => 'Asistencia de: ' .$data[0]->nombre.$data[0]->ap_paterno ,
             'titleTextStyle' =>[
                 'color' => '#eb6b2c',
                 'fontSize' => 14,
                 ]
-            ]);
-    
-       // return $asist->toJson();
-       // return View::make('site/reportes/asistencia', compact('lava'));
-        return View::make('site/reportes/asistencia2');
+            ]); */
+	
+
+//	return 'asiste' => $asist->toJson()];
+	 //$jsonData['graph'] = $asist->toJson();
+	 //return $jsonData;
+  	   return response()->json($data);
+//        return $asist->toJson();
+//        return View::make('site/reportes/asistencia', compact('lava'));
+        //return View::make('site/reportes/asistencia');
 
 }
     public function tablaAsistenciaTrabajador($id){

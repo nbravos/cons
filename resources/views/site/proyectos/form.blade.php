@@ -102,6 +102,7 @@
       {!!Form::select('financiamiento', array(
           'Propio' => 'Propio', 
           'GORE' => 'GORE',
+	  'SERVIU' => 'SERVIU',	
           'FFNDR' => 'FFNDR'), null, ['id' =>'financiamiento', 'class' => 'form-control']) !!}
   </div>
   </div>
@@ -126,10 +127,9 @@
       {!! Form::label('costos_generales', 'Costos Generales') !!}
       {!! Form::text('costos_generales', null, array('placeholder' => 'Costos Generales del Proyecto', 'class' => 'form-control')) !!}
     </div>-->
-     </div>
        <div class="form-group">
-      {!! Form::label('costos_directos', 'Costos Directos') !!}
-      {!! Form::text('costos_directos', null, array('placeholder' => 'Costos Directos del Proyecto', 'class' => 'form-control')) !!}
+      {!! Form::label('costos_directos', 'Monto Oficial') !!}
+      {!! Form::text('costos_directos', null, array('placeholder' => 'Monto Oficial del Proyecto', 'class' => 'form-control')) !!}
     </div>
      <div class="form-group"> 
   {{ Form::radio('activo', '1') }}
@@ -145,6 +145,10 @@
         @endif" type="text">
   </div>
 </div> 
+  {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
+  
+{!! Form::close() !!}
+
 <!-- Datetime Script-->
    <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
    <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
@@ -175,8 +179,5 @@ $(document).ready(function () {
     });
     </script>
     <!-- SelectBox Script-->
-  {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
-  
-{!! Form::close() !!}
 
 @stop

@@ -27,14 +27,19 @@
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
+
+               @php
+  $role = App\Models\Proyecto::pluck('nombre', 'id');
+  $role['0'] = 'Todos'; 
+  @endphp 
 	<div class="form-group">
-           {!! Form::label('partida', 'Obra Asociada') !!}
-           {!! Form::select('partida', App\Models\Partida::pluck('nombre', 'item'), null, array('class' => 'form-control', 'id' => 'partida')) !!}
+           {!! Form::label('proyecto', 'Filtrar por: Proyecto') !!}
+           {!! Form::select('proyecto', $role, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'proyecto')) !!}
     </div>
   <table id="listaOc" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
-		<th>OC</th>
+		            <th>OC</th>
                 <th>Partida (Item)</th>
                  <th>Número</th>
                  <th>Fecha Emisión</th>
@@ -61,7 +66,7 @@
             processing: false,
             serverSide: true,
             ajax: '{!! route("oc.index") !!}',
-	order: [[3, "desc"]], 
+	          order: [[3, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'Rfrtlip',
             language: {
@@ -78,12 +83,49 @@
             ],
         });
               $('#listaOc tfoot tr').appendTo('#listaOc thead');
-		$('#partida').on('change', function(){
-            table.search(this.value).draw();   
-            });
-
 
        });
+
+          </script>
+
+          <script type="text/javascript">
+
+            
+    $('#proyecto').on('change', function(e) {
+        var e = document.getElementById("proyecto");
+        var valorProy = e.options[e.selectedIndex].value;
+        var url = 'https://aragonltda.cl/oc/getProy/'+ valorProy;
+
+	
+      $('#listaOc').dataTable( {
+
+         "bDestroy": true   
+      });
+      $('#listaOc').dataTable().fnDestroy();
+      $('#listaOc').empty();
+
+            var table =  $('#listaOc').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: url,
+            order: [[3, "desc"]], 
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
+            "sDom": 'Rfrtlip',
+            language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
+          },
+            columns: [
+    
+                {data: 'id', name: 'orden_compra.id',visible: false},
+                {data: 'item', name: 'partida.item', title: 'Partida (Item)'},
+                {data: 'numero', name: 'orden_compra.numero', title: 'Número'},
+                {data: 'fecha_emision', name: 'orden_compra.fecha_emision', title: 'Fecha Emisión'},
+                {data: 'action', name: 'action', orderable: false, title:'Acciones', searchable: false}
+    
+            ],
+          });
+              $('#listaOc tfoot tr').appendTo('#listaOc thead');
+              });
 
           </script>
 @stop

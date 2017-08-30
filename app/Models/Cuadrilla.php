@@ -8,7 +8,7 @@ class Cuadrilla extends Model
 {
     protected $table = 'cuadrilla';
 
-    protected $fillable = ['id_partida', 'nombre', 'descripcion'];
+    protected $fillable = ['id_partida', 'nombre', 'descripcion', 'fecha', 'equipo'];
 
     public $timestamps = false;
 
@@ -18,17 +18,21 @@ class Cuadrilla extends Model
 		'nombre' => 'required|min:4|max:40',
 		'id_partida' => 'required',
 		'descripcion' => 'required|min:5|max:100',
+		'fecha' => 'required|date_format:d/m/Y',
+		'equipo' => 'required',
 		);
 
 	$mensajes = array(
 		'nombre.required' => 'El nombre de la cuadrilla es obligatorio',
 		'id_partida.required' => 'Debe indicar la partida a la que pertenece',
 		'descripcion.required' => 'Debe agregar una breve descripción',
+		'fecha.required' => 'Debe indicar la fecha en formato dd/mm/yyyy', 
+		'equipo.required' => 'Debe indicar el equipo asociado a esta cuadrilla', 
 
 
 
 		);
-	
+		
 	 $validator = Validator::make($data, $rules, $mensajes);
         
         if ($validator->passes())
@@ -50,11 +54,6 @@ class Cuadrilla extends Model
 	public function partidas(){
 		return $this->hasOne('App\Models\Partida');
 	}
-
-	public function equipos(){
-		return $this->hasOnde('App\Models\Equipo');
-	}
-
 
 
 }

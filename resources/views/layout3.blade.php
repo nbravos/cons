@@ -21,7 +21,7 @@
     <link href="https://aragonltda.cl/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
 	    <link href="https://aragonltda.cl/pages/css/pages.min.css" rel="stylesheet" type="text/css" />
     <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> 
-   <!-- <link rel="stylesheet" type="text/css" href="httpss://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
+   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
      <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://aragonltda.cl/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <!-- font awesome link -->
@@ -211,20 +211,7 @@
               </li>
             </ul> 
           </li>
-          <li>
-            <a href="javascript:;">
-              <span class="title">Sueldos</span>
-              <span class=" arrow"></span>
-            </a>
-            <span class="bg-success icon-thumbnail">$</span>
-             <ul class="sub-menu">
-              <li class="">
-                <a href="sueldos">Seleccionar Quincena</a>
-                <span class="bg-success-lighter icon-thumbnail"><i class="fa fa-money"></i></span>
-              </li>
-            </ul>  
-          </li>
-          
+                    
            <li class="">
             <a href="javascript:;">
               <span class="title">Reportes</span>
@@ -335,8 +322,8 @@
             </div>
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class=" inline m-t-5">
-               <img  class="img-circle" src="" alt="" data-src="" data-src-retina="" width="" height="">
+                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+                <img src="https://aragonltda.cl/assets/img/avatar.jpg" alt="" data-src="https://aragonltda.cl/assets/img/avatar.jpg" data-src-retina="https://aragonltda.cl/assets/img/avatar_small2x.jpg" width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
@@ -438,7 +425,7 @@
     <script src="https://aragonltda.cl/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
    <!-- <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script> -->
     <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <!--  <script src="httpss://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --> 
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --> 
     <script src="https://aragonltda.cl/assets/plugins/modernizr.custom.js" type="text/javascript"></script>
     <script src="https://aragonltda.cl/assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <script src="https://aragonltda.cl/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>

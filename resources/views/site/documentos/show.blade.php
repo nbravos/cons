@@ -18,45 +18,39 @@
 
 
         <h1> <strong> {!! $documento->tipo!!} # {!!$documento->numero!!}  </strong></h1> 
+<table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td> <strong>Tipo de Documento </strong></td>
+                        <td>{!!$documento->nombre!!}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Monto (IVA incluido)</strong> </td>
+                        <td>{!!$documento->monto!!}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Orden de Compra Asociada Documento</strong></td>
+                        <td>{!!$documento->ordencompra->numero!!}</td>
+                      </tr>
+                        <tr>
+                        <td><strong>Fecha</strong></td>
+                        <td>  {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $documento->fecha)->format('d-m-Y') }}  </td>
+                      </tr>
+                      <tr>
+                        <td><strong>Contabilidad</strong></td>
+                              @if ($documento->no_contabilidad  == 1)
+                                <td>Contable</td>
+                              @else
+                                <td>No Contable</td>
+                              @endif
+                      </tr>
+                      <tr>
+                        <td>Archivo</td>                                     
+                       <td> <a href="{!!route('descargardoc', $documento->rutadoc)!!}" class="btn btn-primary">Descargar</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
 
-                    
-                       <div class="form-group">
-                      {{ Form::label('tipo', 'Tipo de Documento' )}}
-			                 <br>
-                         <a  class="active"> {{ $documento->tipo }} </a> 
-                      </div>
-                      <div class="form-group">
-                        {{ Form::label( 'monto', 'Monto (IVA incluido)') }}
-                        <br>
-                       <a class="active">  {!!$documento->monto!!} </a>
-                      </div>
-                        <div class="form-group">
-                        {{ Form::label( 'oc', 'Orden de Compra Asociada') }}
-                        <br>
-                        <a class="active">  {!!$documento->ordencompra->numero!!} </a>
-                      </div>
-                        <div class="form-group"> 
-                         {{ Form::label( 'no_contable', 'Contabilidad') }}
-                         <br>
-			@if ($documento->no_contabilidad  == 1)
-                       <a class="active">   Contable </a>
-			@else
-			                 <a class="active">  Documento no Contable </a>
-			@endif
-                        </div>
-                        <div class="form-group"> 
-			                  {{ Form::label( 'archivo', 'Archivo') }}  
-                        <br>                                                
-			                 <a href="{!!route('descargardoc', $documento->rutadoc)!!}" class="btn btn-primary">Descargar</a>
-                        </div>
-                        <div class="form-group"> 
-                        {{ Form::label( 'fecha', 'Fecha') }}
-                        <br>
-                        <a class="active"> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $documento->fecha)->format('d-m-Y') }}   </a>
-
-	
-
-                      </div>
                  
                   <p>
 <a href="{!!route('documentos.index')!!}" class="btn btn-primary">Volver</a>

@@ -27,7 +27,14 @@ class EquipoController extends Controller {
         ->editColumn('id', ' {{$id}}')
             ->make(true);
         }
-	return View::make('site/equipos/list')->with('equipos', $equipos);
+	     //   $ubicaciones = DB::table('posicion_equipo')->get();
+             $ubicaciones = DB::table('posicion_equipo')->join('equipo', function ($join) {
+            $join->on('posicion_equipo.imei', '=', 'equipo.codigo');
+        })->get(array('posicion_equipo.id', 'imei', 'lat', 'lon', 'fecha', 'equipo.nombre'));
+
+//	return View::make('site/equipos/list', compact('ubicaciones'))->with('equipos', $equipos);
+        	return View::make('site/equipos/list', compact('ubicaciones', 'equipos'));
+
 
 		}
 

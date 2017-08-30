@@ -15,9 +15,9 @@
 
 @section ('content')
 
-<p>
+<!--<p>
   <a href="{!! route('cuadrillas.create') !!}" class="btn btn-primary">Agregar nueva </a>
-  </p>
+  </p>-->
 
 <!-- <div class="container-fluid container-fixed-lg bg-white"> -->
             <!-- START PANEL -->

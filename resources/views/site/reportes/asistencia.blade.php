@@ -14,11 +14,11 @@
 @section ('content')
  <h1> Asistencia Trabajadores </h1>
 
-
+ 
 
 <div class="form-group">
            {!! Form::label('proyecto', 'Seleccionar Proyecto:') !!}
-           {!! Form::select('proyecto', $proyectos, null,  ['class' => 'form-control', 'placeholder' => 'Indicar Proyecto']) !!}
+          {!! Form::select('proyecto', App\Models\Proyecto::pluck('nombre', 'id'), null, array('class' => 'form-control', 'id' => 'proyecto')) !!}
 </div>
 <div class="form-group">
     <label> Seleccionar Trabajador:
@@ -29,6 +29,14 @@
 </div>
 <button class="btn btn-primary" id="button1" name="button1">Gráfico</button>
 <button class="btn btn-primary" id="button2" name="button2">Tabla</button>
+
+
+<div id="perf_div"></div>
+  @if (Lava::exists('ColumnChart', 'Asistencia'))
+    {!! Lava::render('ColumnChart', 'Asistencia', 'perf_div')  !!}
+  @else
+    <p hidden>Chart not found!</p>
+  @endif
 
 
 <div class="panel panel-transparent">
@@ -67,12 +75,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   
 </script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
 
 
-
-<script>
+<script type="text/javascript">
  $('#proyecto').on('change', function(e){
  console.log(e);
  var proyecto_id = e.target.value;
@@ -92,18 +97,18 @@
    $('#trabajadores').on('change', function(e){
    	 var e = document.getElementById("trabajadores");
      var valorTrab = e.options[e.selectedIndex].value;
-
-     $('#button1').click(function(){
-       $.ajax({
-        type: "GET",
-        url: './getChartTrab/'+ valorTrab,
-        
-        success: function() {
-            console.log("data sent");
-        }
-    })
-
-     });
+     
+      
+        $('#button1').click(function() {
+          $.getJSON('./getChartTrab/'+ valorTrab, function (dataTableJson) {
+            console.log(dataTableJson);
+            lava.loadData('Asistencia', dataTableJson, function (chart) {
+	console.log('Asistencia loadData callback');
+              console.log(chart);
+            });
+          });
+        });
+    
 
      $('#button2').click(function(){
       var url = 'https://aragonltda.cl/reportes/getTablaTrab/'+ valorTrab;

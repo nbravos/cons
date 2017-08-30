@@ -58,6 +58,7 @@ Route::get('trabajador/getfilPro/{id}', ['uses' =>'TrabajadorController@filtroPr
 
 Route::resource('trabajador', 'TrabajadorController');
 
+Route::get('oc/getProy/{id}', ['uses' =>'OrdenCompraController@filtroIndex']);//filtro Index
 Route::resource('oc', 'OrdenCompraController');
 
 
