@@ -66,8 +66,8 @@ class EmpresaController extends Controller {
 		    $empresa->tipo_proovedor = null;
 		    $empresa->fill($data);
 		
-		    if(! $data['tipo_provedor']) {
-                        $empresa->tipo_proveedor = null;
+		    if(! $data['tipo_proovedor']) {
+                        $empresa->tipo_proovedor = null;
 	                }
 
 		    $empresa->save();	            

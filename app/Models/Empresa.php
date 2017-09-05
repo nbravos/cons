@@ -16,12 +16,12 @@ class Empresa extends \Eloquent {
 	$rules = array(
 			
 			'nombre' => 'required|min:4|max:40',
-			'razon_social' => 'required|min:4|max:40',
+			'razon_social' => 'required|min:4|max:100',
 			'giro' =>'required',
-			'nombre_contacto' =>'required|min:4|max:40',
+			'nombre_contacto' =>'required|min:4|max:100',
 			'email' =>  'required|email|unique:empresa',
 			'telefono' => 'required|min:8|max:11',
-			'direccion' => 'required|min:5|max:40',
+			'direccion' => 'required|min:5|max:100',
 			'web' => 'required|min:5',
 			'rut' => 'required|unique:empresa',
 			'tipo_empresa' => 'required',

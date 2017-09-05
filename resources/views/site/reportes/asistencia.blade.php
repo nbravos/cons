@@ -30,15 +30,6 @@
 <button class="btn btn-primary" id="button1" name="button1">Gráfico</button>
 <button class="btn btn-primary" id="button2" name="button2">Tabla</button>
 
-
-<div id="perf_div"></div>
-  @if (Lava::exists('ColumnChart', 'Asistencia'))
-    {!! Lava::render('ColumnChart', 'Asistencia', 'perf_div')  !!}
-  @else
-    <p hidden>Chart not found!</p>
-  @endif
-
-
 <div class="panel panel-transparent">
               <div class="panel-heading">
                 <div class="panel-title">
@@ -69,13 +60,17 @@
                     </tr>
                   </tfoot>
               </table>
+
+
+              <canvas id="projects-graph" width="800" height="400"></canvas>
+
               </div>
             </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   
 </script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
 <script type="text/javascript">
  $('#proyecto').on('change', function(e){
@@ -98,17 +93,36 @@
    	 var e = document.getElementById("trabajadores");
      var valorTrab = e.options[e.selectedIndex].value;
      
-      
         $('#button1').click(function() {
-          $.getJSON('./getChartTrab/'+ valorTrab, function (dataTableJson) {
-            console.log(dataTableJson);
-            lava.loadData('Asistencia', dataTableJson, function (chart) {
-	console.log('Asistencia loadData callback');
-              console.log(chart);
-            });
-          });
-        });
+           $.getJSON('./getChartTrab/'+ valorTrab, function (result) {
+            var labels = [],data=[];
+           for (var i = 0; i < result.length; i++) {
+            labels.push(result[i].fecha);
+            data.push(result[i].presente);
+            
+              }
+        
+      var buyerData = {
+      labels : labels,
+      datasets : [
+        {
+          fillColor : "rgba(240, 127, 110, 0.3)",
+          strokeColor : "#f56954",
+          pointColor : "#A62121",
+          pointStrokeColor : "#741F1F",
+          data : data
+        }
+      ]
+    };
+    var buyers = document.getElementById('projects-graph').getContext('2d');
     
+    var chartInstance = new Chart(buyers, {
+    type: 'line',
+    data: buyerData,
+});
+});
+
+});
 
      $('#button2').click(function(){
       var url = 'https://aragonltda.cl/reportes/getTablaTrab/'+ valorTrab;

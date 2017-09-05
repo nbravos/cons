@@ -71,16 +71,22 @@
   
 {!! Form::close() !!}
 
-<script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-   <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+<script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
     <script type="text/javascript">
     
+      $(document).ready(function (){
+
+
+	  
         $( "#datepicker1" ).datepicker({
         format: 'dd/mm/yyyy',
         language: 'es',
         autoclose: true
 
   });
+
+});
     </script>
 
 @stop

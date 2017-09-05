@@ -85,7 +85,7 @@
     </div>
      <div class="form-group">
       {!! Form::label('rut', 'Rut') !!}
-      {!! Form::text('rut', null, array('placeholder' => 'Ingresa RUT Empresa', 'class' => 'form-control')) !!}
+      {!! Form::text('rut', null, array('placeholder' => 'RUT Empresa sin puntos: 12345678-9', 'class' => 'form-control')) !!}
     </div>
     <!-- , 'method' => 'POST', 'onsubmit' => 'return validaRut' -->
     <div class="form-group">
@@ -101,7 +101,7 @@
           'Contratista' => 'Contratista'), null, ['id' =>'tipo_empresa', 'class' => 'form-control']) !!}
   </div>
        <div class="form-group">
-      {!!Form::label('tipo_proovedor', 'Tipo de Proveedor')!!}
+      {!!Form::label('tipo_proovedor', 'Tipo de Proovedor')!!}
       {!!Form::select('tipo_proovedor', array(
           'RR.HH' => 'RR.HH', 
           'Materiales' => 'Materiales', 
@@ -111,7 +111,7 @@
   </div>
 
     <!--<div class="form-group" id="ProvOp">
-          {!! Form::label('tipo_proveedor', 'Tipo De Proveedor') !!}
+          {!! Form::label('tipo_proovedor', 'Tipo De Proveedor') !!}
 	<br>
            <select class="form-control"  id="ProvOp">
               <option value="1">RR.HH</option>
@@ -136,40 +136,7 @@
       });
     });
     </script>
-<script type="text/javascript">
-  
 
-var Fn = {
-    // Valida el rut con su cadena completa "XXXXXXXX-X"
-    validaRut : function (rutCompleto) {
-        rutCompleto = rutCompleto.replace("‐","-");
-        if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
-            return false;
-        var tmp     = rutCompleto.split('-');
-        var digv    = tmp[1]; 
-        var rut     = tmp[0];
-        if ( digv == 'K' ) digv = 'k' ;
-        
-        return (Fn.dv(rut) == digv );
-    },
-    dv : function(T){
-        var M=0,S=1;
-        for(;T;T=Math.floor(T/10))
-            S=(S+T%10*(9-M++%6))%11;
-        return S?S-1:'k';
-    }
-}
-
-
-$("#rut").change(function(){
-    if (!Fn.validaRut( $("#rut").val() )){
-        alert("Rut no válido");  
-    } 
-          
-});
-
-
-</script>
 
 
   {!! Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    

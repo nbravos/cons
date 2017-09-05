@@ -65,7 +65,7 @@ class ProyectoContratistaController extends Controller
         				->where('proyecto_contratista.id_proyecto', '=', $id);
         			})
         			->select(['proyecto_contratista.id', 'empresa.nombre as mand', 'proyecto_contratista.monto_ofertado as montOf',  'proyecto_contratista.dias as diasOf']);
-
+	
         			if(request()->ajax()){
         				return Datatables::of($ofertas)
 				->addColumn('action', function ($oferta) {

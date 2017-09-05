@@ -46,7 +46,7 @@
   <div class="row">
     <div class="form-group">
       {!! Form::label('descripcion', 'Descripción') !!}
-      {!! Form::text('descripcion', null, array('placeholder' => 'Descripción del cuadrilla', 'class' => 'form-control')) !!}
+      {!! Form::text('descripcion', null, array('placeholder' => 'Descripción de los integrantes', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
       {!! Form::label('fecha', 'Fecha') !!}

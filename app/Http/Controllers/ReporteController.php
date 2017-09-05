@@ -45,7 +45,7 @@ public function grapAsistenciaTrabajador($id) //grafico de la asistencia x traba
    
 
 //    $asist = \Lava::DataTable();
-    $data = DB::table('asistencia')
+    $result = DB::table('asistencia')
         ->join('trabajador', function($join) use ($id) {
                         $join->on('trabajador.id', '=', 'asistencia.id_trabajador')
                         ->where('asistencia.id_trabajador', '=', $id);
@@ -74,7 +74,9 @@ public function grapAsistenciaTrabajador($id) //grafico de la asistencia x traba
 //	return 'asiste' => $asist->toJson()];
 	 //$jsonData['graph'] = $asist->toJson();
 	 //return $jsonData;
-  	   return response()->json($data);
+	
+  	   return $result;
+	
 //        return $asist->toJson();
 //        return View::make('site/reportes/asistencia', compact('lava'));
         //return View::make('site/reportes/asistencia');

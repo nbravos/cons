@@ -75,17 +75,11 @@ Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
 
 Route::get('reportes/asistencia', ['uses' =>'ReporteController@asistencia']); //carga página asistencia
-/* Route::get('reportes/test2', function(){
-
-    return View::make("site/reportes/asist")->render;
-       
-
-});*/
 Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
 Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
 Route::get('reportes/getTablaTrab/{id}', ['uses' => 'ReporteController@tablaAsistenciaTrabajador']);
 Route::get('reportes/test', 'ReporteController@graficos');
-Route::resource('reportes', 'ReporteController');
+Route::resource('reportes', 'ReporteController', ['only'=> ['index']]);
 
 Route::resource('sueldos', 'SueldoController');
 

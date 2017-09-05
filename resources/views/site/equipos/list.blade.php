@@ -75,7 +75,7 @@ $(document).ready(function(){
         lat: value.lat,
         lng: value.lon,
         infoWindow: {
-          content: '<p>Código Equipo:  </p> '+ value.nombre +' <br> <br> <p>Fecha: </p>' + (fecha.getDate() + 1) + '/' + fecha.getMonth() + '/' +  fecha.getFullYear()
+          content: '<p>Nombre Equipo:  </p> '+ value.nombre +' <br> <br> <p>Fecha: </p>' + (fecha.getDate() + 1) + '/' + fecha.getMonth() + '/' +  fecha.getFullYear()
         }
         
       });

@@ -158,16 +158,16 @@
           </li>
             <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Partidas</span>
+              <span class="title">Obras</span>
            <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-menu"></i></span>
             <ul class="sub-menu">
                <li class="">
-                <a href="https://aragonltda.cl/partidas/create">Agregar Partidas</a>
+                <a href="https://aragonltda.cl/partidas/create">Agregar Obras</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
                 <li class="">
-                <a href="https://aragonltda.cl/partidas">Listar Partidas</a>
+                <a href="https://aragonltda.cl/partidas">Listar Obras</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>
