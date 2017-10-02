@@ -11,14 +11,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="pages/css/pages-icons.css" rel="stylesheet" type="text/css">
-    <link class="main-stylesheet" href="pages/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="https://aragonltda.cl/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="https://aragonltda.cl/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://aragonltda.cl/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="https://aragonltda.cl/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="https://aragonltda.cl/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="https://aragonltda.cl/assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="https://aragonltda.cl/pages/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link class="main-stylesheet" href="https://aragonltda.cl/pages/css/pages.css" rel="stylesheet" type="text/css" />
     <!--[if lte IE 9]>
         <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
@@ -31,20 +31,24 @@
     }
     </script>
   </head>
+
    <body class="fixed-header error-page">
     <div class="container-xs-height full-height">
       <div class="row-xs-height">
         <div class="col-xs-height col-middle">
           <div class="error-container text-center">
-            <h1>Recuperar Contraseña</h>
+            <h>Recuperar Contraseña</h>
             <p>Ingrese su correo electrónico  </p>
-        <form action="{{ action('RemindersController@postRemind') }}" method="POST">
-            <input type="hidden" name="_token" value="{{  csrf_token() }}">
+        <form action="{{ route('password.reset') }}" method="POST">
+            <input type="hidden" name="token" value="{{  csrf_token() }}">
              <input type="email" name="email" placeholder="Correo">
             <input type="submit" value="Enviar">
         </form>
             <div class="error-container-innner text-center">
             </div>
+                @if( Session::has( 'success' ))
+                 {{ Session::get( 'success' ) }}
+                @endif
           </div>
         </div>
       </div>
@@ -61,22 +65,22 @@
       </div>
     </div>
     <!-- END PAGE CONTAINER -->
-    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-bez/jquery.bez.min.js"></script>
-    <script src="assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/select2/js/select2.full.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/classie/classie.js"></script>
-    <script src="assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/modernizr.custom.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-bez/jquery.bez.min.js"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-actual/jquery.actual.min.js"></script>
+    <script src="https://aragonltda.cl/assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="https://aragonltda.cl/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="https://aragonltda.cl/assets/plugins/classie/classie.js"></script>
+    <script src="https://aragonltda.cl/assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
     <!-- END VENDOR JS -->
-    <script src="pages/js/pages.min.js"></script>
+    <script src="https://aragonltda.cl/pages/js/pages.min.js"></script>
   </body>
 </html>
 

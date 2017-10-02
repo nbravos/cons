@@ -137,7 +137,19 @@
             ajax: url,
       order: [[4, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            "sDom": 'TRfrtlip',
+            "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Proyectos - *.csv",
+               "mColumns": [ 1, 2, 3],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
@@ -177,7 +189,19 @@
             ajax: url,
       order: [[4, "desc"]], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            "sDom": 'TRfrtlip',
+            "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Proyectos - *.csv",
+               "mColumns": [ 1, 2, 3],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
@@ -239,7 +263,19 @@ $("#button").click(function() {
             ajax: url,
             order: [4, "asc"], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            "sDom": 'TRfrtlip',
+            "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Proyectos - *.csv",
+               "mColumns": [ 1, 2, 3],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },

@@ -19,7 +19,7 @@ class Cuadrilla extends Model
 		'id_partida' => 'required',
 		'descripcion' => 'required|min:5|max:100',
 		'fecha' => 'required|date_format:d/m/Y',
-		'equipo' => 'required',
+		//'equipo' => 'required',
 		);
 
 	$mensajes = array(
@@ -27,7 +27,7 @@ class Cuadrilla extends Model
 		'id_partida.required' => 'Debe indicar la partida a la que pertenece',
 		'descripcion.required' => 'Debe agregar una breve descripción',
 		'fecha.required' => 'Debe indicar la fecha en formato dd/mm/yyyy', 
-		'equipo.required' => 'Debe indicar el equipo asociado a esta cuadrilla', 
+		//'equipo.required' => 'Debe indicar el equipo asociado a esta cuadrilla', 
 
 
 

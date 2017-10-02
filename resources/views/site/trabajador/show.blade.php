@@ -53,9 +53,27 @@
                         <td><strong> Fecha Ingreso </strong></td>
                         <td>{!!date('d-m-Y', strtotime($trabajador->fecha))!!}</td>   
                       </tr>
+                     
+                     <tr>
+                        <td><strong>Obra </strong></td>
+                        
+                        @if($obra == NULL)
+                        <td>No asociado a ninguna obra</td>
+                        
+                        @else
+                        <td>{{ $obra['0']->nombre }}</td>
+                        
+                        @endif
+                      </tr>
+
+
                       <tr>
                         <td><strong> Fecha Fin de Contrato </strong></td>
-                        <td>{!!date('d-m-Y', strtotime($trabajador->fecha_termino))!!}</td>   
+                        @if($trabajador->fecha_termino == '1970-01-01 00:00:00')
+                        <td>Contrato Indefinido</td>
+                        @else
+                        <td>{!!date('d-m-Y', strtotime($trabajador->fecha_termino))!!}</td> 
+                        @endif  
                       </tr>
                       <tr>
                         <td><strong>Estado de Contrato </strong></td>

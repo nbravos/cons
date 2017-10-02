@@ -93,16 +93,16 @@
           </li>
           <li class="">
             <a href="javascript:;" class="detailed">
-              <span class="title">Proyectos</span>
+              <span class="title">Licitaciones</span>
               <span class=" arrow"></span></a>
             <span class="bg-success icon-thumbnail"><i class="pg-folder_alt"></i></span>
             <ul class="sub-menu">
                <li class="">
-                <a href="https://aragonltda.cl/proyectos/create">Agregar Proyectos</a>
+                <a href="https://aragonltda.cl/proyectos/create">Agregar Licitaciones</a>
                 <span class="bg-success-lighter icon-thumbnail">A</span>
               </li>
               <li class="">
-                <a href="https://aragonltda.cl/proyectos">Listar Proyectos</a>
+                <a href="https://aragonltda.cl/proyectos">Listar Licitaciones</a>
                 <span class="bg-success-lighter icon-thumbnail">L</span>
               </li>
             </ul>

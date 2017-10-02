@@ -64,15 +64,15 @@
     </div>
     <div class="form-group">
     <label class="control-label" for="fecha_nac">Fecha de Nacimiento</label>
-    <input class="form-control" id="datepicker1" name="fecha_nac" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_nac)->format('d-m-Y') }}" type="text">
+    <input class="form-control" id="datepicker1" name="fecha_nac" placeholder="DD-MM-AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_nac)->format('d-m-Y') }}" type="text">
   </div>
        <div class="form-group">
     <label class="control-label" for="fecha">Fecha de Ingreso</label>
-    <input class="form-control" id="datepicker2" name="fecha" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }}" type="text">
+    <input class="form-control" id="datepicker2" name="fecha" placeholder="DD-MM-AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha)->format('d-m-Y') }}" type="text">
   </div>
   <div class="form-group">
     <label class="control-label" for="fecha_termino">Fecha de Término Contrato</label>
-    <input class="form-control" id="datepicker3" name="fecha_termino" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_termino)->format('d-m-Y') }}" type="text">
+    <input class="form-control" id="datepicker3" name="fecha_termino" placeholder="DD-MM-AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $trabajador->fecha_termino)->format('d-m-Y') }}" type="text">
   </div>
   <div class="form-group"> 
   {{ Form::radio('estado_contrato', '1') }}
@@ -131,19 +131,19 @@ $("#rut").change(function(){
 
        
   $( "#datepicker1" ).datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd-mm-yyyy',
         language: 'es',
         autoclose: true
 
   });
   $( "#datepicker2" ).datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd-mm-yyyy',
         language: 'es',
         autoclose: true
 
   });
   $( "#datepicker3" ).datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd-mm-yyyy',
         language: 'es',
         autoclose: true
 

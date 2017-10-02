@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -14,7 +15,7 @@
 Route::get('/', 'IndexController@showIndex');
 
 
-Route::group(['middlewareGroups' => ['web']], function () {
+Route::group(['middleware' => 'web'], function () {
     
 
 
@@ -103,12 +104,6 @@ Route::post('login', 'AuthController@postLogin'); // Verificar datos
 /*Route::get('logout', 'AuthController@logOut'); // Finalizar sesión*/
 
 
-/*Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-	]);
-*/
-
 /*Rutas para usuarios con autenticación solamente*/
 Route::group(['middleware' => 'auth'], function()
 {
@@ -118,23 +113,12 @@ Route::group(['middleware' => 'auth'], function()
 }); 
 
 
-Route::get('remind', 'RemindersController@getRemind');
-Route::post('remind', 'RemindersController@postRemind');
 
-Route::get('password/reset/{token}', 'RemindersController@getReset');
-Route::post('password/reset/{token}', 'RemindersController@postReset');
+Route::get('remind', ['uses' => 'RemindersController@getRemind'])->name('recuperar');
+Route::post('remind', ['uses' => 'RemindersController@postRemind'])->name('password.reset');
+Route::get('reset/{token}', 'RemindersController@getReset')->name('reestablecer');
+Route::post('reset', 'RemindersController@postReset')->name('resetpass');
 
-
-
-/*Route::get('password/reset', array( 
-	'uses' => 'RemindersController@getRemind',
-	'as' => 'password.remind'
-));
-
-Route::post('password/reset', array(
-        'uses' => 'RemindersController@postRemind',
-        'as' => 'password.remind'
-));*/
 
 
 

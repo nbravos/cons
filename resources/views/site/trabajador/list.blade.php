@@ -66,7 +66,7 @@
                 <tr>
                 <th>Número</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Apellidos</th>
                 <th>Fecha Término Contrato</th>
                  <th>Acciones</th>
                  </tr>
@@ -92,14 +92,29 @@
             ajax: '{!! route("trabajador.index") !!}',
 	          order: [4, "asc"], 
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            "sDom": 'TRfrtlip',
+            "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Trabajadores - *.csv",
+               "mColumns": [ 1, 2, 3],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
                 {data: 'nombre', name: 'nombre'},
-                {data: 'ap_paterno', name: 'ap_paterno'},
+                {data: 'ap_paterno', render: function(data, type, full, meta){
+                  return full.ap_paterno + ' ' + full.ap_materno;
+
+                } ,name: 'ap_paterno'},
                 {data: 'fecha_termino', render: function(data, type, row){
                   if (data === '01-01-1970'){
                     return 'Contrato Indefinido';
@@ -147,7 +162,7 @@
             columns: [
                 {data: 'id', name: 'id', visible: false},
                 {data: 'nombre', name: 'nombre', title: 'Nombre'},
-                {data: 'ap_paterno', name: 'ap_paterno', title: 'Apellido'},
+                {data: 'ap_paterno', name: 'ap_paterno', title: 'Apellidos'},
                 {data: 'fecha_termino', render: function(data, type, row){
                   if (data === '01-01-1970'){
                     return 'Contrato Indefinido';
@@ -194,7 +209,7 @@
             columns: [
                 {data: 'id', name: 'trabajador.id', visible: false},
                 {data: 'nombre', name: 'trabajador.nombre', title: 'Nombre'},
-                {data: 'ap_paterno', name: 'trabajador.ap_paterno', title: 'Apellido'},
+                {data: 'ap_paterno', name: 'trabajador.ap_paterno', title: 'Apellidos'},
                 {data: 'fecha_termino', render: function(data, type, row){
                   if (data === '01-01-1970'){
                     return 'Contrato Indefinido';

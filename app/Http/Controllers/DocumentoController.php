@@ -15,9 +15,8 @@ class DocumentoController extends Controller {
 	public function index()
 	{
 		
-		 /*$documentos = Documento::select(['id', 'tipo', 'monto', 'fecha']);*/
 
-		 $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'documento.numero', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
+		/* $documentos = DB::table('documento')->join('orden_compra', 'orden_compra.id', '=', 'documento.id_orden')->select(['documento.id', 'documento.numero', 'tipo', 'monto', 'fecha', 'orden_compra.numero as ocNum']);
 		if (request()->ajax()){
 		                return Datatables::of($documentos)
 
@@ -33,10 +32,10 @@ class DocumentoController extends Controller {
             })
 
             ->make(true);
-        }
+        }*/
 
 	
-	        return view('site/documentos/list')->with('documentos', $documentos);
+	        return view('site/documentos/list');//->with('documentos', $documentos);
 
 	}
 

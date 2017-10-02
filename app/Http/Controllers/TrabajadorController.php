@@ -17,7 +17,7 @@ class TrabajadorController extends Controller {
 	public function index()
 	{
 		//$trabajadores = Trabajador::paginate();  
-		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'fecha_termino']);
+		$trabajadores = Trabajador::select(['id', 'nombre', 'ap_paterno', 'ap_materno', 'fecha_termino']);
 		if (request()->ajax()){
 		                return Datatables::of($trabajadores)
 
@@ -116,7 +116,11 @@ class TrabajadorController extends Controller {
                 {
                         App::abort(404)->with('message', 'Trabajador no encontrado');
                 }
-                return View::make('site/trabajador/show', array('trabajador' => $trabajador));
+        $obra_id = DB::table('proyecto_trabajador')->select('id_proyecto')->where('id_trabajador', '=', $id)->get();
+	$id_proy = $obra_id['0']->id_proyecto;
+        $obra = DB::table('proyecto')->select('nombre')->where('id', '=', $id_proy)->get();
+
+                return View::make('site/trabajador/show', array('trabajador' => $trabajador))->with('obra', $obra);
 	}
 
 	/**
@@ -170,7 +174,7 @@ class TrabajadorController extends Controller {
 	$input['fecha'] = date('Y-m-d', strtotime($input['fecha']));
 	$input['fecha_nac'] = date('Y-m-d', strtotime($input['fecha_nac']));
 	$input['fecha_termino'] = date('Y-m-d', strtotime($input['fecha_termino']));
-
+	//dd($input);
 	if (Input::hasFile('foto')){
 		File::delete(public_path().'workerImage', $trabajador->foto);
 		$file = Input::file('foto');

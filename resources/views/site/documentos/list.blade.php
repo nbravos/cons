@@ -88,40 +88,7 @@
             </div>
 <!--          </div> -->
 
-<script type="text/javascript">
-              $(document).ready(function() {
-              var table = $('#listaDoc').DataTable({
-            processing: false,
-            serverSide: true,
-            ajax: '{!! route("documentos.index") !!}',
-	    order: [[4, "desc"]], 
-            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
-            language: {
-              url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
-          },
-            columns: [
-                {data: 'id', name: 'id', visible: false},
-                {data: 'tipo', name: 'tipo'},
-                {data: 'numero', name: 'documento.numero'},
-                {data: 'monto', name: 'monto'},
-                {data: 'fecha', name: 'fecha'},
-                {data: 'ocNum', name: 'orden_compra.numero'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
-    
-            ],
 
-        });
-              $('#listaDoc tfoot tr').appendTo('#listaDoc thead');
-               $('#orden').on('change', function(){
-            table.search(this.value).draw();   
-            });
-                $('#tipo').on('change', function(){
-            table.search(this.value).draw();   
-            });
-       });
-
-          </script>
 
  <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
    <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>

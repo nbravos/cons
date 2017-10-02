@@ -29,21 +29,21 @@ class AuthController extends Controller {
             'password' => Input::get('password')
         ];
 	
-	//Log::info('email - '.Input::get('email'));
-	//Log::info('password - '.Input::get('password'));
- 
-        // Verificamos los datos
-        if (Auth::attempt($data, true)) // Como segundo parámetro pasámos el checkbox para sabes si queremos recordar la contraseña
+	
+       
+        if (Auth::attempt($data)) 
         {
-            // Si nuestros datos son correctos mostramos la página de inicio
+         	   
 	       return Redirect::intended('home');
 	
         }
-        // Si los datos no son los correctos volvemos al login y mostramos un error
+        
 	else{
 	$errors = new MessageBag(['password' => ['Correo o contraseña inválidos.']]);
+
+	
          // return Redirect::back()->with('error_message', 'Error al ingresar los datos')->withInput();
-		return Redirect::back()->withErrors($errors)->withInput(Input::except('password'));
+	    return Redirect::back()->withErrors($errors)->withInput(Input::except('password'));
 	}
 		
     }
