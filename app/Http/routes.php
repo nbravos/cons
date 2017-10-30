@@ -129,6 +129,7 @@ Route::get('post', 'IndexController@showPost');
 Route::get('servicios', 'IndexController@showServices');
 Route::get('about', 'IndexController@showWho');
 Route::get('contacto', 'IndexController@showContact');
+Route::post('contacto', 'ContactoController@email')->name('contacto');
 Route::get('/', 'IndexController@showIndex');
 //Route::get('construction-index', 'IndexController@showIndex');
 

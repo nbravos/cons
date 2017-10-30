@@ -31,13 +31,13 @@
               </div>
               <div  class="panel-body">
 	  @php
-	$role = App\Models\Comuna::pluck('nombre', 'id');
+	$role = App\Models\Comuna::where('id', '>', '5000')->pluck('nombre', 'id');
 	$role['0'] = 'Todos';	
 	$emp =  App\Models\Empresa::pluck('nombre', 'id');
 	$emp['0'] = 'Todos'; 
 	@endphp	
            {!! Form::label('com', 'Filtrar por: Comuna') !!}
-           {!! Form::select('com', $role, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'com')) !!}
+           {!! Form::select('com',  $role, null, array('class' => 'form-control', 'id' => 'com')) !!}
 
            {!! Form::label('mand', 'Filtrar por: Mandante') !!}
            {!! Form::select('mand', $emp, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'mand')) !!}

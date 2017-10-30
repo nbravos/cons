@@ -117,10 +117,19 @@ class TrabajadorController extends Controller {
                         App::abort(404)->with('message', 'Trabajador no encontrado');
                 }
         $obra_id = DB::table('proyecto_trabajador')->select('id_proyecto')->where('id_trabajador', '=', $id)->get();
-	$id_proy = $obra_id['0']->id_proyecto;
-        $obra = DB::table('proyecto')->select('nombre')->where('id', '=', $id_proy)->get();
 
-                return View::make('site/trabajador/show', array('trabajador' => $trabajador))->with('obra', $obra);
+        if($obra_id->isEmpty()){
+
+        	$obra = NULL;
+        	return View::make('site/trabajador/show', array('trabajador' => $trabajador))->with('obra', $obra);
+
+        }
+        else{
+        	$id_proy = $obra_id['0']->id_proyecto;
+       		$obra = DB::table('proyecto')->select('nombre')->where('id', '=', $id_proy)->get();
+			return View::make('site/trabajador/show', array('trabajador' => $trabajador))->with('obra', $obra);
+        }
+		
 	}
 
 	/**

@@ -32,6 +32,7 @@
           <div class="form-group">
       {!!Form::label('select1', 'Filtro')!!}
       {!!Form::select('select1', array(
+          '3' => 'Seleccionar',
           '0' => 'Todos',
           '1' => 'Activos',
           '2' => 'No Activos'), null, ['id' =>'select1', 'class' => 'form-control']) !!}
@@ -82,12 +83,17 @@
     $.get('partidas/getDrop/' + valor, function(data) {  
     console.log(data);
     $('#select2').empty();
+    $('#select2').append($('<option>', {
+    value: 0,
+    text: 'Seleccionar'
+}));
     $.each(data, function(index, CatObj){
     $('#select2').append($('<option>', { 
     value: CatObj.id,
     text : CatObj.nombre,
       }));
     });
+    
   });
  });
 
@@ -124,7 +130,7 @@
             {
               "sExtends": "xls",
               "sButtonText": 'Exportar ',
-              "sFileName": "Partidas - *.csv",
+              "sFileName": "Obras - *.csv",
                "mColumns": [1, 2, 3, 4],
               "aButtons": [ "xls" ]
             }

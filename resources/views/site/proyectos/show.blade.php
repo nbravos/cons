@@ -95,7 +95,7 @@
                 <th>Número</th>
                 <th>Empresa</th>
                 <th>Monto Ofertado</th> 
-                <th>Plazo</th>
+                <th>Plazo (días)</th>
                <th>Acciones</th>
                 </tr>
               </thead>
@@ -142,14 +142,29 @@
             serverSide: true,
             ajax: '{!! route('verof', ['id' =>  $proyecto->id]) !!}',
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
-            "sDom": 'Rfrtlip',
+            "sDom": 'TRfrtlip',
+            "oTableTools": {
+          "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+          "aButtons": [
+            {
+              "sExtends": "xls",
+              "sButtonText": 'Exportar ',
+              "sFileName": "Ofertas Proyecto - *.csv",
+               "mColumns": [1, 2, 3],
+              "aButtons": [ "xls" ]
+            }
+            ]
+        },
+
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'
           },
             columns: [
                 {data: 'id', name: 'proyecto_contratista.id', visible: false},
                 {data: 'mand', name:'empresa.nombre'},
-                {data: 'montOf', name: 'proyecto_contratista.monto_ofertado as montOf'},
+                {data: 'montOf',  render: function ( data, type, row ) {
+                  return $.fn.dataTable.render.number( '.', '.', 0, '$' ).display(data) ;
+                }, name: 'proyecto_contratista.monto_ofertado as montOf', title: 'Monto Ofertado'},
                 {data: 'diasOf', name: 'proyecto_contratista.dias'},
 		{data: 'action', name: 'action', orderable: false, searchable: false}    
             ],

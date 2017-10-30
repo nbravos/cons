@@ -70,9 +70,9 @@
      <div class="form-group">
       {!!Form::label('estado', 'Estado de Proyecto')!!}
       {!!Form::select('estado', array(
-          'licitacion' => 'Licitación', 
-          'obra' => 'Obra', 
-          'oficial' => 'Oficial'), null, ['id' =>'estado', 'class' => 'form-control']) !!}
+          'Proceso' => 'Proceso', 
+          'Ganada' => 'Ganada', 
+          'No Ganada' => 'No Ganada'), null, ['id' =>'estado', 'class' => 'form-control']) !!}
 	</div>
 
       <div class="form-group">
