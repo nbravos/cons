@@ -110,18 +110,18 @@
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
-                {data: 'nombre', name: 'nombre'},
+                {data: 'nombre', name: 'nombre', title: 'Nombre'},
                 {data: 'ap_paterno', render: function(data, type, full, meta){
                   return full.ap_paterno + ' ' + full.ap_materno;
 
-                } ,name: 'ap_paterno'},
+                } ,name: 'ap_paterno', title: 'Apellido'},
                 {data: 'fecha_termino', render: function(data, type, row){
                   if (data === '01-01-1970'){
                     return 'Contrato Indefinido';
                   } else {
                     return data;
                   }}, name: 'fecha_termino', title: 'Fecha Término Contrato'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
+                {data: 'action', name: 'action', title:'Acciones', orderable: false, searchable: false}
     
             ],
 
@@ -275,15 +275,15 @@ $("#button").click(function() {
           },
             columns: [
                 {data: 'id', name: 'id', visible: false},
-                {data: 'nombre', name: 'nombre'},
-                {data: 'ap_paterno', name: 'ap_paterno'},
+                {data: 'nombre', name: 'nombre', title: 'Nombre'},
+                {data: 'ap_paterno', name: 'ap_paterno', title: 'Apellido'},
                 {data: 'fecha_termino', render: function(data, type, row){
                   if (data === '01-01-1970'){
                     return 'Contrato Indefinido';
                   } else {
                     return data;
                   }}, name: 'fecha_termino', title: 'Fecha Término Contrato'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
+                {data: 'action', name: 'action', title:'Acciones', orderable: false, searchable: false}
     
             ],
 

@@ -91,7 +91,9 @@ class Proyecto extends \Eloquent {
                 return $this->belongsToMany('App\Models\Trabajador', 'proyecto_trabajador', 'id_trabajador', 'id_proyecto');
         }
 
-
+	public function equipo(){
+    	return $this->belongsToMany('App\Models\Equipo', 'proyecto_equipo', 'id_proyecto', 'id_equipo');
+    	}
 
 	public static function boot()
     	{

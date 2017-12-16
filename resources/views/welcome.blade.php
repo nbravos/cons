@@ -37,11 +37,12 @@
                 <nav class="collapse navbar-collapse main-navbar logo-navbar navbar-right">
                     <div class="menu-container">
                         <ul class="nav navbar-nav" id="menu-main">
-                            <li class="menu-item "> <a href="/">Inicio</a> </li>
+                            <li class="menu-item active"> <a href="/">Inicio</a> </li>
                             <li class="menu-item "> <a href="/about">Quiénes Somos</a> </li>
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
                             <li class="menu-item "> <a href="/noticias">Noticias</a> </li>
-                            <li class="menu-item active"> <a href="/contacto">Contacto</a> </li>
+                            <li class="menu-item "> <a href="/contacto">Contacto</a> </li>
+	  		    <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
                     </div>
                 </nav>

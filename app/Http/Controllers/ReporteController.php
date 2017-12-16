@@ -16,13 +16,38 @@ public function index()
                 return view('site/reportes/list');
     }
 
+public function tablaOfertas(){
+    $ofertas = DB::table('proyecto')
+                ->join('proyecto_contratista', 'proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                ->join('empresa as contratista', 'contratista.id', '=' ,'proyecto_contratista.id_empresa')
+                ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
+                ->select('proyecto.nombre as obra', 'proyecto_contratista.monto_ofertado as monto', 'proyecto_contratista.fecha_oferta as fecha', 'proyecto_contratista.estado_oferta as estado', 'contratista.nombre as contratista', 'mandante.nombre as mandante');
+		//dd($ofertas);
+                if(request()->ajax()){
+			
+                    return Datatables::of($ofertas)
 
-public function asistencia() //carga vista
-{
-    $proyectos = Proyecto::pluck('nombre', 'id');
-    return View::make('site/reportes/asistencia')->with('proyectos', $proyectos);
+                    ->make(true);
+                }
+                $proyectos = Proyecto::all();
+
+                return View::make('site/reportes/ofertas')->with('ofertas', $ofertas)->with('proyectos', $proyectos);
 
 }
+
+
+public function graficOfertas() //carga vista
+{
+    $ofertas = DB::table('proyecto')
+                ->join('proyecto_contratista', 'proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                ->join('empresa as contratista', 'contratista.id', '=' ,'proyecto_contratista.id_empresa')
+                ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
+                ->select('proyecto.nombre as obra', 'proyecto_contratista.monto_ofertado as monto', 'proyecto_contratista.fecha_oferta as fecha', 'proyecto_contratista.estado_oferta as estado', 'contratista.nombre as contratista', 'mandante.nombre as mandante')->get();
+                return $ofertas;
+
+
+} 
+
 
 public function getTrabDropdown($id){ //carga el dropdown de trabajadores
 

@@ -23,7 +23,8 @@ class ProyectoController extends \BaseController {
 		  $proyectos = DB::table('proyecto')
 					->join('comuna', 'comuna.id', '=','proyecto.id_comuna')
 					->join('empresa', 'empresa.id', '=','proyecto.id_empresa')
-	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion']);
+					
+	->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand' ,'proyecto.fecha_licitacion'])->where([['proyecto.id_comuna', '=', '5101'], ['proyecto.id_empresa', '=', '8']]);
 		
 		if (request()->ajax()){
 		                return Datatables::of($proyectos)

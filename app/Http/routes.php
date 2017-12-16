@@ -14,6 +14,8 @@
 
 Route::get('/', 'IndexController@showIndex');
 
+Route::get('login', 'AuthController@showLogin'); // Mostrar login
+Route::post('login', 'AuthController@postLogin'); // Verificar datos
 
 Route::group(['middleware' => 'web'], function () {
     
@@ -62,8 +64,13 @@ Route::resource('trabajador', 'TrabajadorController');
 Route::get('oc/getProy/{id}', ['uses' =>'OrdenCompraController@filtroIndex']);//filtro Index
 Route::resource('oc', 'OrdenCompraController');
 
-
+Route::post('partidas/addtrabajador/{id}', ['uses' => 'PartidaController@storeTrabajadorObra'])->name('storeTrabajadorObra');
+Route::get('partidas/addtrabajador/{id}', ['uses'=> 'PartidaController@addTrabajadorObra'])->name('agregaTrabajadorObra');
+Route::get('partidas/asistenciaDiaria/{id}', ['uses' => 'PartidaController@getTablaAsistencia'])->name('asistenciaDiaria');
+Route::get('partidas/graficoAsistenciaDiaria/{id_obra}/{id_trabajador}', ['uses' => 'PartidaController@graficoAsistenciaDiaria']);
+Route::get('partidas/obra/{id}', ['uses' => 'PartidaController@vistaObra'])->name('getObra');
 Route::get('partidas/getIndex/{id}', ['uses' => 'PartidaController@index2'])->name('getIndex');
+Route::get('partidas/getIndex3/{id}', ['uses' => 'PartidaController@index3'])->name('getIndex3');
 Route::get('partidas/getDrop/{id}', ['uses' => 'PartidaController@dropProyectos'])->name('getProyActivo');
 Route::get('cuadrillas/create/{id}',['uses' =>'CuadrillaController@create'])->name('addCuad');
 Route::get('partidas/proyecto/{id}', ['uses' =>'PartidaController@verPartProyecto'])->name('verPart');
@@ -75,6 +82,8 @@ Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante
 Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
 
+Route::get('reportes/montoOferta', ['uses' =>'ReporteController@tablaOfertas']); //carga página montos ofertados
+Route::get('reportes/montoOfertado', ['uses' =>'ReporteController@graficOfertas']); //grafico montos
 Route::get('reportes/asistencia', ['uses' =>'ReporteController@asistencia']); //carga página asistencia
 Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
 Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
@@ -99,18 +108,18 @@ Route::get('mantencion/add/{id}', ['uses' => 'MantencionController@create'])->na
 Route::get('mantencion/ver/{id}', ['uses' => 'MantencionController@verMantencionEquipo'])->name('verMant');
 Route::resource('mantencion', 'MantencionController');
 
-Route::get('login', 'AuthController@showLogin'); // Mostrar login
-Route::post('login', 'AuthController@postLogin'); // Verificar datos
+//Route::get('login', 'AuthController@showLogin'); // Mostrar login
+//Route::post('login', 'AuthController@postLogin'); // Verificar datos
 /*Route::get('logout', 'AuthController@logOut'); // Finalizar sesión*/
 
 
 /*Rutas para usuarios con autenticación solamente*/
-Route::group(['middleware' => 'auth'], function()
-{
+Route::group(['middleware' => 'auth'], function()//
+{//
 	Route::get('/home', ['uses' => 'HomeController@show', 'as' => 'home']); 
 	Route::get('logout', 'AuthController@logOut'); // Finalizar sesión	
 
-}); 
+}); //
 
 
 

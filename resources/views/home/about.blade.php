@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="assets4/images/favicons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="assets4/images/favicons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="assets4/images/favicons/favicon-16x16.png" sizes="16x16">-->
-    <link rel="shortcut icon" href="assets/img/logo_white_2.png""> </head>
+    <link rel="shortcut icon" href="pages/favicon.ico"> </head>
 
 <body class="pace-on pace-dot">
     <div class="pace-overlay"></div>
@@ -42,6 +42,7 @@
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
                             <li class="menu-item "> <a href="/noticias">Noticias</a> </li>
                             <li class="menu-item "> <a href="/contacto">Contacto</a> </li>
+  			    <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
                     </div>
                 </nav>
@@ -50,7 +51,8 @@
     </div>
     <div id="content" role="main">
         <article>
-            <section class="section">
+        
+        <section class="section">
                 <div class="background-media" style="background-image: url(assets4/images/construction/fondo1_about.jpg); background-repeat:no-repeat; background-size:cover;  background-position: 50% 50%;"> </div>
                 <div class="background-overlay grid-overlay-0" style="background-color: rgba(0,0,0,0.4);"></div>
                 <div class="container">
@@ -69,6 +71,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="section">
                 <div class="container">
                     <div class="row">

@@ -27,8 +27,9 @@ class ContactoController extends Controller
             $message->to('contacto@aragonltda.cl');
             $message->subject("Ha recibido un correo de Contacto aragonltda.cl");
 	    $message->replyTo($mail, $contact_name);
-            $message->cc('secretaria@aragonltda.cl');
-
+          $message->cc('secretaria@aragonltda.cl');
+    //        $message->cc('aldo@aragonltda.cl');   
+	
         });
 
         return redirect()->back()->with('message', 'Gracias por su mensaje!');    

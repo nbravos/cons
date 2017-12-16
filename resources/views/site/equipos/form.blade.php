@@ -55,6 +55,10 @@
       {!! Form::label('codigo', 'Código') !!}
       {!! Form::text('codigo', null, array('placeholder' => 'Ingresa el código ', 'class' => 'form-control')) !!}
     </div>
+    <div class="form-group">
+           {!! Form::label('id_proyecto', 'Obra Asociada') !!}
+           {!! Form::select('id_proyecto', $proyectos, null, ['class' => 'form-control']) !!}
+    </div>
   </div>
    <div class="row">
     <div class="form-group">
@@ -70,5 +74,7 @@
   {!! Form::button('Guardar Datos', array('type' => 'submit', 'class' => 'btn btn-primary')) !!}    
   
 {!! Form::close() !!}
-
+<script type="text/javascript">
+    $("#id_proyecto").prepend("<option value='' selected='selected'>Seleccionar</option>");
+</script>
 @stop

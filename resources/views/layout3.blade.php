@@ -9,8 +9,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="https://aragonltda.cl/pages/ico/76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="https://aragonltda.cl/pages/ico/120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="https://aragonltda.cl/pages/ico/152.png">
-    <link rel="icon" type="image/x-icon" href="https://aragonltda.cl/pages/favicon.ico" />
-
+<!--    <link rel="shortcut icon" type="image/x-icon" href="https://aragonltda.cl/pages/favicon.ico" / -->
+<!--<link rel="shortcut icon" href="pages/favicon.ico">-->
 <!--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" /> -->
     <script src="https://aragonltda.cl/assets/plugins/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,7 +227,7 @@
                 <ul class="sub-menu">
               </li>
               <li>
-                    <a href="javascript:;">Monto Ofertado/Disponible</a>
+                    <a href="https://aragonltda.cl/reportes/montoOferta">Monto Ofertado/Disponible</a>
                     <span class="icon-thumbnail">M</span>
                   </li>
                    </ul>

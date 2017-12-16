@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuadrilla extends Model
 {
-    protected $table = 'cuadrilla';
+    protected $table = 'proyecto_trabajador';
 
-    protected $fillable = ['id_partida', 'nombre', 'descripcion', 'fecha', 'equipo'];
+    protected $fillable = ['id', 'id_proyecto', 'descripcion', 'fecha', 'equipo'];
 
     public $timestamps = false;
 

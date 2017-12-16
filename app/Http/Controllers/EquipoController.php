@@ -2,7 +2,7 @@
 
 
 use App\Models\Equipo;
-
+use App\Models\Proyecto;
 use Yajra\Datatables\Datatables;
 
 class EquipoController extends Controller {
@@ -15,9 +15,19 @@ class EquipoController extends Controller {
 	 */
 	public function index()
 	{
-		/*$equipos = Equipo::paginate();  
-	    return View::make('site/equipos/list')->with('equipos', $equipos);*/
-	                  $equipos = Equipo::select(['id', 'nombre', 'descripcion']);
+
+	/*$equipos = DB::table('equipo')
+	    	->join('proyecto_equipo', 'id', '=', 'id_equipo')
+	    	->join('proyecto', function ($join) {
+            	$join->on('proyecto.id', '=', 'proyecto_equipo.id_proyecto');
+	        })
+	    	->select('equipo.id', 'equipo.nombre', 'equipo.descripcion', 'proyecto.nombre');*/
+	    $equipos = Equipo::select('equipo.id', 'equipo.nombre as nombre', 'equipo.descripcion as descripcion', 'proyecto.nombre as obra')
+	    	->join('proyecto_equipo', 'proyecto_equipo.id_equipo', '=', 'equipo.id')
+            ->join('proyecto', function($join){
+                $join->on('proyecto.id','=','proyecto_equipo.id_proyecto');
+            })
+            ->get();
 		if (request()->ajax()){
 		                return Datatables::of($equipos)
 
@@ -46,7 +56,11 @@ class EquipoController extends Controller {
 	 */
 	public function create()
 	{
-		return View::make('site/equipos/form');	
+		
+		$proyectos = Proyecto::pluck('nombre', 'id');		
+
+		return View::make('site/equipos/form',  ['proyectos' => $proyectos]);
+
 	}
 
 	/**

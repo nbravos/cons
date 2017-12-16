@@ -36,12 +36,14 @@
                 <th>Número</th>
                 <th>Nombre</th>
                  <th>Descripción</th>
+                 <th>Obra</th>
                  <th>Acciones</th>
                  </tr>
               </thead>
                <tfoot>
                     <tr>
                       <td class="non_searchable"></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td  class="non_searchable"></td>
@@ -103,6 +105,7 @@ $(document).ready(function(){
                 {data: 'id', name: 'id', visible: false},
                 {data: 'nombre', name: 'nombre'},
                 {data: 'descripcion', name: 'descripcion'},
+                {data: 'obra', name: 'obra'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
     
             ],

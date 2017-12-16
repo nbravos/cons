@@ -52,8 +52,12 @@ class Equipo extends \Eloquent {
 
 		return $this->belongsTo('App\Models\Cuadrilla');
 	}
-
+	
+	public function proyecto(){
+		return $this->belongsToMany('App\Models\Proyecto', 'proyecto_equipo', 'id_equipo', 'id_proyecto');
+	}
 }
 
 
 
+	

@@ -41,6 +41,7 @@
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
                             <li class="menu-item active"> <a href="/noticias">Noticias</a> </li>
                             <li class="menu-item "> <a href="/contacto">Contacto</a> </li>
+  			    <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
                     </div>
                 </nav>
