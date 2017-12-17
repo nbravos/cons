@@ -29,24 +29,28 @@ public function tablaOfertas(){
 
                     ->make(true);
                 }
-                $proyectos = Proyecto::all();
-
+		$proyectos = Proyecto::pluck('nombre', 'id');
+               // $proyectos = Proyecto::all();
                 return View::make('site/reportes/ofertas')->with('ofertas', $ofertas)->with('proyectos', $proyectos);
 
 }
 
 
-public function graficOfertas() //carga vista
+public function graficOfertas($id) //carga vista
 {
     $ofertas = DB::table('proyecto')
-                ->join('proyecto_contratista', 'proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                ->join('proyecto_contratista', function($join) use ($id){
+                    $join->on('proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                        ->where('proyecto.id', '=', $id);
+                })                
                 ->join('empresa as contratista', 'contratista.id', '=' ,'proyecto_contratista.id_empresa')
                 ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
                 ->select('proyecto.nombre as obra', 'proyecto_contratista.monto_ofertado as monto', 'proyecto_contratista.fecha_oferta as fecha', 'proyecto_contratista.estado_oferta as estado', 'contratista.nombre as contratista', 'mandante.nombre as mandante')->get();
+
                 return $ofertas;
 
 
-} 
+}
 
 
 public function getTrabDropdown($id){ //carga el dropdown de trabajadores
@@ -64,47 +68,25 @@ return response()->json($trabajadores);
 
 }
 
+public function vistaAsistencia() { //carga página de las asistencias
+    $trabajadores = Trabajador::all();
+
+    return View::make('site/reportes/asistencia_reporte')->with('trabajador', $trabajador);
+
+}
+
+public function asistenciaGrafico($id_trabajador, $desde, $hasta){ //grafico asistencia por trabajador
+
+
+}
 public function grapAsistenciaTrabajador($id) //grafico de la asistencia x trabajador x proyecto
 {
 
    
 
-//    $asist = \Lava::DataTable();
-    $result = DB::table('asistencia')
-        ->join('trabajador', function($join) use ($id) {
-                        $join->on('trabajador.id', '=', 'asistencia.id_trabajador')
-                        ->where('asistencia.id_trabajador', '=', $id);
-                    }) 
-        ->select(['trabajador.nombre', 'trabajador.ap_paterno', 'asistencia.presente', 'asistencia.atraso', 'asistencia.fecha'])->get();
 
-/*        $asist->addDateColumn('Fecha')
-                ->addNumberColumn('Presente')
-                ->addNumberColumn('Atraso')
-                ->setDateTimeFormat('d-m-Y');
-                for($i=0; $i < count($data); $i++){
-
-                    $data[$i]->fecha = Carbon::createFromFormat('Y-m-d H:i:s', $data[$i]->fecha)->format('d-m-Y');
-                    $asist->addRow([$data[$i]->fecha, $data[$i]->atraso, $data[$i]->presente]);
-                }*/
-                
-     /*  \Lava::ColumnChart('Asistencia', $asist, [
-            'title' => 'Asistencia de: ' .$data[0]->nombre.$data[0]->ap_paterno ,
-            'titleTextStyle' =>[
-                'color' => '#eb6b2c',
-                'fontSize' => 14,
-                ]
-            ]); */
-	
-
-//	return 'asiste' => $asist->toJson()];
-	 //$jsonData['graph'] = $asist->toJson();
-	 //return $jsonData;
 	
   	   return $result;
-	
-//        return $asist->toJson();
-//        return View::make('site/reportes/asistencia', compact('lava'));
-        //return View::make('site/reportes/asistencia');
 
 }
     public function tablaAsistenciaTrabajador($id){

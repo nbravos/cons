@@ -54,9 +54,11 @@
 
 <canvas id="projects-graph" width="1000" height="400"></canvas>
 
-<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.js">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/moment/moment-with-locales.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/accounting/accounting.min.js') }}"></script>
+
 <script type="text/javascript">
               $(document).ready(function() {
     var url = 'https://aragonltda.cl/reportes/montoOferta';
@@ -155,6 +157,20 @@ $('#proyecto').on('change', function(e) {
     var chartInstance = new Chart(buyers, {
     type: 'line',
     data: buyerData, 
+    options: {
+    scales: {
+        yAxes: [
+            {
+                ticks: {
+                    callback: function(data1) {
+                        return     accounting.formatMoney(data1, "$", 0, ",", ".");
+                    }
+                },
+            }
+        ]
+    }
+}
+
 
     });
 
