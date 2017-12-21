@@ -67,6 +67,7 @@
             serverSide: true,
             ajax: url,
             order: [[2, "desc"]], 
+	    "iDisplayLength": -1,
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'TODO']],
             "sDom": 'TRfrtlip',
             "oTableTools": {
@@ -75,7 +76,7 @@
             {
               "sExtends": "xls",
               "sButtonText": 'Exportar ',
-              "sFileName": "Asistencia_Trabajadores - *.csv",
+              "sFileName": "Ofertas_Obras - *.csv",
                "mColumns": [0, 1, 2, 3, 4],
               "aButtons": [ "xls" ]
             }
@@ -94,7 +95,9 @@
                         if (value === null) return "";
                         return moment(value).format('L');
                  }, name: 'proyecto_contratista.fecha_oferta'},
-                {data: 'monto', name: 'proyecto_contratista.monto_ofertado'},
+                {data: 'monto', render: function(value) {
+                      return accounting.formatMoney(value, "$", 0, ",", ".");
+                 }, name: 'proyecto_contratista.monto_ofertado'},
 
     
             ],
@@ -139,6 +142,7 @@ $('#proyecto').on('change', function(e) {
         data4.push(result[i].obra);
     }
 
+
     var buyerData = {
       labels : labels,
       datasets : [
@@ -151,7 +155,7 @@ $('#proyecto').on('change', function(e) {
       ]
     };
 
-
+    
     var buyers = document.getElementById('projects-graph').getContext('2d');
     
     var chartInstance = new Chart(buyers, {
@@ -168,6 +172,15 @@ $('#proyecto').on('change', function(e) {
                 },
             }
         ]
+    },
+     tooltips: {
+        callbacks: {
+            label: function(tooltipItem, data1) {
+                return "$" + Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function(c, i, a) {
+                    return i > 0 && c !== "," && (a.length - i) % 3 === 0 ? "." + c : c;
+                });
+            }
+        }
     }
 }
 

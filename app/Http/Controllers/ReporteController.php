@@ -6,6 +6,7 @@ use Khill\Lavacharts\Lavacharts;
 use App\Models\Proyecto;
 use App\Models\Proyectocontratista;
 use App\Models\Empresa;
+use App\Models\Trabajador;
 use Carbon\Carbon; 
 
 class ReporteController extends Controller

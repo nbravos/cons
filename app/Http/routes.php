@@ -84,7 +84,7 @@ Route::resource('proyectos', 'ProyectoController');
 
 Route::get('reportes/montoOferta', ['uses' =>'ReporteController@tablaOfertas']); //carga página montos ofertados
 Route::get('reportes/montoOfertado/{id}', ['uses' =>'ReporteController@graficOfertas']); //grafico montos
-Route::get('reportes/asistencia', ['uses' =>'ReporteController@asistencia']); //carga página asistencia
+Route::get('reportes/asistencia', ['uses' =>'ReporteController@vistaAsistencia']); //carga página asistencia
 Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
 Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
 Route::get('reportes/getTablaTrab/{id}', ['uses' => 'ReporteController@tablaAsistenciaTrabajador']);
