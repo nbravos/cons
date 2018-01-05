@@ -19,7 +19,7 @@
 
 
 
-<table class="table table-user-information">
+<table class="table table-striped table-bordered dt-responsive nowrap">
                     <tbody>
                       <tr>
                         <td> <strong>Nombre </strong></td>
@@ -83,7 +83,7 @@
   <a href="{{ route('asistenciaDiaria', $proyecto->id)  }}" class="btn btn-primary">Asistencia</a>
   </p>
 
-	<div class="panel-body">
+
   	<table id="listaPart" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -110,7 +110,6 @@
               <td class="non_searchable"></td>
               </table>
               </div>
-            </div>                  
 <!--<a href="#" class="btn btn-primary">Editar</a>
   <p>
   <a href="#" class="btn btn-primary">Asistencia Diaria</a>

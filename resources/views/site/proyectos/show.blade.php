@@ -25,7 +25,7 @@
 
 
 <!-- <a href="/ofertas/create/'.$proyecto->id.'" class="btn btn-primary"> Oferta</a>-->
-<table class="table table-user-information">
+<table class="table table-striped table-bordered dt-responsive nowrap">
                     <tbody>
                       <tr>
                         <td> <strong>Nombre </strong></td>

@@ -23,7 +23,7 @@
         
 
 <!-- </div>-->
-<table class="table table-user-information">
+<table class="table table-striped table-bordered dt-responsive nowrap">
                     <tbody>
                        <tr>
                         <td><strong>Proyecto</strong></td>

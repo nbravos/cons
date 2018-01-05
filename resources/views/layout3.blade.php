@@ -232,7 +232,7 @@
                   </li>
                    </ul>
                   <li>
-                    <a href="ujavascript:;">Avances</a>
+                    <a href="https:://aragonltda.cl/reportes/avances">Avances</a>
                     <span class="icon-thumbnail">A</span>
                   </li>
                   <li>

@@ -25,6 +25,14 @@
                 <div class="clearfix"></div>
               </div>
               <div  class="panel-body">
+
+<br>
+          {!! Form::label('proyecto', 'Seleccionar Obra') !!}
+           {!! Form::select('proyecto', $proyectos, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'proyecto')) !!}
+<br>           
+<canvas id="projects-graph" width="1400" height="600"></canvas>
+<br>
+
   <table id="listaOfertados" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -48,11 +56,8 @@
               </div>
             </div>
             <br>
-          {!! Form::label('proyecto', 'Seleccionar Proyecto') !!}
-           {!! Form::select('proyecto', $proyectos, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'proyecto')) !!}
-           <br>
 
-<canvas id="projects-graph" width="1000" height="400"></canvas>
+           <br>
 
 </script>
 

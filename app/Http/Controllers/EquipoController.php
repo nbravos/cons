@@ -106,7 +106,14 @@ class EquipoController extends Controller {
           {
             App::abort(404)->with('message', 'Equipo no encontrado');
           }
-            return View::make('site/equipos/show', array('equipo' => $equipo));
+
+          $ubicacion = DB::table('posicion_equipo')
+          			->join('equipo', function ($join) {
+           				 $join->on('posicion_equipo.imei', '=', 'equipo.codigo');
+        					})
+          			->where('equipo.id', '=', $id)
+          					->get(array('posicion_equipo.id', 'imei', 'lat', 'lon', 'fecha', 'equipo.nombre'));
+            return View::make('site/equipos/show', compact('equipo', 'ubicacion'));
 	}
 
 	/**

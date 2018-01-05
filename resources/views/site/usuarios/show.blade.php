@@ -21,7 +21,7 @@
 
 <h2> {!! $user->name !!}  </h2>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered dt-responsive nowrap">
     <tr>
         <th>Nombre</th>
         <th>Dirección de Correo</th>

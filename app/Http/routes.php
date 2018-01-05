@@ -82,9 +82,14 @@ Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante
 Route::resource('proyectos', 'ProyectoController');
 //Route::get('proyectos/getJoinProyecto', 'ProyectoController@getJoinData');
 
+//Rutas Graficos:
+Route::get('reportes/avances', ['uses' => 'ReporteController@vistaAvances']); //vista avances
+Route::get('reportes/selectObraAvance/{id}', ['uses' => 'ReporteController@selectBoxAvance']); //selectbox avances
+Route::get('reportes/avanceObra/{id}', ['uses' => 'ReporteController@avancesGrafico']); //grafico de avances x partida
 Route::get('reportes/montoOferta', ['uses' =>'ReporteController@tablaOfertas']); //carga página montos ofertados
 Route::get('reportes/montoOfertado/{id}', ['uses' =>'ReporteController@graficOfertas']); //grafico montos
 Route::get('reportes/asistencia', ['uses' =>'ReporteController@vistaAsistencia']); //carga página asistencia
+Route::get('reportes/graficoAsistenciaDiaria/{id_trabajador}/{desde}/{hasta}', ['uses' => 'ReporteController@asistenciaGrafico']);//grafico de asistencia
 Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
 Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
 Route::get('reportes/getTablaTrab/{id}', ['uses' => 'ReporteController@tablaAsistenciaTrabajador']);

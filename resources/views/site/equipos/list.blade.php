@@ -20,7 +20,7 @@
   <a href="{!! route('equipos.create') !!}" class="btn btn-primary">Agregar nuevo </a>
   </p>
 
-<!-- <div class="container-fluid container-fixed-lg bg-white"> -->
+ <div class="container-fluid container-fixed-lg bg-white"> 
             <!-- START PANEL -->
             <div class="panel panel-transparent">
               <div class="panel-heading">
@@ -51,12 +51,15 @@
                   </tfoot>
               </table>
               </div>
-              <div id="mymap"></div>
             </div>
-<!--           </div> -->
-
-
-
+           <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+            <div id="mymap"></div>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+          </div>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -66,8 +69,8 @@ $(document).ready(function(){
       div: '#mymap',
       lat: -33.047238,
       lng: -71.61268849999999,
-      width: '800px',
-      height: '800px',
+      width: '600px',
+      height: '600px',
       zoom:12
     });
 
