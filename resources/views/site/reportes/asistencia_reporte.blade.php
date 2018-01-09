@@ -56,7 +56,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/moment/moment-with-locales.min.js') }}"></script>
 <script type="text/javascript">
 
 $( "#datepicker1" ).datepicker({
@@ -82,18 +82,20 @@ $('#trabajador').on('change', function(e) {
         var from = $("#datepicker1").val();
         var to = $("#datepicker2").val();     
         var url = 'https://aragonltda.cl/reportes/graficoAsistenciaDiaria/'+ valorid +'/'+ from +'/'+ to;
-	moment.locale('es');
+        moment.locale('es');
+
         
   $.getJSON(url, function (result) {
 
-    var data1=[], data2=[], data3=[], data4=[], data5=[];
+    var  data3=[], data4=[], data5=[], data6=[];
     for (var i = 0; i < result.length; i++) {
 
-        data1.push(result[i].nombre);
-        data2.push(result[i].apellido);
-        data3.push(moment((result[i].fecha)).format('L'));
+
+        data3.push(result[i].fecha);
         data4.push(result[i].presente);
         data5.push(result[i].obra);
+        data6.push(result[i].atraso);
+
     }
 
     function getColorArray(data, colorLow, colorHigh) {
@@ -114,17 +116,24 @@ $('#trabajador').on('change', function(e) {
       datasets : [
 
         {
-          label: "Asistencia Semanal "+data1[0]+" "+data2[0],
+          label: "Asistencia Semanal ",
           backgroundColors: backgroundColor,
-          borderColor: "rgba(179,181,198,1)",
+          borderColor: "rgba(141, 227, 109, 0.66)",
           data : data4
+        },
+
+        {
+          label: "Atrasos ",
+          backgroundColors: backgroundColor,
+          borderColor: "rgba(166, 109, 227, 0.66)",
+          data: data6
         }
       ]
     };
     var buyers = document.getElementById('projects-graph').getContext('2d');
     
     var chartInstance = new Chart(buyers, {
-    type: 'pie',
+    type: 'doughnut',
     data: buyerData, 
     options: {
        scales: {

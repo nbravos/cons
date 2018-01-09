@@ -118,7 +118,7 @@
 </div>
        <div class="form-group">
     <label class="control-label" for="fecha_licitacion">Fecha Licitación</label>
-    <input class="form-control" id="datepicker1" name="fecha_licitacion" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $proyecto->fecha_licitacion)->format('d-m-Y') }}" type="text">
+    <input class="form-control" id="datepicker1" name="fecha_licitacion" placeholder="DD/MM/AA" value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $proyecto->fecha_licitacion)->format('d/m/Y') }}" type="text">
   </div>
 </div> 
 <!-- Datetime Script-->

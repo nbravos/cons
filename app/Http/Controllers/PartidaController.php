@@ -83,7 +83,7 @@ class PartidaController extends \Controller {
         ->join('comuna', 'comuna.id', '=', 'proyecto.id_comuna')
         ->join('empresa', 'empresa.id', '=', 'proyecto.id_empresa')
         ->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand', 'proyecto.fecha_licitacion as fecha_licitacion'])
-       	->where('estado', '=', 'ganado');
+       	->where('estado', '=', 'obra');
        	if (request()->ajax()){
 		                return Datatables::of($obras)
 
@@ -101,7 +101,7 @@ class PartidaController extends \Controller {
         ->join('comuna', 'comuna.id', '=', 'proyecto.id_comuna')
         ->join('empresa', 'empresa.id', '=', 'proyecto.id_empresa')
         ->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand', 'proyecto.fecha_licitacion as fecha_licitacion'])
-        ->where([['activo', '=', '1'], ['estado', '=', 'ganado']]);
+        ->where([['activo', '=', '1'], ['estado', '=', 'obra']]);
         if (request()->ajax()){
 		                return Datatables::of($obras)
 
@@ -118,7 +118,7 @@ class PartidaController extends \Controller {
         ->join('comuna', 'comuna.id', '=', 'proyecto.id_comuna')
         ->join('empresa', 'empresa.id', '=', 'proyecto.id_empresa')
         ->select(['proyecto.id', 'proyecto.nombre as proNombre', 'comuna.nombre as comu', 'empresa.nombre as mand', 'proyecto.fecha_licitacion as fecha_licitacion'])
-        ->where([['activo', '=', '2'], ['estado', '=', 'ganado']]);
+        ->where([['activo', '=', '2'], ['estado', '=', 'obra']]);
         if (request()->ajax()){
 		                return Datatables::of($obras)
 
@@ -202,16 +202,13 @@ return Redirect::route('getObra', $proy->id);
 	}
 	
 	public function getTablaAsistencia($id){
-		$asiste = DB::table('asistencia')
+		/*$asiste = DB::table('asistencia')
 				->join('trabajador', 'trabajador.id', '=', 'asistencia.id_trabajador')
 				->join('proyecto_trabajador', function($join) use ($id) {
         				$join->on('proyecto_trabajador.id_trabajador', '=', 'trabajador.id')
         				->where('proyecto_trabajador.id_proyecto', '=', $id);
         			})
-				/*->join('partida', function($join) use ($id) {
-        				$join->on('partida.id_proyecto', '=', 'proyecto_trabajador.id_proyecto')
-        				->where('partida.id_proyecto', '=', $id);
-        			})*/
+				
 				->join('usuario', 'usuario.id', '=', 'asistencia.id_usuario')
 				->select('asistencia.fecha', 'asistencia.presente', 'trabajador.nombre', 'trabajador.ap_paterno', 'usuario.name');
 				if(request()->ajax()){
@@ -219,7 +216,8 @@ return Redirect::route('getObra', $proy->id);
 					
 					
 					->make(true);
-				}
+					->with('asiste', $asiste)
+				}*/
 			
 		$obra = Proyecto::find($id);
 		$trabajadores = DB::table('trabajador')
@@ -229,9 +227,9 @@ return Redirect::route('getObra', $proy->id);
     					})
     					->select('trabajador.nombre', 'trabajador.ap_paterno', 'trabajador.id')->get();
 		
-		                
+		        
 		
-		return View::make('site/partidas/asistencia_multifilter')->with('asiste', $asiste)->with('obra', $obra)->with('trabajadores', $trabajadores);
+		return View::make('site/partidas/asistencia_multifilter')->with('obra', $obra)->with('trabajadores', $trabajadores);
 		}
 	
 	/**

@@ -19,7 +19,7 @@ public function index()
     }
 
 public function tablaOfertas(){ //tabla y vista de ofertas
-    $ofertas = DB::table('proyecto')
+    /*$ofertas = DB::table('proyecto')
                 ->join('proyecto_contratista', 'proyecto_contratista.id_proyecto', '=', 'proyecto.id')
                 ->join('empresa as contratista', 'contratista.id', '=' ,'proyecto_contratista.id_empresa')
                 ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
@@ -32,23 +32,76 @@ public function tablaOfertas(){ //tabla y vista de ofertas
                     ->make(true);
                 }
                 $proyectos = Proyecto::pluck('nombre', 'id');
-                return View::make('site/reportes/ofertas')->with('ofertas', $ofertas)->with('proyectos', $proyectos);
+                return View::make('site/reportes/monto_oferta')->with('ofertas', $ofertas)->with('proyectos', $proyectos);*/
+                $proyectos = Proyecto::pluck('nombre', 'id');
+                return View::make('site/reportes/monto_oferta')->with('proyectos', $proyectos);
 
 }
 
 
-public function graficOfertas($id) //grafico de las ofertas
+public function graficOfertas($mandante, $comuna, $tipo, $contratista) //grafico de las ofertas
 {
-    $ofertas = DB::table('proyecto')
+    /*$ofertas = DB::table('proyecto')
                 ->join('proyecto_contratista', function($join) use ($id){
                     $join->on('proyecto_contratista.id_proyecto', '=', 'proyecto.id')
                         ->where('proyecto.id', '=', $id);
                 })                
                 ->join('empresa as contratista', 'contratista.id', '=' ,'proyecto_contratista.id_empresa')
                 ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
-                ->select('proyecto.nombre as obra', 'proyecto_contratista.monto_ofertado as monto', 'proyecto_contratista.fecha_oferta as fecha', 'proyecto_contratista.estado_oferta as estado', 'contratista.nombre as contratista', 'mandante.nombre as mandante')->get();
-                return $ofertas;
+                ->select('proyecto.nombre as obra', 'proyecto_contratista.monto_ofertado as monto', 'proyecto_contratista.fecha_oferta as fecha', 'proyecto_contratista.estado_oferta as estado', 'contratista.nombre as contratista', 'mandante.nombre as mandante')->get();*/
 
+        $ofertas = DB::table('proyecto')
+                ->join('proyecto_contratista', 'proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
+                ->where(function($query) use ($mandante){
+                    $query->where('proyecto.id_empresa', '=', $mandante);
+                })
+                ->join('empresa as contratista', function($join) use ($contratista){
+                    $join->on('contratista.id', '=', 'proyecto_contratista.id_empresa')
+                    ->where('proyecto_contratista.id_empresa', '=', $contratista);
+                }) 
+                ->join('comuna', function($join) use ($comuna){
+                    $join->on('comuna.id', '=', 'proyecto.id_comuna')
+                        ->where('proyecto.id_comuna', '=', $comuna);
+                })
+                ->select('proyecto_contratista.monto_ofertado as monto', 'contratista.nombre as contratista', 'proyecto.presupuesto_oficial as total', 'proyecto.nombre as obra')
+                ->where(function($query) use ($tipo){
+                    $query->where('proyecto.tipo_proyecto', '=', $tipo);
+                })
+                ->get();
+                return $ofertas;
+}
+
+
+public function vistaOfertas2(){ //tabla y vista de ofertas2
+   
+                return View::make('site/reportes/monto_oferta2');
+
+}
+
+public function graficOfertas2($id, $mandante, $tipo, $comuna) //grafico de las ofertas
+{
+    $ofertas = DB::table('proyecto')
+                ->join('proyecto_contratista', function($join) use ($id){
+                    $join->on('proyecto_contratista.id_proyecto', '=', 'proyecto.id')
+                        ->where('proyecto.id', '=', $id)
+                        ->where('proyecto_contratista.estado_oferta', '=', 1);
+                })
+
+                ->join('empresa as mandante', 'mandante.id', '=' ,'proyecto.id_empresa')
+                ->where(function($query) use ($mandante){
+                    $query->where('proyecto.id_empresa', '=', $mandante);
+                }) 
+                 ->where(function($query) use ($tipo){
+                    $query->where('proyecto.tipo_proyecto', '=', $tipo);
+                })
+                ->join('comuna', function($join) use ($comuna){
+                    $join->on('comuna.id', '=', 'proyecto.id_comuna')
+                        ->where('proyecto.id_comuna', '=', $comuna);
+                })
+                ->select('proyecto_contratista.monto_ofertado as monto', 'contratista.nombre as contratista', 'mandante.nombre as mandante', 'proyecto.presupuesto_oficial as total')
+                ->get();
+                return $ofertas;
 
 }
 
@@ -88,13 +141,47 @@ public function asistenciaGrafico($id_trabajador, $desde, $hasta){ //grafico asi
                     ->join('asistencia_partida', 'asistencia_partida.id_asistencia', '=', 'asistencia.id')
                     ->whereIn('asistencia_partida.id_partida', $partidas)
                     ->whereBetween('asistencia.fecha', [$desde, $hasta])
-                    ->select('asistencia.fecha as fecha', 'trabajador.nombre as nombre', 'trabajador.ap_paterno as apellido', 'asistencia.presente as presente')->get();
+                    ->select('asistencia.fecha as fecha', 'trabajador.nombre as nombre', 'trabajador.ap_paterno as apellido', 'asistencia.presente as presente', 'asistencia.atraso as atraso')->get();
                     
                     //return $asistencia;
                     return(json_encode($asistencia));
 
 
 }
+
+public function asistenciaGrafico2($id_trabajador){ //grafico asistencia por trabajador
+        
+        $partidas = Partida::pluck('id');  //pasa la id del trabajador      
+        
+        $desde = date('Y-m-01');
+        $hasta = date('Y-m-d');
+
+        $asistencia = DB::table('asistencia')
+                    ->join('trabajador', 'trabajador.id', '=', 'asistencia.id_trabajador')
+                    ->where(function ($query) use ($id_trabajador) {
+                        $query->where('trabajador.id', '=', $id_trabajador);
+                        })
+                    ->join('asistencia_partida', 'asistencia_partida.id_asistencia', '=', 'asistencia.id')
+                    ->whereIn('asistencia_partida.id_partida', $partidas)
+                    ->whereBetween('asistencia.fecha', [$desde, $hasta])
+                    ->select('asistencia.presente as presente')
+                    ->select( DB::raw('count(*) as presentes, asistencia.presente'), DB::raw('count(*) as atraso, asistencia.atraso'))
+                    ->where('asistencia.presente', '=', 1)
+                    ->where('asistencia.atraso', '=', 1)
+		    ->groupBy('asistencia.presente', 'asistencia.atraso')
+                    ->get();
+                    
+                     $trabajadores = DB::table('trabajador')
+                        ->select('nombre', 'ap_paterno', 'id')->get();
+                    //return(json_encode($asistencia));
+                    return View::make('site/reportes/asistencia_reporte')
+                                ->with('asistencia', json_encode($asistencia))
+                                ->with('trabajadores', $trabajadores);
+
+
+}
+
+
 
 public function vistaAvances(){
 
