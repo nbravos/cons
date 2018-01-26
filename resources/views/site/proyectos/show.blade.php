@@ -37,7 +37,7 @@
                       </tr>
                       <tr>
                         <td><strong>Empresa</strong> </td>
-                        <td>{!!$proyecto->id_empresa!!}</td>
+                        <td>{!!$proyecto->empresa->nombre!!}</td>
                       </tr>
                       <tr>
                         <td><strong> Comuna</strong></td>
@@ -79,6 +79,8 @@
                     </tbody>
                   </table>
                   <p>
+		<br>
+	<a href="{{ route('activarProy', $proyecto->id)  }}" class="btn btn-primary">Activar Proyecto</a>
 
 <!-- Agregar acá tabla con datos -->
 <div  class="panel panel-transparent">

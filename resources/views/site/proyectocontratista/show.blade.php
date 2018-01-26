@@ -59,6 +59,7 @@
 <a href="{!!route('ofertas.edit', $pc->id)!!}" class="btn btn-primary">Editar</a>
 <br>
 <br>
+  {!! Form::model($pc, array('route' => array('ofertas.destroy', $pc->id), 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'), array('role' => 'form')) !!}
   {!! Form::submit('Eliminar', array('class' => 'btn btn-danger')) !!}
   {!! Form::close() !!}
 </p>
@@ -67,7 +68,7 @@
 
   function ConfirmDelete()
   {
-  var x = confirm("Desea eliminar el Contratista?");
+  var x = confirm("Desea eliminar esta Oferta?");
   if (x)
     return true;
   else

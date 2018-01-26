@@ -68,7 +68,8 @@
           'Pavimentación Calzada' => 'Pavimentación Calzada',
           'Hormigón' => 'Hormigón',
           'Pavimentación Asfalto' => 'Asfalto',
-          'Aceras' => 'Aceras'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
+          'Aceras' => 'Aceras')
+	  'Otros' => 'Otros'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -122,8 +123,8 @@
   </div>
 </div> 
 <!-- Datetime Script-->
-   <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-   <script src="https://192.241.187.240/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+   <script src="https://aragonltda.cl/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js"></script>
     <script type="text/javascript">
 $(document).ready(function () {
        

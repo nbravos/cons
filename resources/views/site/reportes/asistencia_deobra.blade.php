@@ -17,38 +17,15 @@
 
 <div  class="panel panel-transparent">
               <div class="panel-heading">
-                <div class="panel-title"> Asistencia de Trabajadores
+                <div class="panel-title"> Asistencia de {{ $trabajador->nombre }} {{ $trabajador->ap_paterno }}
                 </div>
                 <div class="export-options-container pull-right"></div>
                 <div class="clearfix"></div>
               </div>
               <div  class="panel-body">
               </div>
-            
-       <div class="form-group">
-    <label>Seleccionar Trabajador
-        <select name="trabajador" id="trabajador" class="form-control input-sm">
-            @foreach($trabajadores as $trabajador)
-          <option value="{{$trabajador->id}}">{{$trabajador->nombre}} {{$trabajador->ap_paterno}}</option>            @endforeach
-           </select>
-    </label>
-</div>
-          <div class="row">
-          <div class= "col-xs-6 col-md-4">
-          	<div class="form-group">
-           		<label class="control-label" for="inicio">Desde</label>
-          		<input class="form-control" id="datepicker1" name="inicio" placeholder="DD/MM/AA" type="text">
-      		</div>
-      	  </div>
-      	  <div class ="col-xs-6 col-md-4">
-      		<div class="form-group">
-           		<label class="control-label" for="fin">Hasta</label>
-          		<input class="form-control" id="datepicker2" name="fin" placeholder="DD/MM/AA" type="text">
-      	  	</div>
-      	  </div>
-      <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-primary btn-sm m-t-10" >Filtrar </p></div>
-      </div>
-      <br>	
+          <div class="row">      	
+        <br>	
 </div>
 
 <canvas id="projects-graph" width="1000" height="400"></canvas>
@@ -59,34 +36,14 @@
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/moment/moment-with-locales.min.js') }}"></script>
 <script type="text/javascript">
 
-$( "#datepicker1" ).datepicker({
-        format: 'dd-mm-yy',
-        language: 'es',
-        autoclose: true
 
-  });
-
-  $( "#datepicker2" ).datepicker({
-        format: 'dd-mm-yy',
-        language: 'es',
-        autoclose: true
-
-  });
 
 $(document).ready(function() {
+alert("La asistencia mostrada cuenta del 1er día del mes hasta la fecha de hoy")
+var id_trabajador = "<?php echo $trabajador->id ?>";
 
-        $('#button').click(function() {
-
-//        $('#projects-graph').replaceWith('<canvas id="projects-graph"></canvas>');
-
-        var e = document.getElementById("trabajador");
-        var valorid = e.options[e.selectedIndex].value;
-        var from = $("#datepicker1").val();
-        var to = $("#datepicker2").val();     
-        var url = 'https://aragonltda.cl/reportes/graficoAsistenciaDiaria/'+ valorid +'/'+ from +'/'+ to;
-        moment.locale('es');
-
-      $.getJSON(url, function (result) {
+var url =  'https://aragonltda.cl/reportes/graficoAsistenciaObra/'+ id_trabajador; //asistencia desde obra
+  $.getJSON(url, function (result) {
       console.log(result);
 
 new Chart(document.getElementById("projects-graph"), {
@@ -102,7 +59,7 @@ new Chart(document.getElementById("projects-graph"), {
     options: {
       title: {
         display: true,
-        text: 'Asistencia'
+        text: 'Asistencia de este Mes'
       },
       scales: {
         ticks: {
@@ -122,9 +79,6 @@ new Chart(document.getElementById("projects-graph"), {
 
   });
 
-
-        
-});
 
 });
 

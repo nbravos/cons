@@ -9,7 +9,7 @@
                   </li>
                   <li><a href="" class="active">Gráficos Licitaciones</a>
                   </li>
-                <li><a href="">Montos Ofertados</a>
+                <li><a href="">Datos Constructora Aragon</a>
                   </li>
 
                 </ul>
@@ -20,7 +20,7 @@
 
 <div  class="panel panel-transparent">
     <div class="panel-heading">
-      <div class="panel-title"> Montos Ofertados </div>
+      <div class="panel-title"> Constructora Aragon </div>
         <div class="export-options-container pull-right"></div>
         <div class="clearfix"></div>
     </div>
@@ -55,13 +55,12 @@
           	'Aceras' => 'Aceras'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
   		
           	<br>
-  		   {!! Form::label('contra', 'Filtrar por: Contratista') !!}
-           {!! Form::select('contra', $emp, ['0' => 'Todos'], array('class' => 'form-control', 'id' => 'contra')) !!}
+  		   
 
-           <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-primary btn-sm m-t-10"> Buscar </p></div>
+           <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-default btn-sm m-t-10"> Buscar </p></div>
 
 		<br>           
-			<canvas id="projects-graph" width="1800" height="600"></canvas>
+			<canvas id="projects-graph" width="1400" height="600"></canvas>
 		<br>
 
     </div>
@@ -83,10 +82,9 @@ $(document).ready(function() {
         var c = document.getElementById('tipo_proyecto');
         var tipo = c.options[c.selectedIndex].value;
 
-        var d = document.getElementById('contra');
-        var contratista = d.options[d.selectedIndex].value;
+        
 
-        var url = 'https://aragonltda.cl/reportes/montoOfertado/'+ mandante +'/'+ comuna +'/'+ tipo +'/' + contratista;
+        var url = 'https://aragonltda.cl/reportes/montoOfertado3/'+ mandante +'/'+ comuna +'/'+ tipo;
 
         $.getJSON(url, function (result) {
         	console.log(result);
@@ -104,8 +102,8 @@ $(document).ready(function() {
 		        }
 
 		    }
-		var x = 0;
-		    while( x < data3.length){ 
+		    var x = 0;
+		    while(x < data3.lenth){ 
 			    data3[x] = data3[x].toFixed(2); 
 			    x++
 			}
@@ -114,7 +112,7 @@ $(document).ready(function() {
       			labels : labels,
       			datasets : [
 		        {
-		          label: "Porcentaje Oferta",
+		          label: "Obras",
 		          backgroundColor : 'rgba(255, 99, 132, 0.2)',
 		          borderColor : 'rgba(255,99,132,1)',
 		          data : data3
@@ -131,7 +129,6 @@ $(document).ready(function() {
 				        ticks: {
 				          beginAtZero: true,
 				          min: 0,
-				          max: 100,
 				      },
 				    },
 				    legend: {

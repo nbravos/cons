@@ -27,7 +27,7 @@ class Proyecto extends \Eloquent {
                         'gastos_generales' => 'numeric',
                         'fecha_licitacion' => 'required|date_format:d/m/Y',
 		        'estado' => 'required', 
-			'ide' => 'required',
+			//'ide' => 'required',
 			'tipo_proyecto' => 'required', 
 			'activo' => 'required',
                         );
@@ -44,7 +44,7 @@ class Proyecto extends \Eloquent {
 		'costos_directos.numeric' => 'El valor de los costos directos debe ser numérico',
 		'gastos_generales.numeric' => 'El valor de los costos generales debe ser numérico',
 		'fecha_licitacion.required' => 'Debe indicar la fecha de licitación en formato dd-mm-yyyy',
-		'ide.required' => 'Debe indicar el ID de proyecto',
+		//'ide.required' => 'Debe indicar el ID de proyecto',
 		'tipo_proyecto.required' => 'Debe indicar tipo de proyecto, ej: Pavimento Participativo',
 		'activo.required' =>'Debe indicar si se encuentra activa esta licitación',
 

@@ -25,39 +25,15 @@
                         <td> <strong>Nombre </strong></td>
                         <td>{!!$proyecto->nombre!!}</td>
                       </tr>
-                       <tr>
-                        <td><strong>ID</strong></td>
-                        <td>{!!$proyecto->ide!!}</td>
-                      </tr>
                       <tr>
-                        <td><strong>Empresa</strong> </td>
-                        <td>{!!$proyecto->id_empresa!!}</td>
+                        <td><strong>Mandante</strong> </td>
+                        <td>{!!$proyecto->empresa->nombre!!}</td>
                       </tr>
                       <tr>
                         <td><strong> Comuna</strong></td>
                         <td>{!!$proyecto->comuna->nombre!!}</td>
                       </tr>
-                       <tr>
-                        <td><strong>Tipo Proyecto</strong></td>
-                        <td>{!!$proyecto->tipo_proyecto!!}</td>
-                      </tr>
-                    <tr>
-                        <td><strong>Vigencia</strong></td>
-                        @if ($proyecto->activo == 1)
-                        <td> Proyecto Activo </td>
-                        @else
-                        <td> Proyecto No Vigente</td>
-                        @endif
-                      </tr>
-                        <tr>
-                        <td><strong>Tipo de Licitación</strong></td>
-                        <td>{!!$proyecto->tipo_licitacion!!}</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Estado de Proyecto</strong></td>
-                        <td>{!!$proyecto->estado!!}</td>
-                      </tr>
-		      <tr>
+		                  <tr>
                         <td><strong>Presupuesto</strong></td>
                         <td>${!!$proyecto->presupuesto_oficial!!}</td>
                       </tr>
@@ -66,8 +42,8 @@
                         <td>{!!$proyecto->financiamiento!!}</td>
                       </tr>
                          <tr>
-                        <td><strong> Fecha de Licitación </strong></td>
-			 <td>{!!date('d-m-Y', strtotime($proyecto->fecha_licitacion))!!}</td>                       
+                        <td><strong> Inicio Obra </strong></td>
+			 <td>{!!date('d-m-Y', strtotime($fecha->inicio_real))!!}</td>                       
                       </tr>
 
                       <tr style="display: none;">
@@ -92,6 +68,7 @@
                <th>Nombre</th>
                <th>Unidad</th>
                <th>Cantidad</th>
+               <th>Precio Unitario</th>
                <th>Valor</th>
                <th>Seguimiento</th>
                <th>Acciones</th>
@@ -101,6 +78,7 @@
         </tfoot>
               <tbody>
               <td class="non_searchable"></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -123,7 +101,7 @@
 	$('#listaPart').dataTable().fnDestroy();
    $('#listaPart').empty();
 
-        $("#listaPart").append('<tfoot><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tfoot>');
+        $("#listaPart").append('<tfoot><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tfoot>');
         $('#listaPart').DataTable({
             fixedHeader:{
               header: true,
@@ -159,6 +137,7 @@
                 {data: 'partNombre', name: 'partida.nombre', title: 'Nombre'},
                 {data: 'unidad', name: 'partida.unidad', title: 'Unidad'},
                 {data: 'cantidad', name: 'partida.cantidad', title: 'Cantidad'},
+                {data: 'unitario', name: 'partida.unitario', title: 'Valor Unitario'},
                 {data: 'total',  render: function ( data, type, row ) {
                   return $.fn.dataTable.render.number( '.', '.', 0, '$' ).display(data) ;
                 }, name: 'partida.total', title: 'Valor'},

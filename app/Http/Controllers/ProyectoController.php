@@ -113,6 +113,14 @@ class ProyectoController extends \BaseController {
                 return View::make('site/proyectos/show', array('proyecto' => $proyecto));
 	}
 
+	public function activarProy($id_proyecto)
+    	{
+        	$proyecto = Proyecto::find($id_proyecto);
+	        $proyecto->activo = 1;
+		$proyecto->save();
+                return View::make('site/proyectos/show', array('proyecto' => $proyecto));
+    	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 * GET /trabajador/{id}/edit

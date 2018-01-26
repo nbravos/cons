@@ -91,8 +91,8 @@ $(document).ready(function () {
     </div> 
 
     <div class="form-group">
-      {!! Form::label('detalle', 'Detalle Partida') !!}
-      {!! Form::text('detalle', null, array('placeholder' => 'Ingresar detalle de la Partida ', 'class' => 'form-control')) !!}
+      {!! Form::label('detalle', 'Comentarios de la Partida') !!}
+      {!! Form::text('detalle', null, array('placeholder' => 'Ingresar comentarios de la Partida ', 'class' => 'form-control')) !!}
     </div>
     <div class="form-group">
       {!! Form::label('unidad', 'Unidad') !!}

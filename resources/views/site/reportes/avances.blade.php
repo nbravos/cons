@@ -24,7 +24,7 @@
               </div>
             
      @php
-	$role = App\Models\Proyecto::where('estado', '=', 'ganado')->pluck('nombre', 'id');
+	$role = App\Models\Proyecto::where('estado', '=', 'obra')->pluck('nombre', 'id');
 	$role['0'] = 'Todos';	
 	@endphp	
 	<div class="form-group">
@@ -53,15 +53,18 @@ moment.locale('es');
  	var e = document.getElementById("proy");
     var id_obra = e.options[e.selectedIndex].value;
  	var url = "https://aragonltda.cl/reportes/selectObraAvance/" +id_obra;
-    $.get(url, function(data) {
-    	$.each(data, function (i, item) {
-    		$('#partida').append($('<option>', { 
-       			value: item.value,
-		        text : item.text 
-		    }));
-		});
-    });
-});
+              $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+			console.log(data);
+                        $.each(data, function(id, nombre) {
+                            $('select[name="partida"]').append('<option value="'+ id +'">'+ nombre +'</option>');
+                        });
+                    }
+                });
+  });
 
  $('#button').click(function() {
  	var a = document.getElementById("partida");

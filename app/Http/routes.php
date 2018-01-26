@@ -76,6 +76,7 @@ Route::get('cuadrillas/create/{id}',['uses' =>'CuadrillaController@create'])->na
 Route::get('partidas/proyecto/{id}', ['uses' =>'PartidaController@verPartProyecto'])->name('verPart');
 Route::resource('partidas', 'PartidaController');
 
+Route::get('proyectos/activaProy/{id}', ['uses' => 'ProyectoController@activarProy'])->name('activarProy');
 Route::get('proyectos/getfilFecha/{from}/{to}', ['uses' =>'ProyectoController@filtroFecha']);
 Route::get('proyectos/getcom/{id}', ['uses' =>'ProyectoController@filtroComuna'])->name('getComuna');
 Route::get('proyectos/getman/{id}', ['uses' =>'ProyectoController@filtroMandante'])->name('getMand');
@@ -88,9 +89,18 @@ Route::get('reportes/selectObraAvance/{id}', ['uses' => 'ReporteController@selec
 Route::get('reportes/avanceObra/{id}', ['uses' => 'ReporteController@avancesGrafico']); //grafico de avances x partida
 Route::get('reportes/montoOferta', ['uses' =>'ReporteController@tablaOfertas']); //carga página montos ofertados
 Route::get('reportes/montoOfertado/{mandante}/{comuna}/{tipo}/{contratista}', ['uses' =>'ReporteController@graficOfertas']); //grafico montos
+
+Route::get('reportes/montoOferta2', ['uses' =>'ReporteController@vistaOfertas2']); //carga página montos ofertados2
+Route::get('reportes/montoOfertado2/{mandante}/{comuna}/{tipo}', ['uses' =>'ReporteController@graficOfertas2']); //grafico monto2
+
+
+Route::get('reportes/montoOferta3', ['uses' =>'ReporteController@vistaOfertas3']); //carga página montos ofertados3
+Route::get('reportes/montoOfertado3/{mandante}/{comuna}/{tipo}', ['uses' =>'ReporteController@graficOfertas3']); //grafico monto3
+
 Route::get('reportes/asistencia', ['uses' =>'ReporteController@vistaAsistencia']); //carga página asistencia
 Route::get('reportes/graficoAsistenciaDiaria/{id_trabajador}/{desde}/{hasta}', ['uses' => 'ReporteController@asistenciaGrafico']);//grafico de asistencia
-Route::get('reportes/graficoAsistenciaDiaria/{id_trabajador}', ['uses' => 'ReporteController@asistenciaGrafico2'])->name('asistencia_obra'); //asistencia desde obra
+Route::get('reportes/graficoAsistenciaDiaria/{id_trabajador}', ['uses' => 'ReporteController@vistaAsistenciaDesdeObra'])->name('asistencia_obra'); //asistencia desde obra
+Route::get('reportes/graficoAsistenciaObra/{id_trabajador}', ['uses' => 'ReporteController@asistenciaGrafico2']);
 Route::get('reportes/getTrabajadores/{id}', ['uses' => 'ReporteController@getTrabDropdown'])->name('getProyAsistencia'); //carga dropdown trabajadores
 Route::get('reportes/getChartTrab/{id}', ['uses' => 'ReporteController@grapAsistenciaTrabajador']); //carga gráfico trabajadores
 Route::get('reportes/getTablaTrab/{id}', ['uses' => 'ReporteController@tablaAsistenciaTrabajador']);

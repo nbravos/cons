@@ -55,7 +55,7 @@
           <input class="form-control" id="datepicker2" name="fin" placeholder="DD/MM/AA" type="text">
       </div>
       </div>
-      <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-default btn-sm m-t-10" >Filtrar </p></div>
+      <div class="col-xs-6 col-md-4"> <br> <p  id="button" class="btn btn-primary btn-sm m-t-10" >Filtrar </p></div>
       </div>
       <br>
 	<br>

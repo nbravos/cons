@@ -220,8 +220,9 @@ public function update($id){
 	
     $oferta->fill($data);
     $oferta->save();
-
-    return Redirect::route('proyectos.index');
+    $pc = Proyectocontratista::find($id);
+//    return Redirect::route('proyectos.index');
+return View::make('site/proyectocontratista/show', array('pc' => $pc));
 
 
 
@@ -247,7 +248,7 @@ public function destroy($id)
         	}
         	else
        		{
-	            return Redirect::route('proyectos.index');
+	            return back();
         	}
 	}
 }

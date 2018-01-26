@@ -40,7 +40,7 @@
                             <li class="menu-item "> <a href="/">Inicio</a> </li>
                             <li class="menu-item active"> <a href="/about">Quiénes Somos</a> </li>
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
-                            <li class="menu-item "> <a href="/noticias">Noticias</a> </li>
+                            <!--<li class="menu-item "> <a href="/noticias">Noticias</a> </li>-->
                             <li class="menu-item "> <a href="/contacto">Contacto</a> </li>
   			    <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
@@ -300,7 +300,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <!--<div class="col-sm-4">
                             <div class="sidebar-widget widget_recent_entries">
                                 <h3 class="sidebar-header">Noticias Recientes</h3>
                                 <ul>
@@ -314,7 +314,7 @@
                                         </div> <a href="construction-post.html" title="Construction progress meeting">Noticia 2</a> <small class="post-date">Fecha 2</small> </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-4">
                             <div class="sidebar-widget  widget_text">
                                 <h3 class="sidebar-header">Ubicación</h3>

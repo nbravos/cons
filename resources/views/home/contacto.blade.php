@@ -40,7 +40,7 @@
                             <li class="menu-item "> <a href="/">Inicio</a> </li>
                             <li class="menu-item "> <a href="/about">Quiénes Somos</a> </li>
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
-                            <li class="menu-item "> <a href="/noticias">Noticias</a> </li>
+                            <!--<li class="menu-item "> <a href="/noticias">Noticias</a> </li>-->
                             <li class="menu-item active"> <a href="/contacto">Contacto</a> </li>
 			   <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
@@ -158,7 +158,7 @@
                                     <p>Texto 1 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <!--<div class="col-sm-3">
                             <div class="sidebar-widget widget_recent_entries">
                                 <h3 class="sidebar-header">Noticias Recientes</h3>
                                 <ul>
@@ -179,7 +179,7 @@
                                 fundamentals</a> <small class="post-date">Fecha</small> </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-3">
                             <div class="sidebar-widget widget_categories">
                                 <h3 class="sidebar-header">Categorías</h3>

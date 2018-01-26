@@ -31,7 +31,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed" data-target=".main-navbar" data-toggle="collapse" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="/"> <img alt="Lambda Theme - Construction" src="assets/img/logo_gris.jpg">  </a>
+                <a class="navbar-brand" href="/"> <img alt="Lambda Theme - Construction" src="assets/img/logo_white_2.png">  </a>
             </div>
             <div class="nav-container">
                 <nav class="collapse navbar-collapse main-navbar logo-navbar navbar-right">
@@ -40,7 +40,7 @@
                             <li class="menu-item active"> <a href="/">Inicio</a> </li>
                             <li class="menu-item "> <a href="/about">Quiénes Somos</a> </li>
                             <li class="menu-item "> <a href="/servicios">Servicios</a> </li>
-                            <li class="menu-item "> <a href="/noticias">Noticias</a> </li>
+                           <!-- <li class="menu-item "> <a href="/noticias">Noticias</a> </li>-->
                             <li class="menu-item "> <a href="/contacto">Contacto</a> </li>
 	  		    <li class="menu-item "> <a href="/login">Login</a> </li>
                         </ul>
@@ -330,12 +330,12 @@
                     </div>
                 </div>
             </section>
-            <section class="section">
+            <!--<section class="section">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class=" element-top-80 element-bottom-80 recent-simple-os-container list-container row">
-                                <!--<div class="col-md-4 recent-simple-os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.1s">
+                                <div class="col-md-4 recent-simple-os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.1s">
                                     <article class="post-grid element-bottom-20 text-center" id="post-158">
                                         <a href="construction-post.html"><img alt="What does a Construction Worker do?" class="img-responsive" src="assets4/images/construction/fondo1_home"></a>
                                         <div class="post-grid-content">
@@ -344,7 +344,7 @@
                                             <div class="post-grid-content-footer"> autor, fecha </div>
                                         </div>
                                     </article>
-                                </div>-->
+                                </div>-
                                 <div class="col-md-4 recent-simple-os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.2s">
                                     <article class="post-grid element-bottom-20 text-center" id="post-155">
                                         <a href="construction-post.html"><img alt="Construction progress meeting" class="img-responsive" src="assets4/images/construction/img26-notinclude.jpg"></a>
@@ -371,7 +371,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>-->
                        <section class="section">
                 <div class="background-media" style="background-image: url(assets4/images/construction/fondo_servicios2.jpg); background-repeat:no-repeat; background-size:cover; background-attachment:fixed; background-position: 50% 0%;"> </div>
                 <div class="background-overlay grid-overlay-0" style="background-color: rgba(0,0,0,0.4);"></div>
@@ -464,7 +464,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <!--<div class="col-sm-4">
                             <div class="sidebar-widget widget_recent_entries">
                                 <h3 class="sidebar-header">Noticias Recientes</h3>
                                 <ul>
@@ -478,7 +478,7 @@
                                         </div> <a href="construction-post.html" title="Construction progress meeting">Noticia 2</a> <small class="post-date">Fecha 2</small> </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-4">
                             <div class="sidebar-widget  widget_text">
                                 <h3 class="sidebar-header">Ubicación</h3>

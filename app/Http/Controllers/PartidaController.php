@@ -17,66 +17,15 @@ class PartidaController extends \Controller {
 
 	public function index()
 	{
-		
-/* NO CARGA LA TABLA INMEDIATAMENTE, SE USA INDEX 2
-		 $partidas = DB::table('partida')->join('proyecto', 'proyecto.id', '=', 'partida.id_proyecto')->select(['partida.id','partida.nombre as partNombre','partida.item', 'partida.total', 'partida.activa']);
-		if (request()->ajax()){
-		                return Datatables::of($partidas)
 
-		->addColumn('action', function ($partida) {
-                return '<a href="/partidas/'.$partida->id.'" class="btn btn-info">Ver</a>';		                
-                })
-		//->editColumn('inicio_real', function ($partida) {
-		        //return $partida->inicio_real ? with(new Carbon($partida->inicio_real))->format('d-m-Y') : '';
-			
-            //})
-            //F
-        ->editColumn('id', ' {{$id}}')
-            ->make(true);
-        } 
-
-*/
 	    return View::make('site/partidas/list');//->with('partidas', $partidas);
 	    								
 	}
 
-  /*NO SE UTILIZA*/
-	/*public function dropProyectos($id){ 
-		if ($id == 0){ //todos
-			$proyectos = DB::table('proyecto')->select('nombre', 'id')->where('estado', '=', 'ganado')->get();
-		}
-		if ($id == 1) { //proyectos activos
-			$proyectos = DB::table('proyecto')->select('nombre', 'id')->where([['activo', '=', '1'], ['estado', '=', 'ganado']])->get();
-		}
-		if ($id == 2) { //proy no activos
-			$proyectos = DB::table('proyecto')->select('nombre', 'id')->where([['activo', '=', '2'], ['estado', '=', 'ganado']])->get();
-		} 
-
-		return response()->json($proyectos);
-	}*/
 
     public function index2($id)
     {
 
-/*INDEX ANTERIOR*/
-    	/* $partidas = DB::table('partida')
-    	 ->join('proyecto', function($join) use ($id){
-    	 	$join->on('proyecto.id', '=', 'partida.id_proyecto')
-                        ->where('partida.id_proyecto', '=', $id);
-
-    	 })
-    	
-    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.unidad', 'partida.cantidad','partida.activa']);
-
-		if (request()->ajax()){
-		                return Datatables::of($partidas)
-
-		->addColumn('action', function ($partida) {
-                return '<a href="/partidas/'.$partida->id.'" class="btn btn-info">Ver</a>';		                
-                })
-        ->editColumn('id', ' {{$id}}')
-            ->make(true);
-        } */
         
        if($id == 0) {
        	$obras = DB::table('proyecto')
@@ -141,7 +90,10 @@ class PartidaController extends \Controller {
                         App::abort(404)->with('message', 'Obra no encontrada');
                 }
 		//dd($proyecto);
-                return View::make('site/partidas/obra', array('proyecto' => $proyecto));
+		$fecha = DB::table('partida')->select('partida.inicio_real')->where('partida.id_proyecto', '=', $proyecto->id)->first();
+		
+		
+                return View::make('site/partidas/obra', array('proyecto' => $proyecto))->with('fecha', $fecha);
 
 	}
 
@@ -187,7 +139,7 @@ return Redirect::route('getObra', $proy->id);
 
     	 })
     	
-    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.unidad', 'partida.cantidad','partida.activa']);
+    	 ->select(['partida.id','partida.nombre as partNombre', 'partida.item', 'partida.total', 'partida.unitario', 'partida.unidad', 'partida.cantidad','partida.activa']);
 
 		if (request()->ajax()){
 		                return Datatables::of($partidas)

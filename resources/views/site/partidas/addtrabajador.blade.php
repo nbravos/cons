@@ -20,6 +20,7 @@
                   <li class="active">
                     <p>Inicio</p>
                   </li>
+		<li><a href=""> {{$proyecto->nombre}} </a></li>
                   <li><a href="" class="active">Agregar Trabajador</a>
                   </li>
                 </ul>

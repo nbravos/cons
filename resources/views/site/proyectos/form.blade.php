@@ -87,7 +87,8 @@
           'Pavimentación Calzada' => 'Pavimentación Calzada',
           'Hormigón' => 'Hormigón',
           'Pavimentación Asfalto' => 'Asfalto',
-          'Aceras' => 'Aceras'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
+          'Aceras' => 'Aceras',
+	  'Otros' => 'Otros'), null, ['id' =>'tipo_proyecto', 'class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
